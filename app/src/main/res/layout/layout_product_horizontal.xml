@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="product"
+            type="com.example.apicoroutines.feature.shared.model.response.Product" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp">
+
+        <ImageView
+            android:id="@+id/imvHomeHorizontalProductImage"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:scaleType="fitCenter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txvHorizontalProductName"
+            android:layout_width="111dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:ellipsize="end"
+            android:text="@{product.title}"
+            android:fontFamily="@font/robotomedium"
+            android:maxLines="1"
+            android:textColor="@color/secondary_text_black"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imvHomeHorizontalProductImage" />
+
+        <TextView
+            android:id="@+id/txvHrRs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/robotomedium"
+            android:textColor="@color/secondary_text"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txvHorizontalProductName" />
+
+        <TextView
+            android:id="@+id/txvHrPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/robotomedium"
+            android:textColor="@color/secondary_text"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@id/txvHrRs"
+            app:layout_constraintTop_toBottomOf="@id/txvHorizontalProductName" />
+
+        <!--    <TextView-->
+        <!--        android:id="@+id/txvHorizontalDiscountedPrice"-->
+        <!--        android:layout_width="wrap_content"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:layout_marginTop="9dp"-->
+        <!--        android:text="@string/rs_1800"-->
+        <!--        android:textSize="12sp"-->
+        <!--        android:textColor="@color/primary_text"-->
+        <!--        android:background="@drawable/strike_line"-->
+        <!--        android:layout_marginStart="8dp"-->
+        <!--        app:layout_constraintStart_toEndOf="@id/txvHrPrice"-->
+        <!--        app:layout_constraintTop_toBottomOf="@id/txvHorizontalProductName"/>-->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
