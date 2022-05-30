@@ -5,6 +5,11 @@ object ApiConstants {
     const val apiKey = "c0e054eac239d5b973d754909d5b676551bbbe4f44285f20524b23a1908afb15"
     const val apiKeyString = "Api-key"
     const val wareHouseIdString = "Warehouse-Id"
+    const val client_id = 2
+    const val client_secret = "IY1z0KiePtEYkZgcBoyZsOOoVEzyd5Jn6PGqYO1u"
+    const val grant_type = "password"
+
+    const val login_url = "api/v4/auth/login"
 
     // HomeScreen
     const val newHomePage = "api/v4/newhome"

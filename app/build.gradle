@@ -56,7 +56,8 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.0'
 
     //Interceptor
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.7.2'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.9.1'
+
 
     //Room dependencies
     implementation 'androidx.room:room-runtime:2.4.2'
@@ -77,4 +78,8 @@ dependencies {
     implementation 'com.google.dagger:hilt-android:2.42'
     kapt 'com.google.dagger:hilt-android-compiler:2.42'
     implementation "androidx.activity:activity-ktx:1.4.0"
+
+//    implementation  'com.squareup.okhttp3:okhttp:4.9.3'
+//    implementation 'com.google.code.gson:gson:2.9.0'
+
 }

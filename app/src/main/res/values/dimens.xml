@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--   Sharable dimens-->
+    <dimen name="editText_text_size">16sp</dimen>
+    <dimen name="editText_height">51dp</dimen>
+    <dimen name="button_height">36dp</dimen>
+    <dimen name="secondary_text_size">12sp</dimen>
+    <dimen name="secondary_text_margin">20dp</dimen>
+    <dimen name="continue_button_text_size">14sp</dimen>
+    <dimen name="textBelowButton_marginTop">22dp</dimen>
+    <dimen name="textBelowButton_askIf_marginEnd">60dp</dimen>
+    <dimen name="textBelowButton_signup_signIn_marginStart">4dp</dimen>
+    <dimen name="activity_title_size">20sp</dimen>
+    <dimen name="editText_margin_start">24dp</dimen>
+    <dimen name="editText_margin_end">18dp</dimen>
+    <dimen name="button_margin_start_end">21dp</dimen>
+
+    <!--Login dimens    -->
+    <dimen name="login_logo_width">130dp</dimen>
+    <dimen name="login_logo_height">60dp</dimen>
+    <dimen name="logo_marginTop">90dp</dimen>
+    <dimen name="login_title_marginTop">30dp</dimen>
+    <dimen name="login_title_marginStart">24dp</dimen>
+    <dimen name="login_margin_top">15dp</dimen>
+</resources>

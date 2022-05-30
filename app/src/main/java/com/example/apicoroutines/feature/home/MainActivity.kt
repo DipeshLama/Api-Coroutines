@@ -104,16 +104,19 @@ class MainActivity : BaseActivity() {
 
     private fun filterData(list: List<Home>) {
         for (home in list){
-            if (home.title=="Banner"){
-                home.details?.let { this.list.add(it) }
-            }else if (home.title=="Products Collection"){
-                home.sectionDetails?.title?.let { this.list.add(it) }
-                home.sectionDetails?.products?.let { this.list.add(it) }
-            }else if (home.title=="Category"){
-                home.categories?.let { this.list.add(it) }
+            when (home.title) {
+                "Banner" -> {
+                    home.details?.let { this.list.add(it) }
+                }
+                "Products Collection" -> {
+                    home.sectionDetails?.title?.let { this.list.add(it) }
+                    home.sectionDetails?.products?.let { this.list.add(it) }
+                }
+                "Category" -> {
+                    home.categories?.let { this.list.add(it) }
+                }
             }
         }
-
         homeScreenAdapter.notifyDataSetChanged()
     }
 }

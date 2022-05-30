@@ -4,7 +4,7 @@
     package="com.example.apicoroutines">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name=".feature.shared.base.BaseApplication"
@@ -18,16 +18,23 @@
         android:theme="@style/Theme.ApiCoroutines"
         tools:targetApi="31">
         <activity
-            android:name=".feature.shared.base.BaseActivity"
-            android:exported="false" />
-        <activity
-            android:name=".feature.home.MainActivity"
-            android:exported="true">
+            android:name=".feature.login.LoginActivity"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".feature.shared.base.BaseActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".feature.home.MainActivity"
+            android:exported="false">
+
         </activity>
     </application>
 
