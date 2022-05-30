@@ -37,9 +37,12 @@ class ForgotPasswordActivity : BaseActivity(), View.OnClickListener {
 
 
     private fun forgotPassword() {
-        forgotPasswordCall(
-            ForgotPasswordRequest(binding.edtForgotPasswordEmail.text.toString().trim())
-        )
+        when {
+            checkIsOnline() -> forgotPasswordCall(
+                ForgotPasswordRequest(binding.edtForgotPasswordEmail.text.toString().trim()))
+
+            else -> showMessage("check internet connection")
+        }
     }
 
     private fun forgotPasswordCall(request: ForgotPasswordRequest) {
@@ -57,6 +60,7 @@ class ForgotPasswordActivity : BaseActivity(), View.OnClickListener {
         it.data?.let {
             if (it.isSuccessful && it.body()?.data != null) {
                 showMessage("Password reset  success")
+                dialog.dismiss()
             } else {
                 dialog.dismiss()
                 showMessage(getError(it.errorBody()?.string()))
