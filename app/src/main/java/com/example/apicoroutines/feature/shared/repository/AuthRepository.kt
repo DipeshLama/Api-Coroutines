@@ -6,5 +6,6 @@ import javax.inject.Inject
 
 class AuthRepository @Inject constructor() : BaseRepository() {
 
-    suspend fun login (request : LoginRequest) = apiService.login(getGlobalUtils(request))
+    suspend fun login (request : LoginRequest) =
+        apiService.login(getGlobalUtils(request))
 }

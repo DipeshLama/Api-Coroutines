@@ -22,12 +22,12 @@ class HomeScreenAdapter(
     override fun getItemViewType(position: Int) =
         if (list[position] is List<*>) {
             val a = list[position] as List<*>
-            if (a.isNotEmpty() && a[0] is Product)
-                productType
+            if (a.isNotEmpty() && a[0] is Details)
+                bannerType
             else if (a.isNotEmpty() && a[0] is Category)
                 categoryType
             else
-                bannerType
+                productType
         } else titleType
 
 

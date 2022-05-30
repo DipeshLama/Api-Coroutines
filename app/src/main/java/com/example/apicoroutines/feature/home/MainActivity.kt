@@ -110,13 +110,14 @@ class MainActivity : BaseActivity() {
                 }
                 "Products Collection" -> {
                     home.sectionDetails?.title?.let { this.list.add(it) }
-                    home.sectionDetails?.products?.let { this.list.add(it) }
+                    home.sectionDetails?.products?.let { this.list.add(it)}
                 }
                 "Category" -> {
                     home.categories?.let { this.list.add(it) }
                 }
             }
         }
+
         homeScreenAdapter.notifyDataSetChanged()
     }
 }
