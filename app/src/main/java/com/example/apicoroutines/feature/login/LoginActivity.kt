@@ -2,6 +2,7 @@ package com.example.apicoroutines.feature.login
 
 import android.app.AlertDialog
 import android.app.Dialog
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -14,6 +15,7 @@ import com.example.apicoroutines.feature.shared.base.BaseActivity
 import com.example.apicoroutines.feature.shared.model.request.LoginRequest
 import com.example.apicoroutines.feature.shared.model.response.Login
 import com.example.apicoroutines.utils.constants.ApiConstants
+import com.example.apicoroutines.utils.globalUtils.PreferenceUtils
 import com.example.apicoroutines.utils.resource.Resource
 import com.example.apicoroutines.utils.resource.Status
 import com.example.apicoroutines.utils.router.Router
@@ -24,7 +26,7 @@ import retrofit2.Response
 class LoginActivity : BaseActivity(), View.OnClickListener {
     private lateinit var binding: ActivityLoginBinding
     private val loginViewModel: LoginViewModel by viewModels()
-    private lateinit var dialog : Dialog
+    private lateinit var dialog: Dialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,17 +37,19 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun login() {
-        val loginRequest = LoginRequest(
+        loginApiCall(LoginRequest(
             client_id = ApiConstants.client_id,
             client_secret = ApiConstants.client_secret,
             grant_type = ApiConstants.grant_type,
             username = binding.edtLoginName.text.toString(),
             password = binding.edtLoginPassword.text.toString()
-        )
+        ))
+    }
 
-        loginViewModel.login(loginRequest).observe(
+    private fun loginApiCall(request: LoginRequest) {
+        loginViewModel.login(request).observe(
             this) {
-            when(it.status){
+            when (it.status) {
                 Status.SUCCESS -> onLoginSuccess(it)
                 Status.ERROR -> onLoginError(it.message)
                 Status.LOADING -> dialog.show()
@@ -53,25 +57,39 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
         }
     }
 
-    private fun onLoginError(msg: String?) {
-        showMessage(msg)
-    }
-
     private fun onLoginSuccess(it: Resource<Response<Login>>) {
         it.data?.let {
-            if(it.isSuccessful){
-                Router.navigateActivity(this, true,MainActivity::class)
-            }else{
-                val error = it.errorBody()?.string().let { errorResponse ->
-                    getError(errorResponse)
-                }
+            if (it.isSuccessful) {
+                saveToPreference(it.body()?.accessToken,
+                    it.body()?.refreshToken,
+                    it.body()?.tokenType)
+
                 dialog.dismiss()
-                showMessage(error)
+                Router.navigateActivity(this, true, MainActivity::class)
+            } else {
+                dialog.dismiss()
+                showMessage(getError(it.errorBody()?.string()))
             }
         }
     }
 
-    private fun initDialog (){
+    private fun onLoginError(msg: String?) {
+        dialog.dismiss()
+        showMessage(msg)
+    }
+
+    private fun saveToPreference(
+        accessToken: String?,
+        refreshToken: String?,
+        tokenType: String?,
+    ) {
+        PreferenceUtils.saveToPreference(this,
+            " Bearer $accessToken",
+            "Bearer $refreshToken",
+            tokenType)
+    }
+
+    private fun initDialog() {
         dialog = Dialog(this)
         dialog.setContentView(R.layout.loading_dialog)
         dialog.setCancelable(false)
@@ -85,7 +103,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
         }
     }
 
-    private fun initListener (){
+    private fun initListener() {
         binding.btnLogin.setOnClickListener(this)
     }
 }

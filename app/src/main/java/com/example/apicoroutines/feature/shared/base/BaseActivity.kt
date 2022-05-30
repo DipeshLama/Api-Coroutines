@@ -1,7 +1,9 @@
 package com.example.apicoroutines.feature.shared.base
 
+import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.Toast
+import com.example.apicoroutines.R
 import com.example.apicoroutines.feature.shared.model.response.ErrorResponse
 import com.example.apicoroutines.utils.helper.NetworkHelper
 import com.google.gson.Gson
@@ -27,4 +29,5 @@ abstract class BaseActivity : AppCompatActivity() {
 
     protected fun checkIsOnline() =
         NetworkHelper.isNetworkConnected(this)
+
 }

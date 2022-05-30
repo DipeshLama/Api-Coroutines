@@ -13,6 +13,7 @@ import javax.inject.Inject
 @HiltViewModel
 class LoginViewModel @Inject constructor(private val repository: AuthRepository) : ViewModel() {
     fun login (request: LoginRequest) = liveData(Dispatchers.IO) {
+
         emit(Resource.loading(data = null))
 
         try {
