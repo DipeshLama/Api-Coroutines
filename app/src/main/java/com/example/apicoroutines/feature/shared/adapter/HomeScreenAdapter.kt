@@ -17,7 +17,8 @@ class HomeScreenAdapter(
     private val bannerType = 1
     private val categoryType = 2
     private val productType = 3
-    private val titleType = 4
+    private val gridType = 4
+    private val titleType = 5
 
     override fun getItemViewType(position: Int) =
         if (list[position] is List<*>) {
