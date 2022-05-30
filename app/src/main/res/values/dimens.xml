@@ -29,4 +29,7 @@
     <dimen name="signUp_title_size">18sp</dimen>
     <dimen name="signUp_title_marginStart">14dp</dimen>
     <dimen name="signUpEditText_marginTop">8dp</dimen>
+
+    <dimen name="forgotPasswordTitle_marginTop">93dp</dimen>
+
 </resources>

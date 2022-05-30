@@ -11,6 +11,7 @@ object ApiConstants {
 
     const val login_url = "api/v4/auth/login"
     const val signUp_url = "api/v4/auth/signup"
+    const val forgotPassword = "api/v4/auth/forgot-password"
 
     // HomeScreen
     const val newHomePage = "api/v4/newhome"

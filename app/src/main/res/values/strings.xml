@@ -22,4 +22,7 @@
     <string name="askToLogin">Login</string>
     <string name="agreeTitle">By Signup you agree to our</string>
     <string name="policyLink"><u>Privacy Policy</u> &amp; <u>Terms of Service</u> </string>
+
+    <string name="forgotPasswordScreen_title">Enter Email Address</string>
+
 </resources>

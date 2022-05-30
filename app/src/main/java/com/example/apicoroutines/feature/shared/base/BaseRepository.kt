@@ -6,6 +6,6 @@ import com.example.apicoroutines.utils.globalUtils.GlobalUtils
 abstract class BaseRepository {
     val apiService = RetrofitHelper.getApiService()
 
-    fun getGlobalUtils (any : Any)  = GlobalUtils.buildGson(any)
-
+    fun getGlobalUtils(any: Any) =
+        GlobalUtils.buildGson(any)
 }

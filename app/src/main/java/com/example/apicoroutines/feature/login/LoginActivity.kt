@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import com.example.apicoroutines.R
 import com.example.apicoroutines.databinding.ActivityLoginBinding
 import com.example.apicoroutines.feature.home.MainActivity
+import com.example.apicoroutines.feature.resetPassword.forgotPassword.ForgotPasswordActivity
 import com.example.apicoroutines.feature.shared.base.BaseActivity
 import com.example.apicoroutines.feature.shared.model.request.LoginRequest
 import com.example.apicoroutines.feature.shared.model.response.Login
@@ -99,18 +100,23 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
 
     override fun onClick(view: View?) {
         when (view) {
-            binding.btnLogin -> {
-                login()
-            }
+            binding.btnLogin -> login()
 
-            binding.txvSignUp ->{
-                Router.navigateActivity(this,false,SignUpActivity::class)
-            }
+            binding.txvSignUp -> Router.navigateActivity(
+                this,
+                false,
+                SignUpActivity::class)
+
+            binding.txvForgetPassword -> Router.navigateActivity(
+                this,
+                false,
+                ForgotPasswordActivity::class)
         }
     }
 
     private fun initListener() {
         binding.btnLogin.setOnClickListener(this)
         binding.txvSignUp.setOnClickListener(this)
+        binding.txvForgetPassword.setOnClickListener(this)
     }
 }
