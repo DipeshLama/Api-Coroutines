@@ -22,4 +22,11 @@
     <dimen name="login_title_marginTop">30dp</dimen>
     <dimen name="login_title_marginStart">24dp</dimen>
     <dimen name="login_margin_top">15dp</dimen>
+
+    <!-- Signup dimens    -->
+    <dimen name="backButton_width_height">20dp</dimen>
+    <dimen name="backArrow_marginTop">42dp</dimen>
+    <dimen name="signUp_title_size">18sp</dimen>
+    <dimen name="signUp_title_marginStart">14dp</dimen>
+    <dimen name="signUpEditText_marginTop">8dp</dimen>
 </resources>

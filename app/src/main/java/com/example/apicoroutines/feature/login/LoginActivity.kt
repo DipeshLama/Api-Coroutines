@@ -1,9 +1,6 @@
 package com.example.apicoroutines.feature.login
 
-import android.app.AlertDialog
 import android.app.Dialog
-import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
@@ -14,6 +11,7 @@ import com.example.apicoroutines.feature.home.MainActivity
 import com.example.apicoroutines.feature.shared.base.BaseActivity
 import com.example.apicoroutines.feature.shared.model.request.LoginRequest
 import com.example.apicoroutines.feature.shared.model.response.Login
+import com.example.apicoroutines.feature.signup.SignUpActivity
 import com.example.apicoroutines.utils.constants.ApiConstants
 import com.example.apicoroutines.utils.globalUtils.PreferenceUtils
 import com.example.apicoroutines.utils.resource.Resource
@@ -37,13 +35,17 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun login() {
-        loginApiCall(LoginRequest(
-            client_id = ApiConstants.client_id,
-            client_secret = ApiConstants.client_secret,
-            grant_type = ApiConstants.grant_type,
-            username = binding.edtLoginName.text.toString(),
-            password = binding.edtLoginPassword.text.toString()
-        ))
+        if (checkIsOnline()) {
+            loginApiCall(LoginRequest(
+                client_id = ApiConstants.client_id,
+                client_secret = ApiConstants.client_secret,
+                grant_type = ApiConstants.grant_type,
+                username = binding.edtLoginName.text.toString(),
+                password = binding.edtLoginPassword.text.toString()
+            ))
+        } else {
+            showMessage("Check internet connection")
+        }
     }
 
     private fun loginApiCall(request: LoginRequest) {
@@ -100,10 +102,15 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
             binding.btnLogin -> {
                 login()
             }
+
+            binding.txvSignUp ->{
+                Router.navigateActivity(this,false,SignUpActivity::class)
+            }
         }
     }
 
     private fun initListener() {
         binding.btnLogin.setOnClickListener(this)
+        binding.txvSignUp.setOnClickListener(this)
     }
 }

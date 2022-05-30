@@ -10,6 +10,7 @@ object ApiConstants {
     const val grant_type = "password"
 
     const val login_url = "api/v4/auth/login"
+    const val signUp_url = "api/v4/auth/signup"
 
     // HomeScreen
     const val newHomePage = "api/v4/newhome"

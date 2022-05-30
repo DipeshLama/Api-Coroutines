@@ -12,14 +12,14 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(private val repository: AuthRepository) : ViewModel() {
-    fun login (request: LoginRequest) = liveData(Dispatchers.IO) {
+    fun login(request: LoginRequest) = liveData(Dispatchers.IO) {
 
         emit(Resource.loading(data = null))
 
         try {
             emit(Resource.success(data = repository.login(request)))
-        }catch (ex : Exception){
-            emit(Resource.error(data = null, message = ex.message ?:" Something went wrong"))
+        } catch (ex: Exception) {
+            emit(Resource.error(data = null, message = ex.message ?: " Something went wrong"))
         }
     }
 }
