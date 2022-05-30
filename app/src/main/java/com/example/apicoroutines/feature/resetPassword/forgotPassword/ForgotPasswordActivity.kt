@@ -35,7 +35,6 @@ class ForgotPasswordActivity : BaseActivity(), View.OnClickListener {
         binding.btnForgotPasswordContinue.setOnClickListener(this)
     }
 
-
     private fun forgotPassword() {
         when {
             checkIsOnline() -> forgotPasswordCall(

@@ -1,8 +1,11 @@
 package com.example.apicoroutines.feature.shared.model.response
 
-import com.google.gson.annotations.Expose
+import androidx.room.Entity
+import com.example.apicoroutines.utils.constants.ApiConstants
+import com.example.apicoroutines.utils.constants.DatabaseConstants
 import com.google.gson.annotations.SerializedName
 
+@Entity(tableName = DatabaseConstants.user)
 class Login {
 
     @SerializedName("token_type")
