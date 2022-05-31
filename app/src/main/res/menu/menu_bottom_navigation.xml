@@ -11,4 +11,17 @@
         android:icon="@drawable/ic_category_iconly"
         android:title="@string/categories" />
 
+    <item
+        android:icon="@drawable/ic_offers"
+        android:title="@string/offers" />
+
+    <item
+        android:icon="@drawable/ic_heart"
+        android:title="@string/favourite" />
+
+    <item
+        android:id="@+id/moreFragment"
+        android:icon="@drawable/ic_more"
+        android:title="@string/more" />
+
 </menu>

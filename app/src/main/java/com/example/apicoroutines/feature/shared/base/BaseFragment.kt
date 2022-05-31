@@ -3,6 +3,7 @@ package com.example.apicoroutines.feature.shared.base
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.apicoroutines.feature.shared.model.response.ErrorResponse
+import com.example.apicoroutines.utils.globalUtils.PreferenceUtils
 import com.example.apicoroutines.utils.helper.NetworkHelper
 import com.google.gson.Gson
 
@@ -26,4 +27,6 @@ abstract class BaseFragment : Fragment() {
 
     protected fun checkIsOnline() =
         NetworkHelper.isNetworkConnected(requireContext())
+
+    protected fun getAccessToken () = PreferenceUtils.getAccessToken(requireContext())
 }

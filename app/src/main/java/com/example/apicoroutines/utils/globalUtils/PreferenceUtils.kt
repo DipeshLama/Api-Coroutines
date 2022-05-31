@@ -23,6 +23,6 @@ object PreferenceUtils {
         editor?.apply()
     }
 
-    private fun getAccessToken (context: Context) =
+    fun getAccessToken (context: Context) =
         getPreferences(context)?.getString(PreferenceConstants.accessToken,"") ?: ""
 }

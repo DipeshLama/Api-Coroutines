@@ -9,6 +9,10 @@ object ApiConstants {
     const val client_secret = "IY1z0KiePtEYkZgcBoyZsOOoVEzyd5Jn6PGqYO1u"
     const val grant_type = "password"
 
+    const val authorization = "Authorization"
+
+    const val noAuth = "api/v4"
+
     const val login_url = "api/v4/auth/login"
     const val signUp_url = "api/v4/auth/signup"
     const val forgotPassword = "api/v4/auth/forgot-password"
@@ -17,4 +21,8 @@ object ApiConstants {
     const val newHomePage = "api/v4/newhome"
 
     const val category = "api/v4/category"
+
+    const val profileShow  = "$noAuth/profile/show"
+
+
 }

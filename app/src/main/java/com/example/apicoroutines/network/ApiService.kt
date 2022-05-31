@@ -32,4 +32,9 @@ interface ApiService {
 
     @GET(ApiConstants.category)
     suspend fun getCategories(): Response<BaseArrayResponse<Category>>
+
+    @GET(ApiConstants.profileShow)
+    suspend fun profileShow(
+        @Header(ApiConstants.authorization) token: String,
+    ): Response<BaseResponse<ProfileShow>>
 }

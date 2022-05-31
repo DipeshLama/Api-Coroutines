@@ -30,5 +30,12 @@
     <string name="categories">Categories</string>
     <string name="the_wide_variety_of_restaurants_to_choose_from">The wide variety of restaurants to choose from</string>
     <string name="order_now">Order Now</string>
+    <string name="offers">Offers</string>
+    <string name="favourite">Favourite</string>
+    <string name="more">More</string>
+    <string name="_25">25</string>
+    <string name="_9841858531">9841858531</string>
+    <string name="dipesh_lama">Dipesh Lama</string>
+    <string name="reward_point">Reward Point</string>
 
 </resources>
