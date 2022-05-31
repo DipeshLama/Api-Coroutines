@@ -37,5 +37,7 @@
     <string name="_9841858531">9841858531</string>
     <string name="dipesh_lama">Dipesh Lama</string>
     <string name="reward_point">Reward Point</string>
+    <string name="logout">Logout</string>
+    <string name="cart">cart</string>
 
 </resources>
