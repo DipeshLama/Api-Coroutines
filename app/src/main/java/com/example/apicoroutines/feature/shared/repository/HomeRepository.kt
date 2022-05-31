@@ -5,10 +5,7 @@ import com.example.apicoroutines.feature.shared.base.BaseRepository
 import com.example.apicoroutines.feature.shared.model.response.Home
 import javax.inject.Inject
 
-class HomeRepository
-@Inject
-constructor
-    (private val appDatabase: AppDatabase) : BaseRepository() {
+class HomeRepository @Inject constructor (private val appDatabase: AppDatabase) : BaseRepository() {
 
     suspend fun getHomeScreenData() =
         apiService.getHomeScreenData(1)

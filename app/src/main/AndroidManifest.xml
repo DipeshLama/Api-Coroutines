@@ -18,26 +18,25 @@
         android:theme="@style/Theme.ApiCoroutines"
         tools:targetApi="31">
         <activity
-            android:name=".feature.resetPassword.forgotPassword.ForgotPasswordActivity"
-            android:exported="false" />
+            android:name=".feature.main.AuthActivity"
+            android:exported="true" >
+
+        </activity>
+
         <activity
-            android:name=".feature.signup.SignUpActivity"
+            android:name=".feature.shared.base.BaseActivity"
             android:exported="false" />
+
         <activity
-            android:name=".feature.login.LoginActivity"
+            android:name=".feature.main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
-        <activity
-            android:name=".feature.shared.base.BaseActivity"
-            android:exported="false" />
-        <activity
-            android:name=".feature.home.MainActivity"
-            android:exported="false" />
     </application>
 
 </manifest>

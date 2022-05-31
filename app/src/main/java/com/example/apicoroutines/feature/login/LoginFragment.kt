@@ -2,17 +2,19 @@ package com.example.apicoroutines.feature.login
 
 import android.app.Dialog
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
-import androidx.activity.viewModels
+import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.apicoroutines.R
-import com.example.apicoroutines.databinding.ActivityLoginBinding
-import com.example.apicoroutines.feature.home.MainActivity
-import com.example.apicoroutines.feature.resetPassword.forgotPassword.ForgotPasswordActivity
-import com.example.apicoroutines.feature.shared.base.BaseActivity
+import com.example.apicoroutines.databinding.FragmentLoginBinding
+import com.example.apicoroutines.feature.main.MainActivity
+import com.example.apicoroutines.feature.resetPassword.forgotPassword.ForgotPasswordFragment
+import com.example.apicoroutines.feature.shared.base.BaseFragment
 import com.example.apicoroutines.feature.shared.model.request.LoginRequest
 import com.example.apicoroutines.feature.shared.model.response.Login
-import com.example.apicoroutines.feature.signup.SignUpActivity
 import com.example.apicoroutines.utils.constants.ApiConstants
 import com.example.apicoroutines.utils.globalUtils.PreferenceUtils
 import com.example.apicoroutines.utils.resource.Resource
@@ -22,14 +24,25 @@ import dagger.hilt.android.AndroidEntryPoint
 import retrofit2.Response
 
 @AndroidEntryPoint
-class LoginActivity : BaseActivity(), View.OnClickListener {
-    private lateinit var binding: ActivityLoginBinding
+class LoginFragment : BaseFragment(), View.OnClickListener {
+    private lateinit var binding: FragmentLoginBinding
     private val loginViewModel: LoginViewModel by viewModels()
     private lateinit var dialog: Dialog
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
+    ): View? {
+        binding = DataBindingUtil.inflate(inflater,
+            R.layout.fragment_login,
+            container,
+            false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         loginViewModel
         initListener()
         initDialog()
@@ -68,7 +81,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                     it.body()?.tokenType)
 
                 dialog.dismiss()
-                Router.navigateActivity(this, true, MainActivity::class)
+                Router.navigateActivity(requireContext(), true, MainActivity::class)
             } else {
                 dialog.dismiss()
                 showMessage(getError(it.errorBody()?.string()))
@@ -86,14 +99,14 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
         refreshToken: String?,
         tokenType: String?,
     ) {
-        PreferenceUtils.saveToPreference(this,
+        PreferenceUtils.saveToPreference(requireContext(),
             " Bearer $accessToken",
             "Bearer $refreshToken",
             tokenType)
     }
 
     private fun initDialog() {
-        dialog = Dialog(this)
+        dialog = Dialog(requireContext())
         dialog.setContentView(R.layout.loading_dialog)
         dialog.setCancelable(false)
     }
@@ -102,15 +115,9 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
         when (view) {
             binding.btnLogin -> login()
 
-            binding.txvSignUp -> Router.navigateActivity(
-                this,
-                false,
-                SignUpActivity::class)
+            binding.txvSignUp -> findNavController().navigate(R.id.action_loginFragment_to_signUpFragment)
 
-            binding.txvForgetPassword -> Router.navigateActivity(
-                this,
-                false,
-                ForgotPasswordActivity::class)
+            binding.txvForgetPassword -> findNavController().navigate(R.id.action_loginFragment_to_forgotPasswordFragment)
         }
     }
 

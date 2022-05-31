@@ -10,9 +10,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-
 @HiltViewModel
-class MainViewModel @Inject constructor(private val repository: HomeRepository) : ViewModel() {
+class HomeViewModel @Inject constructor(private val repository: HomeRepository) : ViewModel() {
 
     fun getHomeScreenData() = liveData(Dispatchers.IO) {
         emit(Resource.loading(data = null))

@@ -16,6 +16,5 @@ object ApiConstants {
     // HomeScreen
     const val newHomePage = "api/v4/newhome"
 
-    const val getAllCategory = "api/v4/category"
-    const val getProductsByCategoryId = "api/v4/product"
+    const val category = "api/v4/category"
 }

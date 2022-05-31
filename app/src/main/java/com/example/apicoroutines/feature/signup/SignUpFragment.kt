@@ -1,15 +1,17 @@
 package com.example.apicoroutines.feature.signup
 
 import android.app.Dialog
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
-import androidx.activity.viewModels
+import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.apicoroutines.R
-import com.example.apicoroutines.databinding.ActivitySignUpBinding
-import com.example.apicoroutines.feature.login.LoginActivity
-import com.example.apicoroutines.feature.shared.base.BaseActivity
+import com.example.apicoroutines.databinding.FragmentSignUpBinding
+import com.example.apicoroutines.feature.login.LoginFragment
+import com.example.apicoroutines.feature.shared.base.BaseFragment
 import com.example.apicoroutines.feature.shared.base.BaseResponse
 import com.example.apicoroutines.feature.shared.model.request.SignUpRequest
 import com.example.apicoroutines.feature.shared.model.response.SignUp
@@ -20,18 +22,31 @@ import dagger.hilt.android.AndroidEntryPoint
 import retrofit2.Response
 
 @AndroidEntryPoint
-class SignUpActivity : BaseActivity(), View.OnClickListener {
-    private lateinit var binding: ActivitySignUpBinding
+class SignUpFragment : BaseFragment(), View.OnClickListener {
+    private lateinit var binding: FragmentSignUpBinding
     private val signUpViewModel: SignUpViewModel by viewModels()
     private lateinit var dialog: Dialog
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_sign_up)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
+    ): View? {
+        binding = DataBindingUtil.inflate(inflater,
+            R.layout.fragment_sign_up,
+            container,
+            false)
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         signUpViewModel
         initDialog()
         initListener()
     }
+
 
     private fun initListener() {
         binding.btnSignUp.setOnClickListener(this)
@@ -65,7 +80,7 @@ class SignUpActivity : BaseActivity(), View.OnClickListener {
     private fun onSignUpSuccess(it: Resource<Response<BaseResponse<SignUp>>>) {
         it.data?.let {
             if (it.isSuccessful && it.body()?.data != null) {
-                Router.navigateActivity(this, true, LoginActivity::class)
+                findNavController().navigate(R.id.action_signUpFragment_to_loginFragment)
                 showMessage("Sign up successful")
             } else {
                 dialog.dismiss()
@@ -79,7 +94,7 @@ class SignUpActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun initDialog() {
-        dialog = Dialog(this)
+        dialog = Dialog(requireContext())
         dialog.setContentView(R.layout.loading_dialog)
         dialog.setCancelable(false)
     }

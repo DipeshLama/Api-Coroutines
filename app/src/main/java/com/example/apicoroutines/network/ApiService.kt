@@ -22,11 +22,14 @@ interface ApiService {
 
     @POST(ApiConstants.forgotPassword)
     suspend fun forgotPassword(
-        @Body request: RequestBody
-    ) : Response<BaseResponse<SignUp>>
+        @Body request: RequestBody,
+    ): Response<BaseResponse<SignUp>>
 
     @GET(ApiConstants.newHomePage)
     suspend fun getHomeScreenData(
         @Header(ApiConstants.wareHouseIdString) wareHouseId: Int,
     ): Response<BaseArrayResponse<Home>>
+
+    @GET(ApiConstants.category)
+    suspend fun getCategories(): Response<BaseArrayResponse<Category>>
 }

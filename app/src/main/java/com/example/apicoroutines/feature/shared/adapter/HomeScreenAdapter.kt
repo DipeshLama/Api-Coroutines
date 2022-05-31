@@ -39,7 +39,7 @@ class HomeScreenAdapter(
                     parent,
                     false))
 
-            categoryType -> CategoryViewHolder(
+            categoryType -> HomeCategoryViewHolder(
                 AdapterHomeCategoryBinding.inflate(LayoutInflater.from(
                     parent.context),
                     parent,
@@ -62,7 +62,7 @@ class HomeScreenAdapter(
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
         when (holder) {
             is BannerViewHolder -> holder.bind(list[position] as List<Details>)
-            is CategoryViewHolder -> holder.bind(list[position] as List<Category>)
+            is HomeCategoryViewHolder -> holder.bind(list[position] as List<Category>)
             is ProductViewHolder -> holder.bind(list[position] as List<Product>)
             is TitleVH -> holder.bind(list[position] as String)
         }

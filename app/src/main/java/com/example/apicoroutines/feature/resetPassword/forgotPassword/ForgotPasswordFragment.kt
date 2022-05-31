@@ -2,30 +2,45 @@ package com.example.apicoroutines.feature.resetPassword.forgotPassword
 
 import android.app.Dialog
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import retrofit2.Response
 import com.example.apicoroutines.R
-import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import com.example.apicoroutines.utils.resource.Status
 import com.example.apicoroutines.utils.resource.Resource
 import com.example.apicoroutines.feature.shared.base.BaseResponse
-import com.example.apicoroutines.feature.shared.base.BaseActivity
 import com.example.apicoroutines.feature.shared.model.response.SignUp
-import com.example.apicoroutines.databinding.ActivityForgotPasswordBinding
+import com.example.apicoroutines.databinding.FragmentForgotPasswordBinding
+import com.example.apicoroutines.feature.shared.base.BaseFragment
 import com.example.apicoroutines.feature.shared.model.request.ForgotPasswordRequest
 
 @AndroidEntryPoint
-class ForgotPasswordActivity : BaseActivity(), View.OnClickListener {
+class ForgotPasswordFragment : BaseFragment(), View.OnClickListener {
 
-    private lateinit var binding: ActivityForgotPasswordBinding
+    private lateinit var binding: FragmentForgotPasswordBinding
     private val forgotViewModel: ForgotPasswordViewModel by viewModels()
     private lateinit var dialog: Dialog
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_forgot_password)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
+    ): View? {
+
+        binding = DataBindingUtil.inflate(inflater,
+            R.layout.fragment_forgot_password,
+            container,
+            false)
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         forgotViewModel
         initDialog()
         initListener()
@@ -72,7 +87,7 @@ class ForgotPasswordActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun initDialog() {
-        dialog = Dialog(this)
+        dialog = Dialog(requireContext())
         dialog.setContentView(R.layout.loading_dialog)
         dialog.setCancelable(false)
     }
