@@ -5,13 +5,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.apicoroutines.databinding.*
 import com.example.apicoroutines.feature.shared.base.BaseViewHolder
+import com.example.apicoroutines.feature.shared.listener.ProductClickListener
 import com.example.apicoroutines.feature.shared.model.response.Category
 import com.example.apicoroutines.feature.shared.model.response.Details
 import com.example.apicoroutines.feature.shared.model.response.Product
 import com.example.apicoroutines.feature.shared.viewHolder.*
 
 class HomeScreenAdapter(
-    private val list: List<*>,
+    private val list: List<*>,val listener :ProductClickListener
 ) : RecyclerView.Adapter<BaseViewHolder>() {
 
     private val bannerType = 1
@@ -55,7 +56,7 @@ class HomeScreenAdapter(
                 AdapterHomeProductBinding.inflate(LayoutInflater.from(
                     parent.context),
                     parent,
-                    false))
+                    false), listener)
         }
     }
 

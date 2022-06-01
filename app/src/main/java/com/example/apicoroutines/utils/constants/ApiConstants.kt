@@ -25,5 +25,8 @@ object ApiConstants {
     const val profileShow  = "$noAuth/profile/show"
 
     const val getCart = "$noAuth/cart"
+    const val productDetail = "$noAuth/product/{productId}"
+    const val productId = "productId"
+
 
 }

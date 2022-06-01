@@ -24,6 +24,7 @@ import retrofit2.Response
 class MoreFragment : BaseFragment() {
     private lateinit var binding: FragmentMoreBinding
     private val moreViewModel: MoreViewModel by viewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -82,7 +83,7 @@ class MoreFragment : BaseFragment() {
         binding.moreFragmentContainer.visibility = View.VISIBLE
     }
 
-    private fun setOptions (){
+    private fun setOptions() {
         binding.ryvOptions.adapter = OptionsAdapter(optionList())
     }
 

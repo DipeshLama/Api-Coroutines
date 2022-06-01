@@ -1,18 +1,23 @@
 package com.example.apicoroutines.feature.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.apicoroutines.R
 import com.example.apicoroutines.databinding.FragmentHomeBinding
 import com.example.apicoroutines.feature.shared.adapter.HomeScreenAdapter
 import com.example.apicoroutines.feature.shared.base.BaseArrayResponse
 import com.example.apicoroutines.feature.shared.base.BaseFragment
+import com.example.apicoroutines.feature.shared.listener.ProductClickListener
 import com.example.apicoroutines.feature.shared.model.response.Home
+import com.example.apicoroutines.utils.constants.ApiConstants
 import com.example.apicoroutines.utils.resource.Resource
 import com.example.apicoroutines.utils.resource.Status
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,7 +26,7 @@ import kotlinx.coroutines.launch
 import retrofit2.Response
 
 @AndroidEntryPoint
-class HomeFragment : BaseFragment() {
+class HomeFragment : BaseFragment(), ProductClickListener {
     private val homeViewModel: HomeViewModel by viewModels()
     private lateinit var binding: FragmentHomeBinding
     private lateinit var homeScreenAdapter: HomeScreenAdapter
@@ -119,7 +124,7 @@ class HomeFragment : BaseFragment() {
 
     private fun setUpRecyclerView() {
         homeScreenAdapter =
-            HomeScreenAdapter(list)
+            HomeScreenAdapter(list, this)
 
         binding.ryvMain.adapter = homeScreenAdapter
     }
@@ -150,5 +155,15 @@ class HomeFragment : BaseFragment() {
         }
 
         homeScreenAdapter.notifyDataSetChanged()
+    }
+
+    override fun onHomeProductClick(productId: Int) {
+        navigateToDetail(productId)
+        Log.d("thisid",productId.toString())
+    }
+
+    private fun navigateToDetail(id: Int) {
+        findNavController().navigate(R.id.action_homeFragment_to_productDetailFragment,
+            bundleOf(ApiConstants.productId to id))
     }
 }

@@ -44,4 +44,10 @@ interface ApiService {
         @Header(ApiConstants.wareHouseIdString) wareHouseId: Int,
         @Header(ApiConstants.authorization) token : String
     ) : Response<BaseResponse<Cart>>
+
+    @GET(ApiConstants.productDetail)
+    suspend fun getProductDetail(
+        @Header(ApiConstants.wareHouseIdString) wareHouseId : Int,
+        @Path(ApiConstants.productId) id : Int
+    ) : Response<BaseResponse<Product>>
 }
