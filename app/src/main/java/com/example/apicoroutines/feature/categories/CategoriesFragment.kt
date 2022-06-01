@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.example.apicoroutines.R
 import com.example.apicoroutines.databinding.FragmentCategoriesBinding
 import com.example.apicoroutines.feature.shared.adapter.CategoryAdapter
@@ -17,6 +18,7 @@ import com.example.apicoroutines.feature.shared.model.response.Category
 import com.example.apicoroutines.utils.resource.Resource
 import com.example.apicoroutines.utils.resource.Status
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import retrofit2.Response
 
 @AndroidEntryPoint
@@ -40,6 +42,7 @@ class CategoriesFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setHasOptionsMenu(true)
         categoryViewModel
         initRecyclerView()
         getCategories()

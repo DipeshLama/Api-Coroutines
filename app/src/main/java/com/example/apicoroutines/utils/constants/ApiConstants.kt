@@ -11,7 +11,7 @@ object ApiConstants {
 
     const val authorization = "Authorization"
 
-    const val noAuth = "api/v4"
+    private const val noAuth = "api/v4"
 
     const val login_url = "api/v4/auth/login"
     const val signUp_url = "api/v4/auth/signup"
@@ -24,5 +24,6 @@ object ApiConstants {
 
     const val profileShow  = "$noAuth/profile/show"
 
+    const val getCart = "$noAuth/cart"
 
 }

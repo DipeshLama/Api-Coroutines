@@ -1,5 +1,6 @@
 package com.example.apicoroutines.network
 
+import androidx.lifecycle.LiveData
 import com.example.apicoroutines.feature.shared.base.BaseArrayResponse
 import com.example.apicoroutines.feature.shared.base.BaseResponse
 import com.example.apicoroutines.feature.shared.model.response.*
@@ -37,4 +38,10 @@ interface ApiService {
     suspend fun profileShow(
         @Header(ApiConstants.authorization) token: String,
     ): Response<BaseResponse<ProfileShow>>
+
+    @GET(ApiConstants.getCart)
+    suspend fun getUserCart(
+        @Header(ApiConstants.wareHouseIdString) wareHouseId: Int,
+        @Header(ApiConstants.authorization) token : String
+    ) : Response<BaseResponse<Cart>>
 }

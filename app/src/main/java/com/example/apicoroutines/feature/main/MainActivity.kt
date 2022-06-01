@@ -2,8 +2,11 @@ package com.example.apicoroutines.feature.main
 
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
+import android.widget.TextView
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
@@ -20,13 +23,13 @@ import com.example.apicoroutines.feature.shared.model.response.Home
 import com.example.apicoroutines.utils.resource.Resource
 import com.example.apicoroutines.utils.resource.Status
 import dagger.hilt.android.AndroidEntryPoint
+import org.w3c.dom.Text
 import retrofit2.Response
 
 @AndroidEntryPoint
-class MainActivity : BaseActivity() {
+class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
     private  lateinit var navController : NavController
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main)
@@ -39,10 +42,5 @@ class MainActivity : BaseActivity() {
         AppBarConfiguration(navController.graph)
         binding.btmNav.setupWithNavController(navController)
         setupActionBarWithNavController(navController)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu_toolbar,menu)
-        return super.onCreateOptionsMenu(menu)
     }
 }

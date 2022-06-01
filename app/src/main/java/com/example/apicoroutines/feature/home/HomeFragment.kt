@@ -6,23 +6,23 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.example.apicoroutines.R
-import com.example.apicoroutines.database.AppDatabase
 import com.example.apicoroutines.databinding.FragmentHomeBinding
 import com.example.apicoroutines.feature.shared.adapter.HomeScreenAdapter
 import com.example.apicoroutines.feature.shared.base.BaseArrayResponse
 import com.example.apicoroutines.feature.shared.base.BaseFragment
 import com.example.apicoroutines.feature.shared.model.response.Home
-import com.example.apicoroutines.feature.shared.repository.HomeRepository
 import com.example.apicoroutines.utils.resource.Resource
 import com.example.apicoroutines.utils.resource.Status
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 import retrofit2.Response
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment() {
-    private  val homeViewModel: HomeViewModel by viewModels()
+    private val homeViewModel: HomeViewModel by viewModels()
     private lateinit var binding: FragmentHomeBinding
     private lateinit var homeScreenAdapter: HomeScreenAdapter
     private var list = arrayListOf<Any>()
@@ -40,16 +40,35 @@ class HomeFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setHasOptionsMenu(true)
         homeViewModel
         setUpRecyclerView()
-        getHomeScreenData()
+        getData()
+    }
+
+    private fun getData() {
+        lifecycleScope.launch {
+            val home = async {
+                getHomeScreenData()
+            }
+            home.await()
+
+            when {
+                checkIsOnline() -> {
+                    val cart = async {
+                        getUserCart(getAccessToken())
+                    }
+                    cart.await()
+                }
+                else -> showMessage("Check internet connection")
+            }
+        }
     }
 
     private fun getHomeScreenData() {
-        if (checkIsOnline()) {
-            getHomeScreenDataFromApi()
-        } else {
-            getHomeScreenDataFromDb()
+        when {
+            checkIsOnline() -> getHomeScreenDataFromApi()
+            else -> getHomeScreenDataFromDb()
         }
     }
 
