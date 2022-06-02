@@ -42,12 +42,25 @@ interface ApiService {
     @GET(ApiConstants.getCart)
     suspend fun getUserCart(
         @Header(ApiConstants.wareHouseIdString) wareHouseId: Int,
-        @Header(ApiConstants.authorization) token : String
-    ) : Response<BaseResponse<Cart>>
+        @Header(ApiConstants.authorization) token: String,
+    ): Response<BaseResponse<Cart>>
 
     @GET(ApiConstants.productDetail)
     suspend fun getProductDetail(
-        @Header(ApiConstants.wareHouseIdString) wareHouseId : Int,
-        @Path(ApiConstants.productId) id : Int
-    ) : Response<BaseResponse<Product>>
+        @Header(ApiConstants.wareHouseIdString) wareHouseId: Int,
+        @Path(ApiConstants.productId) id: Int,
+    ): Response<BaseResponse<Product>>
+
+    @POST(ApiConstants.favourite)
+    suspend fun addToFavourite(
+        @Header(ApiConstants.wareHouseIdString) wareHouseId: Int,
+        @Header(ApiConstants.authorization) token: String,
+        @Body request : RequestBody
+    ): Response<BaseResponse<Favourite>>
+
+    @GET(ApiConstants.favourite)
+    suspend fun getUserFavourite(
+        @Header(ApiConstants.wareHouseIdString) wareHouseId: Int,
+        @Header(ApiConstants.authorization) token : String
+    ) : Response<BaseArrayResponse<Favourite>>
 }

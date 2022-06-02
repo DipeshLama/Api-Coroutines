@@ -45,5 +45,6 @@
     <string name="_16cm">16cm</string>
     <string name="description">Description</string>
     <string name="_3cm">3cm</string>
+    <string name="add">ADD</string>
 
 </resources>

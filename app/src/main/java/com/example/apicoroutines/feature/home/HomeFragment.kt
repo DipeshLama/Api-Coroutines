@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
@@ -12,6 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.apicoroutines.R
 import com.example.apicoroutines.databinding.FragmentHomeBinding
+import com.example.apicoroutines.feature.productDetail.ProductDetailFragment
 import com.example.apicoroutines.feature.shared.adapter.HomeScreenAdapter
 import com.example.apicoroutines.feature.shared.base.BaseArrayResponse
 import com.example.apicoroutines.feature.shared.base.BaseFragment
@@ -46,6 +48,7 @@ class HomeFragment : BaseFragment(), ProductClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
+
         homeViewModel
         setUpRecyclerView()
         getData()
@@ -159,7 +162,6 @@ class HomeFragment : BaseFragment(), ProductClickListener {
 
     override fun onHomeProductClick(productId: Int) {
         navigateToDetail(productId)
-        Log.d("thisid",productId.toString())
     }
 
     private fun navigateToDetail(id: Int) {
