@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.example.apicoroutines.R
 import com.example.apicoroutines.databinding.FragmentFaqBinding
@@ -16,7 +15,7 @@ import com.example.apicoroutines.feature.shared.model.response.Faq
 class FaqFragment : Fragment(), OnExpandListener {
     private lateinit var binding: FragmentFaqBinding
     private var faqList = ArrayList<Faq>()
-    private lateinit var adapter : FaqAdapter
+    private lateinit var faqAdapter: FaqAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,8 +35,11 @@ class FaqFragment : Fragment(), OnExpandListener {
 
     private fun setRecyclerView() {
         faqList = faqList()
-        adapter = FaqAdapter(faqList, this)
-        binding.rvyFaq.adapter = adapter
+        faqAdapter = FaqAdapter(faqList, this)
+        binding.rvyFaq.apply {
+            adapter = faqAdapter
+            itemAnimator = null
+        }
     }
 
     private fun faqList(): ArrayList<Faq> {
@@ -62,7 +64,7 @@ class FaqFragment : Fragment(), OnExpandListener {
     override fun onExpand(position: Int) {
         val faq = faqList[position]
         faq.isExpanded = faq.isExpanded == false
-        adapter.notifyItemChanged(position)
+        faqAdapter.notifyItemChanged(position)
     }
 }
 

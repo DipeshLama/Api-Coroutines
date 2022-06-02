@@ -49,8 +49,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/txvFaqTitle">
 
                     <TextView
@@ -59,8 +59,8 @@
                         android:layout_height="wrap_content"
                         android:alpha="1"
                         android:fontFamily="@font/robotoregular"
-                        android:textColor="@color/primary_text"
                         android:text="@{faq.answer}"
+                        android:textColor="@color/primary_text"
                         android:textSize="13sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -70,10 +70,10 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/divFaq"
                 android:layout_width="match_parent"
                 android:layout_height="2dp" />
 
         </LinearLayout>
-
     </androidx.cardview.widget.CardView>
 </layout>

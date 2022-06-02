@@ -20,12 +20,10 @@ class FaqViewHolder(val binding: LayoutFaqListBinding, val listener: OnExpandLis
     fun bind(faq: Faq) {
         binding.faq = faq
         binding.executePendingBindings()
-
         when {
             faq.isExpanded -> checkIsExpanded(true)
 
             else -> checkIsExpanded(false)
-
         }
     }
 
@@ -34,11 +32,14 @@ class FaqViewHolder(val binding: LayoutFaqListBinding, val listener: OnExpandLis
             isExpanded -> {
                 binding.expandableLayout.visibility = View.VISIBLE
                 binding.rootFaqLayout.setBackgroundColor(Color.parseColor("#F0F0F0"))
+                binding.imvExpand.setImageResource(R.drawable.ic_pointer_up)
+                binding.divFaq.visibility = View.GONE
             }
-
             else -> {
                 binding.expandableLayout.visibility = View.GONE
                 binding.rootFaqLayout.setBackgroundColor(Color.parseColor("#FFFFFF"))
+                binding.imvExpand.setImageResource(R.drawable.ic_pointer_down)
+                binding.divFaq.visibility = View.VISIBLE
             }
         }
     }
