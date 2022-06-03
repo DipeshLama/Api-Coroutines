@@ -52,11 +52,21 @@
             app:layout_constraintTop_toBottomOf="@id/txvCartTotalPrice">
 
             <ImageView
+                android:id="@+id/imvCartDecrease"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="7dp"
                 android:src="@drawable/ic_remove" />
+
+            <ImageView
+                android:id="@+id/imvCartDelete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="7dp"
+                android:visibility="gone"
+                android:src="@drawable/ic_delete" />
 
             <TextView
                 android:id="@+id/txvCartQuantity"
@@ -64,21 +74,22 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_weight="1"
+                android:background="#E5E5E5"
                 android:fontFamily="@font/robotomedium"
                 android:paddingStart="11dp"
                 android:paddingTop="6dp"
-                android:background="#E5E5E5"
                 android:paddingEnd="10dp"
                 android:paddingBottom="5dp"
                 android:textColor="@color/primary_text"
                 android:textSize="14sp" />
 
             <ImageView
+                android:id="@+id/imvCartIncrease"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="7dp"
-                android:src="@drawable/ic_remove" />
+                android:src="@drawable/ic_add" />
 
         </LinearLayout>
 

@@ -1,6 +1,7 @@
 package com.example.apicoroutines.network
 
 import androidx.lifecycle.LiveData
+import androidx.room.Delete
 import com.example.apicoroutines.feature.shared.base.BaseArrayResponse
 import com.example.apicoroutines.feature.shared.base.BaseResponse
 import com.example.apicoroutines.feature.shared.model.response.*
@@ -52,6 +53,21 @@ interface ApiService {
         @Header(ApiConstants.authorization) token: String,
     ): Response<BaseResponse<Cart>>
 
+    @PATCH(ApiConstants.updateCart)
+    suspend fun updateUserCart(
+        @Header(ApiConstants.authorization) token : String,
+        @Header(ApiConstants.wareHouseIdString) wareHouseId: Int,
+        @Path(ApiConstants.cartProductId) cartProductId : Int,
+        @Body request : RequestBody
+    ) : Response<BaseResponse<CartProducts>>
+
+    @DELETE(ApiConstants.updateCart)
+    suspend fun deleteCartProduct(
+        @Header(ApiConstants.authorization) token : String,
+        @Header(ApiConstants.wareHouseIdString) wareHouseId: Int,
+        @Path(ApiConstants.cartProductId)cartProductId: Int
+    ) : Response<String>
+
     @GET(ApiConstants.productDetail)
     suspend fun getProductDetail(
         @Header(ApiConstants.wareHouseIdString) wareHouseId: Int,
@@ -70,4 +86,8 @@ interface ApiService {
         @Header(ApiConstants.wareHouseIdString) wareHouseId: Int,
         @Header(ApiConstants.authorization) token : String
     ) : Response<BaseArrayResponse<Favourite>>
+
+
+
+
 }

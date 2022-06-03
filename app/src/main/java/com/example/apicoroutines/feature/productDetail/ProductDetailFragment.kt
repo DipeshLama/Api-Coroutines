@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.HtmlCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import com.bumptech.glide.Glide
 import com.example.apicoroutines.R
 import com.example.apicoroutines.databinding.FragmentProductDetailBinding
 import com.example.apicoroutines.feature.cart.CartViewModel
@@ -33,7 +34,6 @@ class ProductDetailFragment : BaseFragment(), View.OnClickListener {
     private lateinit var binding: FragmentProductDetailBinding
     private val detailViewModel: ProductDetailViewModel by viewModels()
     private val favViewModel: FavouriteViewModel by viewModels()
-    private val cartViewModel: CartViewModel by viewModels()
     private var productId: Int? = null
     private var product: Product? = null
     private var quantity = 1
@@ -96,6 +96,8 @@ class ProductDetailFragment : BaseFragment(), View.OnClickListener {
         binding.txvDetailProductTitle.text = product?.title
         binding.txvDescription.text = product?.description?.let { HtmlCompat.fromHtml(it, 0) }
         binding.txvDetailPrice.text = product?.unitPrice?.get(0)?.markedPrice.toString()
+        Glide.with(requireContext()).load(product?.images?.get(0)?.imageName).into(binding.imvDetailMain)
+        Glide.with(requireContext()).load(product?.images?.get(0)?.imageName).into(binding.imvDetailMid)
         setQuantityIntoView()
         setTotalPrice()
     }
@@ -180,13 +182,13 @@ class ProductDetailFragment : BaseFragment(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         (activity as AppCompatActivity?)?.supportActionBar?.hide()
-        activity?.findViewById<BottomNavigationView>(R.id.btmNav)?.visibility = View.GONE
+        hideBottomNavBar()
     }
 
     override fun onStop() {
         super.onStop()
         (activity as AppCompatActivity?)?.supportActionBar?.show()
-        activity?.findViewById<BottomNavigationView>(R.id.btmNav)?.visibility = View.VISIBLE
+        showBottomNavBar()
     }
 
     private fun initListener() {
@@ -210,9 +212,9 @@ class ProductDetailFragment : BaseFragment(), View.OnClickListener {
         setQuantityIntoView()
     }
 
-    private fun decreaseQuantity(){
-        if(quantity > 1){
-            quantity --
+    private fun decreaseQuantity() {
+        if (quantity > 1) {
+            quantity--
         }
         setQuantityIntoView()
     }

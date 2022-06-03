@@ -12,14 +12,16 @@
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_productDetailFragment"
-            app:destination="@id/productDetailFragment" />
-
+            app:destination="@id/productDetailFragment"
+            app:enterAnim="@anim/slide_in_right"/>
     </fragment>
+
     <fragment
         android:id="@+id/categoriesFragment"
         android:name="com.example.apicoroutines.feature.categories.CategoriesFragment"
         android:label="Categories"
-        tools:layout="@layout/fragment_categories" />
+        tools:layout="@layout/fragment_categories"/>
+
     <fragment
         android:id="@+id/moreFragment"
         android:name="com.example.apicoroutines.feature.more.MoreFragment"

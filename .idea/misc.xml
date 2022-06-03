@@ -14,6 +14,7 @@
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/drawable/ic_cart_light.xml" value="0.1295" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/drawable/ic_cash_on_delivery.xml" value="0.116" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/drawable/ic_category_iconly.xml" value="0.121" />
+        <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/drawable/ic_delete.xml" value="0.124" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/drawable/ic_heart.xml" value="0.1155" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/drawable/ic_home_iconly.xml" value="0.121" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/drawable/ic_location_iconly.xml" value="0.1195" />
@@ -54,7 +55,7 @@
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/layout/fragment_home.xml" value="0.19010416666666666" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/layout/fragment_more.xml" value="0.2669432918395574" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/layout/fragment_payment_options.xml" value="0.22991347342398022" />
-        <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/layout/fragment_product_detail.xml" value="0.67" />
+        <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/layout/fragment_product_detail.xml" value="0.25" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/layout/ic_location_iconly.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/layout/ic_paper_iconly.xml" value="0.22" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/layout/layout_banner.xml" value="0.203125" />

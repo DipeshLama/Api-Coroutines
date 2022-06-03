@@ -47,8 +47,6 @@ class HomeFragment : BaseFragment(), ProductClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setHasOptionsMenu(true)
-
         homeViewModel
         setUpRecyclerView()
         getData()

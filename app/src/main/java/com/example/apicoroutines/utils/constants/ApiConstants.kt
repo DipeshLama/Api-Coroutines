@@ -8,11 +8,11 @@ object ApiConstants {
     const val client_id = 2
     const val client_secret = "IY1z0KiePtEYkZgcBoyZsOOoVEzyd5Jn6PGqYO1u"
     const val grant_type = "password"
-
+    const val cartProductId = "cartProductId"
     const val authorization = "Authorization"
 
+    //End points
     private const val noAuth = "api/v4"
-
     const val login_url = "api/v4/auth/login"
     const val signUp_url = "api/v4/auth/signup"
     const val forgotPassword = "api/v4/auth/forgot-password"
@@ -29,4 +29,5 @@ object ApiConstants {
     const val productId = "productId"
     const val favourite = "$noAuth/favourite"
     const val addToCart = "$noAuth/cart-product"
+    const val updateCart = "api/v4/cart-product/{cartProductId}"
 }
