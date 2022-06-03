@@ -13,6 +13,7 @@
         <action
             android:id="@+id/action_homeFragment_to_productDetailFragment"
             app:destination="@id/productDetailFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/categoriesFragment"
@@ -39,4 +40,9 @@
         android:name="com.example.apicoroutines.feature.faq.FaqFragment"
         android:label="fragment_faq"
         tools:layout="@layout/fragment_faq" />
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.example.apicoroutines.feature.cart.CartFragment"
+        android:label="CartFragment"
+        tools:layout="@layout/fragment_cart"/>
 </navigation>

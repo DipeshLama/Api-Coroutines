@@ -39,6 +39,13 @@ interface ApiService {
         @Header(ApiConstants.authorization) token: String,
     ): Response<BaseResponse<ProfileShow>>
 
+    @POST(ApiConstants.addToCart)
+    suspend fun addToCart(
+        @Header(ApiConstants.wareHouseIdString) wareHouseId: Int,
+        @Header (ApiConstants.authorization) token : String,
+        @Body request : RequestBody
+    ): Response<BaseResponse<AddToCart>>
+
     @GET(ApiConstants.getCart)
     suspend fun getUserCart(
         @Header(ApiConstants.wareHouseIdString) wareHouseId: Int,

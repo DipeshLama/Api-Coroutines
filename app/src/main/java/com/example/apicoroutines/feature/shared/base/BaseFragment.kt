@@ -1,5 +1,6 @@
 package com.example.apicoroutines.feature.shared.base
 
+import android.app.Dialog
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -12,7 +13,9 @@ import androidx.fragment.app.viewModels
 import com.example.apicoroutines.R
 import com.example.apicoroutines.feature.cart.CartViewModel
 import com.example.apicoroutines.feature.main.MainActivity
+import com.example.apicoroutines.feature.shared.adapter.CartAdapter
 import com.example.apicoroutines.feature.shared.model.response.Cart
+import com.example.apicoroutines.feature.shared.model.response.CartProducts
 import com.example.apicoroutines.feature.shared.model.response.ErrorResponse
 import com.example.apicoroutines.utils.globalUtils.PreferenceUtils
 import com.example.apicoroutines.utils.helper.NetworkHelper
@@ -27,6 +30,9 @@ import retrofit2.Response
 abstract class BaseFragment : Fragment() {
     private val cartViewModel: CartViewModel by viewModels()
     protected var cartQuantity: Int = 0
+    protected lateinit var dialog : Dialog
+    protected val cartList = arrayListOf<CartProducts>()
+    lateinit var cartAdapter : CartAdapter
 
     protected fun getError(error: String?): String? {
         val gson = Gson()
@@ -51,7 +57,7 @@ abstract class BaseFragment : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_toolbar, menu)
-        val menuItem = menu.findItem(R.id.moreFragment)
+        val menuItem = menu.findItem(R.id.cartFragment)
         val actionView = menuItem.actionView
         val cartBadge = actionView.findViewById<TextView>(R.id.txvCartBadge)
 
@@ -80,11 +86,18 @@ abstract class BaseFragment : Fragment() {
                 cartQuantity = if (it.body()?.data?.cartProducts != null) {
                     it.body()?.data?.cartProducts?.size ?: 0
                 } else 0
-
                 activity?.invalidateOptionsMenu()
+                cartList.clear()
+                cartList.addAll(it.body()?.data?.cartProducts ?: emptyList())
+                cartAdapter.notifyItemRangeInserted(0,cartList.count())
             } else {
                 showMessage(getError(it.errorBody()?.string()))
             }
         }
+    }
+    protected fun initDialog(){
+        dialog = Dialog(requireContext())
+        dialog.setContentView(R.layout.loading_dialog)
+        dialog.setCancelable(false)
     }
 }

@@ -27,7 +27,6 @@ import retrofit2.Response
 class LoginFragment : BaseFragment(), View.OnClickListener {
     private lateinit var binding: FragmentLoginBinding
     private val loginViewModel: LoginViewModel by viewModels()
-    private lateinit var dialog: Dialog
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -103,12 +102,6 @@ class LoginFragment : BaseFragment(), View.OnClickListener {
             " Bearer $accessToken",
             "Bearer $refreshToken",
             tokenType)
-    }
-
-    private fun initDialog() {
-        dialog = Dialog(requireContext())
-        dialog.setContentView(R.layout.loading_dialog)
-        dialog.setCancelable(false)
     }
 
     override fun onClick(view: View?) {

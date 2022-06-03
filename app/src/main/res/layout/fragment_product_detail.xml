@@ -243,7 +243,7 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/appCompatButton"
+                android:id="@+id/btnAddToCart"
                 android:layout_width="224dp"
                 android:layout_height="36dp"
                 android:background="@drawable/button_style"
@@ -260,11 +260,12 @@
                 android:background="@drawable/style_detail_quantity"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/appCompatButton"
+                app:layout_constraintEnd_toStartOf="@+id/btnAddToCart"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
+                    android:id="@+id/imvDecreaseQuantity"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -273,15 +274,16 @@
                     android:src="@drawable/ic_remove" />
 
                 <TextView
+                    android:id="@+id/txvDetailQuantity"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:paddingHorizontal="10dp"
-                    android:paddingVertical="5dp"
-                    android:text="1" />
+                    android:paddingVertical="5dp"/>
 
                 <ImageView
+                    android:id="@+id/imvIncreaseQuantity"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"

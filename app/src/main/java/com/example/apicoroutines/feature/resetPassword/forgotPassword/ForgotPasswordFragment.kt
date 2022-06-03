@@ -1,6 +1,5 @@
 package com.example.apicoroutines.feature.resetPassword.forgotPassword
 
-import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -23,13 +22,12 @@ class ForgotPasswordFragment : BaseFragment(), View.OnClickListener {
 
     private lateinit var binding: FragmentForgotPasswordBinding
     private val forgotViewModel: ForgotPasswordViewModel by viewModels()
-    private lateinit var dialog: Dialog
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
+    ): View{
 
         binding = DataBindingUtil.inflate(inflater,
             R.layout.fragment_forgot_password,
@@ -84,12 +82,6 @@ class ForgotPasswordFragment : BaseFragment(), View.OnClickListener {
 
     private fun onError(msg: String?) {
         showMessage(msg)
-    }
-
-    private fun initDialog() {
-        dialog = Dialog(requireContext())
-        dialog.setContentView(R.layout.loading_dialog)
-        dialog.setCancelable(false)
     }
 
     override fun onClick(view: View?) {

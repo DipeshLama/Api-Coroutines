@@ -12,7 +12,7 @@
         android:title="@string/categories" />
 
     <item
-        android:id="@+id/faqFragment"
+        android:id="@+id/cartFragment"
         android:icon="@drawable/ic_offers"
         android:title="@string/offers" />
 

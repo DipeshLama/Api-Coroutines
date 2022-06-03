@@ -28,4 +28,5 @@ object ApiConstants {
     const val productDetail = "$noAuth/product/{productId}"
     const val productId = "productId"
     const val favourite = "$noAuth/favourite"
+    const val addToCart = "$noAuth/cart-product"
 }

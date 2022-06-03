@@ -11,26 +11,32 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import com.example.apicoroutines.R
 import com.example.apicoroutines.databinding.FragmentProductDetailBinding
+import com.example.apicoroutines.feature.cart.CartViewModel
 import com.example.apicoroutines.feature.favourite.FavouriteViewModel
+import com.example.apicoroutines.feature.paymentOptions.PaymentOptionsFragment
 import com.example.apicoroutines.feature.shared.base.BaseFragment
 import com.example.apicoroutines.feature.shared.base.BaseResponse
+import com.example.apicoroutines.feature.shared.model.request.CartRequest
 import com.example.apicoroutines.feature.shared.model.request.FavouriteRequest
+import com.example.apicoroutines.feature.shared.model.response.AddToCart
 import com.example.apicoroutines.feature.shared.model.response.Favourite
 import com.example.apicoroutines.feature.shared.model.response.Product
 import com.example.apicoroutines.utils.constants.ApiConstants
 import com.example.apicoroutines.utils.resource.Resource
 import com.example.apicoroutines.utils.resource.Status
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 import retrofit2.Response
 
 @AndroidEntryPoint
-class ProductDetailFragment : BaseFragment(),View.OnClickListener {
+class ProductDetailFragment : BaseFragment(), View.OnClickListener {
     private lateinit var binding: FragmentProductDetailBinding
     private val detailViewModel: ProductDetailViewModel by viewModels()
-    private val favViewModel : FavouriteViewModel by viewModels()
-    private var productId : Int? = null
+    private val favViewModel: FavouriteViewModel by viewModels()
+    private val cartViewModel: CartViewModel by viewModels()
+    private var productId: Int? = null
+    private var product: Product? = null
+    private var quantity = 1
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,7 +53,9 @@ class ProductDetailFragment : BaseFragment(),View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
         detailViewModel
         favViewModel
+        cartViewModel
         initListener()
+        initDialog()
         productId = arguments?.getInt(ApiConstants.productId)
         productId?.let { getProductDetail(it) }
     }
@@ -84,32 +92,71 @@ class ProductDetailFragment : BaseFragment(),View.OnClickListener {
     }
 
     private fun setViews(product: Product?) {
+        this.product = product
         binding.txvDetailProductTitle.text = product?.title
-        binding.txvDescription.text = product?.description?.let{HtmlCompat.fromHtml(it,0)}
+        binding.txvDescription.text = product?.description?.let { HtmlCompat.fromHtml(it, 0) }
         binding.txvDetailPrice.text = product?.unitPrice?.get(0)?.markedPrice.toString()
+        setQuantityIntoView()
+        setTotalPrice()
     }
 
-    private fun onLoading (){
+    private fun onLoading() {
         binding.prgDetail.visibility = View.VISIBLE
         binding.layoutBottom.visibility = View.GONE
         binding.layoutDescription.visibility = View.GONE
     }
 
-    private fun onLoadingFinish(){
+    private fun onLoadingFinish() {
         hideProgressBar()
         binding.layoutBottom.visibility = View.VISIBLE
         binding.layoutDescription.visibility = View.VISIBLE
     }
 
-    private fun hideProgressBar(){
+    private fun hideProgressBar() {
         binding.prgDetail.visibility = View.GONE
     }
 
-    private fun addToCart(){
-        Log.d("productid",productId.toString())
-        favViewModel.addToFavourite(getAccessToken(), FavouriteRequest(productId ?:0) )
-            .observe(viewLifecycleOwner){
-                when(it.status){
+    private fun addToCart() {
+        callAddToCartApi(CartRequest(
+            productId = productId,
+            priceId = this.product?.unitPrice?.get(0)?.id,
+            quantity = quantity,
+            note = "testing"
+        ))
+    }
+
+    private fun callAddToCartApi(request: CartRequest) {
+        cartViewModel.addToCart(getAccessToken(), request)
+            .observe(viewLifecycleOwner) {
+                when (it.status) {
+                    Status.SUCCESS -> onAddToCartSuccess(it)
+                    Status.ERROR -> onAddToCartError(it.message)
+                    Status.LOADING -> dialog.show()
+                }
+            }
+    }
+
+    private fun onAddToCartError(msg: String?) {
+        showMessage(msg)
+    }
+
+    private fun onAddToCartSuccess(it: Resource<Response<BaseResponse<AddToCart>>>) {
+        it.data?.let {
+            if (it.isSuccessful && it.body()?.data != null) {
+                dialog.dismiss()
+                showMessage("Added to cart")
+            } else {
+                showMessage(getError(it.errorBody()?.string()))
+                dialog.dismiss()
+            }
+        }
+    }
+
+    private fun addToFavourite() {
+        Log.d("productid", productId.toString())
+        favViewModel.addToFavourite(getAccessToken(), FavouriteRequest(productId ?: 0))
+            .observe(viewLifecycleOwner) {
+                when (it.status) {
                     Status.SUCCESS -> onAddToFavouriteSuccess(it)
                     Status.ERROR -> onAddTOFavouriteError(it.message)
                 }
@@ -118,9 +165,9 @@ class ProductDetailFragment : BaseFragment(),View.OnClickListener {
 
     private fun onAddToFavouriteSuccess(it: Resource<Response<BaseResponse<Favourite>>>) {
         it.data?.let {
-            if(it.isSuccessful && it.body()?.data != null){
+            if (it.isSuccessful && it.body()?.data != null) {
                 showMessage("Added to favourite")
-            }else{
+            } else {
                 showMessage(getError(it.errorBody()?.string()))
             }
         }
@@ -142,13 +189,41 @@ class ProductDetailFragment : BaseFragment(),View.OnClickListener {
         activity?.findViewById<BottomNavigationView>(R.id.btmNav)?.visibility = View.VISIBLE
     }
 
-    private fun initListener (){
+    private fun initListener() {
         binding.cvDetailCardView.setOnClickListener(this)
+        binding.btnAddToCart.setOnClickListener(this)
+        binding.imvIncreaseQuantity.setOnClickListener(this)
+        binding.imvDecreaseQuantity.setOnClickListener(this)
     }
 
     override fun onClick(view: View?) {
-        when(view){
-            binding.cvDetailCardView -> addToCart()
+        when (view) {
+            binding.cvDetailCardView -> addToFavourite()
+            binding.btnAddToCart -> addToCart()
+            binding.imvIncreaseQuantity -> increaseQuantity()
+            binding.imvDecreaseQuantity -> decreaseQuantity()
         }
+    }
+
+    private fun increaseQuantity() {
+        quantity++
+        setQuantityIntoView()
+    }
+
+    private fun decreaseQuantity(){
+        if(quantity > 1){
+            quantity --
+        }
+        setQuantityIntoView()
+    }
+
+    private fun setQuantityIntoView() {
+        binding.txvDetailQuantity.text = quantity.toString()
+        setTotalPrice()
+    }
+
+    private fun setTotalPrice() {
+        val productPrice = product?.unitPrice?.get(0)?.markedPrice
+        binding.btnAddToCart.text = "Add Rs. ${(productPrice?.times(quantity))}"
     }
 }

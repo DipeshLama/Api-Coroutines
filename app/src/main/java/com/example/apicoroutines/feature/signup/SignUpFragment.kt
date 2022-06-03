@@ -25,7 +25,6 @@ import retrofit2.Response
 class SignUpFragment : BaseFragment(), View.OnClickListener {
     private lateinit var binding: FragmentSignUpBinding
     private val signUpViewModel: SignUpViewModel by viewModels()
-    private lateinit var dialog: Dialog
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -93,11 +92,6 @@ class SignUpFragment : BaseFragment(), View.OnClickListener {
         showMessage(message)
     }
 
-    private fun initDialog() {
-        dialog = Dialog(requireContext())
-        dialog.setContentView(R.layout.loading_dialog)
-        dialog.setCancelable(false)
-    }
 
     override fun onClick(view: View?) {
         when (view) {
