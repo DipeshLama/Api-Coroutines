@@ -28,6 +28,8 @@ import com.example.apicoroutines.utils.resource.Status
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import retrofit2.Response
+import java.math.BigDecimal
+import java.math.RoundingMode
 
 @AndroidEntryPoint
 class ProductDetailFragment : BaseFragment(), View.OnClickListener {
@@ -95,9 +97,11 @@ class ProductDetailFragment : BaseFragment(), View.OnClickListener {
         this.product = product
         binding.txvDetailProductTitle.text = product?.title
         binding.txvDescription.text = product?.description?.let { HtmlCompat.fromHtml(it, 0) }
-        binding.txvDetailPrice.text = product?.unitPrice?.get(0)?.markedPrice.toString()
-        Glide.with(requireContext()).load(product?.images?.get(0)?.imageName).into(binding.imvDetailMain)
-        Glide.with(requireContext()).load(product?.images?.get(0)?.imageName).into(binding.imvDetailMid)
+        binding.txvDetailPrice.text = String.format(getString(R.string.rs_),product?.unitPrice?.get(0)?.markedPrice.toString())
+        Glide.with(requireContext()).load(product?.images?.get(0)?.imageName)
+            .into(binding.imvDetailMain)
+        Glide.with(requireContext()).load(product?.images?.get(0)?.imageName)
+            .into(binding.imvDetailMid)
         setQuantityIntoView()
         setTotalPrice()
     }
@@ -226,6 +230,13 @@ class ProductDetailFragment : BaseFragment(), View.OnClickListener {
 
     private fun setTotalPrice() {
         val productPrice = product?.unitPrice?.get(0)?.markedPrice
-        binding.btnAddToCart.text = "Add Rs. ${(productPrice?.times(quantity))}"
+        binding.btnAddToCart.text =
+            String.format(getString(R.string.add_rs), "${(productPrice?.times(quantity))}")
+    }
+
+    fun getRoundedOffPriceRs(price: Int): String {
+        val bd = BigDecimal(price)
+        val value = bd.setScale(2, RoundingMode.FLOOR)
+        return "Rs $value"
     }
 }

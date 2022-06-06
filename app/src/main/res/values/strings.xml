@@ -50,5 +50,7 @@
     <string name="cash_on_delivery">Cash On Delivery</string>
     <string name="_10_discount">10% Discount</string>
     <string name="add_more_items">Add More Items +</string>
+    <string name = "add_rs">Add Rs. %1$s</string>
+    <string name = "rs_">Rs. %1$s</string>
 
 </resources>
