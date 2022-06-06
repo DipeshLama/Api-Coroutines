@@ -8,30 +8,36 @@ import com.example.apicoroutines.feature.shared.base.BaseViewHolder
 import com.example.apicoroutines.feature.shared.listener.ProductClickListener
 import com.example.apicoroutines.feature.shared.model.response.Category
 import com.example.apicoroutines.feature.shared.model.response.Details
+import com.example.apicoroutines.feature.shared.model.response.Home
 import com.example.apicoroutines.feature.shared.model.response.Product
 import com.example.apicoroutines.feature.shared.viewHolder.*
 
 class HomeScreenAdapter(
-    private val list: List<*>,val listener :ProductClickListener
+    private val homeList: ArrayList<Home>,
+    val listener: ProductClickListener,
 ) : RecyclerView.Adapter<BaseViewHolder>() {
 
     private val bannerType = 1
     private val categoryType = 2
-    private val productType = 3
+    private val horizontalType = 3
     private val gridType = 4
-    private val titleType = 5
 
     override fun getItemViewType(position: Int) =
-        if (list[position] is List<*>) {
-            val a = list[position] as List<*>
-            if (a.isNotEmpty() && a[0] is Details)
-                bannerType
-            else if (a.isNotEmpty() && a[0] is Category)
-                categoryType
-            else
-                productType
-        } else titleType
+        if (position < (homeList.count())) {
+            when (homeList[position].viewType) {
+                "bannerType" -> bannerType
 
+                "categoryType" -> categoryType
+
+                "horizontal" -> horizontalType
+
+                "grid" -> gridType
+
+                else -> super.getItemViewType(position)
+            }
+        } else {
+            0
+        }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
         return when (viewType) {
@@ -46,28 +52,48 @@ class HomeScreenAdapter(
                     parent,
                     false))
 
-            titleType -> TitleVH(
-                AdaptorTitleBinding.inflate(LayoutInflater.from(
-                    parent.context),
-                    parent,
-                    false))
-
-            else -> ProductViewHolder(
+            horizontalType -> ProductViewHolder(
                 AdapterHomeProductBinding.inflate(LayoutInflater.from(
                     parent.context),
                     parent,
                     false), listener)
+
+            else -> GridProductViewHolder(
+                AdapterGridProductBinding.inflate(LayoutInflater.from(
+                    parent.context),
+                    parent,
+                    false))
         }
     }
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
-        when (holder) {
-            is BannerViewHolder -> holder.bind(list[position] as List<Details>)
-            is HomeCategoryViewHolder -> holder.bind(list[position] as List<Category>)
-            is ProductViewHolder -> holder.bind(list[position] as List<Product>)
-            is TitleVH -> holder.bind(list[position] as String)
+        when (getItemViewType(position)) {
+            bannerType -> populateBanner(holder, position)
+            categoryType -> populateCategory(holder, position)
+            horizontalType -> populateHorizontal(holder, position)
+            gridType -> populateGrid(holder, position)
         }
     }
 
-    override fun getItemCount() = list.size
+    override fun getItemCount() = homeList.size
+
+    private fun populateBanner(baseVH: BaseViewHolder, position: Int) {
+        val holder = baseVH as? BannerViewHolder
+        holder?.bind(homeList[position].details ?: emptyList())
+    }
+
+    private fun populateCategory(baseVH: BaseViewHolder, position: Int) {
+        val holder = baseVH as? HomeCategoryViewHolder
+        holder?.bind(homeList[position].categories ?: emptyList())
+    }
+
+    private fun populateHorizontal(baseVH: BaseViewHolder, position: Int) {
+        val holder = baseVH as? ProductViewHolder
+        holder?.bind(homeList[position].sectionDetails?.products ?: emptyList())
+    }
+
+    private fun populateGrid(baseVH: BaseViewHolder, position: Int) {
+        val holder = baseVH as? GridProductViewHolder
+        holder?.bind(homeList[position].sectionDetails?.products ?: emptyList())
+    }
 }

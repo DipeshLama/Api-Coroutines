@@ -32,7 +32,7 @@ class HomeFragment : BaseFragment(), ProductClickListener {
     private val homeViewModel: HomeViewModel by viewModels()
     private lateinit var binding: FragmentHomeBinding
     private lateinit var homeScreenAdapter: HomeScreenAdapter
-    private var list = arrayListOf<Any>()
+    private var homeList = arrayListOf<Home>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -93,16 +93,13 @@ class HomeFragment : BaseFragment(), ProductClickListener {
         it.data?.let {
             progressBarVisible()
             if (it.isSuccessful && it.body()?.data?.isNotEmpty() == true) {
-                filterData(it.body()?.data ?: emptyList())
+                setViewType(it.body()?.data ?: emptyList())
+                initList(it.body()?.data ?: emptyList())
                 saveHomeScreenDataToDb(it.body()?.data ?: emptyList())
                 progressBarGone()
-
             } else {
-                val error = it.errorBody()?.string().let { errorResponse ->
-                    getError(errorResponse)
-                }
                 progressBarGone()
-                showMessage(error)
+                showMessage(getError(it.errorBody()?.string()))
             }
         }
     }
@@ -119,15 +116,35 @@ class HomeFragment : BaseFragment(), ProductClickListener {
     private fun getHomeScreenDataFromDb() {
         homeViewModel.getHomeScreenDataFromRoom()
             .observe(viewLifecycleOwner) {
-                filterData(it)
+                setViewType(it)
+                initList(it)
             }
     }
 
     private fun setUpRecyclerView() {
         homeScreenAdapter =
-            HomeScreenAdapter(list, this)
+            HomeScreenAdapter(homeList, this)
 
-        binding.ryvMain.adapter = homeScreenAdapter
+        binding.ryvMain.apply {
+            adapter = homeScreenAdapter
+            itemAnimator = null
+        }
+    }
+
+    private fun setViewType(list: List<Home>) {
+        list.forEach { response ->
+            if (response.title == "Banner") {
+                response.viewType = "bannerType"
+            } else if (response.title == "Category") {
+                response.viewType = "categoryType"
+            } else if (response.sectionDetails?.designType == "horizontal") {
+                response.viewType = "horizontal"
+            } else if (response.sectionDetails?.designType == "grid") {
+                response.viewType = "grid"
+            } else {
+                response.viewType = "oval"
+            }
+        }
     }
 
     private fun progressBarVisible() {
@@ -138,24 +155,10 @@ class HomeFragment : BaseFragment(), ProductClickListener {
         binding.prgHome.visibility = View.GONE
     }
 
-    private fun filterData(list: List<Home>) {
-        this.list.clear()
-        for (home in list) {
-            when (home.title) {
-                "Banner" -> {
-                    home.details?.let { this.list.add(it) }
-                }
-                "Products Collection" -> {
-                    home.sectionDetails?.title?.let { this.list.add(it) }
-                    home.sectionDetails?.products?.let { this.list.add(it) }
-                }
-                "Category" -> {
-                    home.categories?.let { this.list.add(it) }
-                }
-            }
-        }
-
-        homeScreenAdapter.notifyDataSetChanged()
+    private fun initList(list: List<Home>) {
+        this.homeList.clear()
+        this.homeList.addAll(list)
+        homeScreenAdapter.notifyItemRangeInserted(0, homeList.count())
     }
 
     override fun onHomeProductClick(productId: Int) {

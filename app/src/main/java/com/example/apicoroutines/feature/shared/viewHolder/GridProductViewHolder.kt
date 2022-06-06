@@ -7,7 +7,7 @@ import com.example.apicoroutines.feature.shared.model.response.Product
 
 class GridProductViewHolder(val binding : AdapterGridProductBinding) : BaseViewHolder(binding.root) {
 
-    fun bind (list : ArrayList<Product>){
+    fun bind (list : List<Product>){
         binding
         binding.ryvGridProduct.adapter = GridProductAdapter(list)
     }

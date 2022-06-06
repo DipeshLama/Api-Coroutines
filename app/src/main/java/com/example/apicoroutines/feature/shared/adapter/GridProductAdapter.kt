@@ -8,7 +8,7 @@ import com.bumptech.glide.Glide
 import com.example.apicoroutines.databinding.LayoutGridProductBinding
 import com.example.apicoroutines.feature.shared.model.response.Product
 
-class GridProductAdapter(val list: ArrayList<Product>) :
+class GridProductAdapter(val list: List<Product>) :
     RecyclerView.Adapter<GridProductAdapter.GridVH>() {
 
     class GridVH(val binding: LayoutGridProductBinding) :

@@ -36,5 +36,7 @@ data class Home (
 
     @SerializedName("categories")
     @Expose
-    val categories: List<Category>? = null
+    val categories: List<Category>? = null,
+
+    var viewType : String? = null
 )
