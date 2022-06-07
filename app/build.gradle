@@ -81,10 +81,6 @@ dependencies {
     kapt 'com.google.dagger:hilt-android-compiler:2.42'
     implementation "androidx.activity:activity-ktx:1.4.0"
 
-//    implementation  'com.squareup.okhttp3:okhttp:4.9.3'
-//    implementation 'com.google.code.gson:gson:2.9.0'
-
     implementation 'de.hdodenhof:circleimageview:3.1.0'
-
-
+    implementation 'com.github.qamarelsafadi:CurvedBottomNavigation:0.1.0'
 }
