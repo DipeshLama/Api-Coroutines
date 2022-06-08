@@ -10,6 +10,7 @@ object ApiConstants {
     const val grant_type = "password"
     const val cartProductId = "cartProductId"
     const val authorization = "Authorization"
+    const val orderId = "orderId"
 
     //End points
     private const val noAuth = "api/v4"
@@ -30,4 +31,6 @@ object ApiConstants {
     const val favourite = "$noAuth/favourite"
     const val addToCart = "$noAuth/cart-product"
     const val updateCart = "api/v4/cart-product/{cartProductId}"
+    const val order = "$noAuth/order"
+    const val orderById = "$order/{orderId}"
 }

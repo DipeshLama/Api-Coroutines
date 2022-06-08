@@ -14,4 +14,6 @@
     <color name="secondary_text">#F58220</color>
     <color name="secondary_text_black">#222222</color>
     <color name="primary_text">#555555</color>
+    <color name="divider_color">#B9FFD8</color>
+    <color name="color_444">#444444</color>
 </resources>

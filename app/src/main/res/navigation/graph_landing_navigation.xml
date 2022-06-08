@@ -47,4 +47,18 @@
         android:name="com.example.apicoroutines.feature.cart.CartFragment"
         android:label="CartFragment"
         tools:layout="@layout/fragment_cart"/>
+    <fragment
+        android:id="@+id/orderHistoryFragment"
+        android:name="com.example.apicoroutines.feature.order.OrderHistoryFragment"
+        android:label="OrderHistoryFragment"
+        tools:layout="@layout/fragment_order_history">
+        <action
+            android:id="@+id/action_orderHistoryFragment_to_orderTrackingFragment"
+            app:destination="@id/orderTrackingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/orderTrackingFragment"
+        android:name="com.example.apicoroutines.feature.order.OrderTrackingFragment"
+        android:label="fragment_order_tracking"
+        tools:layout="@layout/fragment_order_tracking" />
 </navigation>

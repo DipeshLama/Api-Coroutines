@@ -39,40 +39,50 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-//        initController()
-        initNavHost()
-        binding.setUpBottomNavigation()
+        initController()
+//        initNavHost()
+//        binding.setUpBottomNavigation()
     }
+
     private fun initNavHost() {
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.frgHome) as NavHostFragment
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.frgHome) as NavHostFragment
         navController = navHostFragment.navController
     }
 
-    private fun ActivityMainBinding.setUpBottomNavigation() {
-        val bottomNavigationItems = mutableListOf(
-            CurvedBottomNavigation.Model(HOME_ITEM, getString(R.string.home), R.drawable.ic_home_iconly),
-            CurvedBottomNavigation.Model(CATEGORIES_ITEM, getString(R.string.categories), R.drawable.ic_category_iconly),
-            CurvedBottomNavigation.Model(FAQ_ITEM, getString(R.string.offers), R.drawable.ic_offers),
-            CurvedBottomNavigation.Model(FAVOURITE_ITEM, getString(R.string.favourite), R.drawable.ic_heart),
-            CurvedBottomNavigation.Model(MORE_ITEM, getString(R.string.more), R.drawable.ic_more)
-        )
-        binding.btmNav.apply {
-            bottomNavigationItems.forEach { add(it) }
-            setOnClickMenuListener {
-                navController.navigate(it.id)
-            }
-            // optional
-            setupNavController(navController)
-        }
-    }
-
-//    private fun initController() {
-//        val navHostFragment = supportFragmentManager.findFragmentById(R.id.frgHome)
-//        navController = navHostFragment!!.findNavController()
-//        AppBarConfiguration(navController.graph)
-//        binding.btmNav.setupWithNavController(navController)
-//        setupActionBarWithNavController(navController)
+//    private fun ActivityMainBinding.setUpBottomNavigation() {
+//        val bottomNavigationItems = mutableListOf(
+//            CurvedBottomNavigation.Model(HOME_ITEM,
+//                getString(R.string.home),
+//                R.drawable.ic_home_iconly),
+//            CurvedBottomNavigation.Model(CATEGORIES_ITEM,
+//                getString(R.string.categories),
+//                R.drawable.ic_category_iconly),
+//            CurvedBottomNavigation.Model(FAQ_ITEM,
+//                getString(R.string.offers),
+//                R.drawable.ic_offers),
+//            CurvedBottomNavigation.Model(FAVOURITE_ITEM,
+//                getString(R.string.favourite),
+//                R.drawable.ic_heart),
+//            CurvedBottomNavigation.Model(MORE_ITEM, getString(R.string.more), R.drawable.ic_more)
+//        )
+//        binding.btmNav.apply {
+//            bottomNavigationItems.forEach { add(it) }
+//            setOnClickMenuListener {
+//                navController.navigate(it.id)
+//            }
+//            // optional
+//            setupNavController(navController)
+//        }
 //    }
+
+    private fun initController() {
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.frgHome)
+        navController = navHostFragment!!.findNavController()
+        AppBarConfiguration(navController.graph)
+        binding.btmNav.setupWithNavController(navController)
+        setupActionBarWithNavController(navController)
+    }
 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
@@ -84,7 +94,7 @@ class MainActivity : AppCompatActivity() {
         val actionView = menuItem.actionView
         val cartBadge = actionView.findViewById<TextView>(R.id.txvCartBadge)
 
-        menuItem.actionView.setOnClickListener{
+        menuItem.actionView.setOnClickListener {
             onOptionsItemSelected(menuItem)
         }
         when (cartQuantity) {

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imvTrackOrderIcon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="22dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txvPendingDate"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="32dp"
+            android:fontFamily="@font/robotomedium"
+            android:text="10.11.2020 01:15"
+            android:visibility="gone"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/trackOutline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/trackOutline"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="35dp"
+            android:background="@drawable/ic_track_outline"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imvTrackOrderIcon"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/topDivider"
+            android:layout_width="2dp"
+            android:layout_height="0dp"
+            app:dividerColor="#B9FFD8"
+            app:layout_constraintBottom_toTopOf="@id/trackOutline"
+            app:layout_constraintEnd_toEndOf="@+id/trackOutline"
+            app:layout_constraintStart_toStartOf="@id/trackOutline"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/btmDivider"
+            android:layout_width="2dp"
+            android:layout_height="0dp"
+            app:dividerColor="#B9FFD8"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/trackOutline"
+            app:layout_constraintStart_toStartOf="@id/trackOutline"
+            app:layout_constraintTop_toBottomOf="@id/trackOutline" />
+
+        <TextView
+            android:id="@+id/txvTrackingStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="40dp"
+            android:fontFamily="@font/robotoregular"
+            android:text="The order has been Cancelled"
+            android:textColor="@color/primary_text"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

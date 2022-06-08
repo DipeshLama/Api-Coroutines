@@ -50,7 +50,14 @@
     <string name="cash_on_delivery">Cash On Delivery</string>
     <string name="_10_discount">10% Discount</string>
     <string name="add_more_items">Add More Items +</string>
-    <string name = "add_rs">Add Rs. %1$s</string>
-    <string name = "rs_">Rs. %1$s</string>
-
+    <string name="add_rs">Add Rs. %1$s</string>
+    <string name="rs_">Rs. %1$s</string>
+    <string name="nrs_">NRs. %1$s</string>
+    <string name="discount_Ns_">- Nrs. %1$s</string>
+    <string name="re_order">Re-order</string>
+    <string name="items_total">Items Total</string>
+    <string name="delivery_charge">Delivery Charge</string>
+    <string name="offer_discount">Offer Discount</string>
+    <string name="delivery_discount">Delivery Discount</string>
+    <string name="grand_total">Grand Total</string>
 </resources>

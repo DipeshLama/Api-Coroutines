@@ -43,8 +43,8 @@ interface ApiService {
     @POST(ApiConstants.addToCart)
     suspend fun addToCart(
         @Header(ApiConstants.wareHouseIdString) wareHouseId: Int,
-        @Header (ApiConstants.authorization) token : String,
-        @Body request : RequestBody
+        @Header(ApiConstants.authorization) token: String,
+        @Body request: RequestBody,
     ): Response<BaseResponse<AddToCart>>
 
     @GET(ApiConstants.getCart)
@@ -55,18 +55,18 @@ interface ApiService {
 
     @PATCH(ApiConstants.updateCart)
     suspend fun updateUserCart(
-        @Header(ApiConstants.authorization) token : String,
+        @Header(ApiConstants.authorization) token: String,
         @Header(ApiConstants.wareHouseIdString) wareHouseId: Int,
-        @Path(ApiConstants.cartProductId) cartProductId : Int,
-        @Body request : RequestBody
-    ) : Response<BaseResponse<CartProducts>>
+        @Path(ApiConstants.cartProductId) cartProductId: Int,
+        @Body request: RequestBody,
+    ): Response<BaseResponse<CartProducts>>
 
     @DELETE(ApiConstants.updateCart)
     suspend fun deleteCartProduct(
-        @Header(ApiConstants.authorization) token : String,
+        @Header(ApiConstants.authorization) token: String,
         @Header(ApiConstants.wareHouseIdString) wareHouseId: Int,
-        @Path(ApiConstants.cartProductId)cartProductId: Int
-    ) : Response<String>
+        @Path(ApiConstants.cartProductId) cartProductId: Int,
+    ): Response<String>
 
     @GET(ApiConstants.productDetail)
     suspend fun getProductDetail(
@@ -78,16 +78,25 @@ interface ApiService {
     suspend fun addToFavourite(
         @Header(ApiConstants.wareHouseIdString) wareHouseId: Int,
         @Header(ApiConstants.authorization) token: String,
-        @Body request : RequestBody
+        @Body request: RequestBody,
     ): Response<BaseResponse<Favourite>>
 
     @GET(ApiConstants.favourite)
     suspend fun getUserFavourite(
         @Header(ApiConstants.wareHouseIdString) wareHouseId: Int,
-        @Header(ApiConstants.authorization) token : String
-    ) : Response<BaseArrayResponse<Favourite>>
+        @Header(ApiConstants.authorization) token: String,
+    ): Response<BaseArrayResponse<Favourite>>
 
 
+    @GET(ApiConstants.order)
+    suspend fun getUserOrder(
+        @Header(ApiConstants.authorization) token: String,
+    ): Response<BaseArrayResponse<Order>>
 
 
+    @GET(ApiConstants.orderById)
+    suspend fun getOrderById(
+        @Header(ApiConstants.authorization) token: String,
+        @Path(ApiConstants.orderId) orderId : Int
+    ): Response<BaseResponse<OrderTracking>>
 }
