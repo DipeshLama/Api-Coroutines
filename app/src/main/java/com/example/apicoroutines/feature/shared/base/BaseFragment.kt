@@ -99,5 +99,4 @@ abstract class BaseFragment : Fragment() {
         activity?.findViewById<BottomNavigationView>(R.id.btmNav)?.visibility = View.GONE
     }
 
-
 }

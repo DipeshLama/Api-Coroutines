@@ -90,9 +90,25 @@ class OrderHistoryFragment : BaseFragment(), OrderTrackListener {
     }
 
     private fun onLoading(visible: Boolean) {
-        when{
-            visible -> binding.prgOrderHistory.visibility = View.VISIBLE
-            else -> binding.prgOrderHistory.visibility = View.GONE
+        when {
+            visible -> {
+                binding.prgOrderHistory.visibility = View.VISIBLE
+                binding.ryvOrderHistory.visibility = View.GONE
+            }
+            else -> {
+                binding.prgOrderHistory.visibility = View.GONE
+                binding.ryvOrderHistory.visibility = View.VISIBLE
+            }
         }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        hideBottomNavBar()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        showBottomNavBar()
     }
 }
