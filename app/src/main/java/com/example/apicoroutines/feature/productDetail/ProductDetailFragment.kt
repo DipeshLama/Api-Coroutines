@@ -233,10 +233,4 @@ class ProductDetailFragment : BaseFragment(), View.OnClickListener {
         binding.btnAddToCart.text =
             String.format(getString(R.string.add_rs), "${(productPrice?.times(quantity))}")
     }
-
-    fun getRoundedOffPriceRs(price: Int): String {
-        val bd = BigDecimal(price)
-        val value = bd.setScale(2, RoundingMode.FLOOR)
-        return "Rs $value"
-    }
 }

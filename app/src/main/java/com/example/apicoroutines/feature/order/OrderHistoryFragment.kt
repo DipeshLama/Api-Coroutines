@@ -29,14 +29,10 @@ class OrderHistoryFragment : BaseFragment(), OrderTrackListener {
     private lateinit var orderAdapter: OrderAdapter
     private var orderList = ArrayList<Order>()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
         binding = DataBindingUtil.inflate(inflater,
             R.layout.fragment_order_history,
             container,
@@ -57,11 +53,13 @@ class OrderHistoryFragment : BaseFragment(), OrderTrackListener {
                 when (it.status) {
                     Status.SUCCESS -> onOrderResponseSuccess(it)
                     Status.ERROR -> onOrderResponseError(it.message)
+                    Status.LOADING -> onLoading(true)
                 }
             }
     }
 
     private fun onOrderResponseError(msg: String?) {
+        onLoading(false)
         showMessage(msg)
     }
 
@@ -71,10 +69,9 @@ class OrderHistoryFragment : BaseFragment(), OrderTrackListener {
                 orderList.clear()
                 orderList.addAll(it.body()?.data ?: emptyList())
                 orderAdapter.notifyItemRangeInserted(0, orderList.count())
-
-
+                onLoading(false)
             } else {
-                showMessage(getError(it.errorBody()?.string()))
+                onOrderResponseError(getError(it.errorBody()?.string()))
             }
         }
     }
@@ -90,5 +87,12 @@ class OrderHistoryFragment : BaseFragment(), OrderTrackListener {
     override fun onTrackOrder(position: Int) {
         findNavController().navigate(R.id.action_orderHistoryFragment_to_orderTrackingFragment,
             bundleOf("orderId" to orderList[position].id))
+    }
+
+    private fun onLoading(visible: Boolean) {
+        when{
+            visible -> binding.prgOrderHistory.visibility = View.VISIBLE
+            else -> binding.prgOrderHistory.visibility = View.GONE
+        }
     }
 }

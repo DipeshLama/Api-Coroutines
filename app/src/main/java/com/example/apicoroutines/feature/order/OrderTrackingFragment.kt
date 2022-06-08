@@ -24,7 +24,7 @@ import retrofit2.Response
 class OrderTrackingFragment : BaseFragment() {
     private lateinit var binding: FragmentOrderTrackingBinding
     private val orderViewModel: OrderViewModel by viewModels()
-    
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -51,21 +51,29 @@ class OrderTrackingFragment : BaseFragment() {
                 when (it.status) {
                     Status.SUCCESS -> onSuccess(it)
                     Status.ERROR -> onError(it.message)
+                    Status.LOADING -> {
+                        onLoading(true)
+                        showLayout(false)
+                    }
                 }
             }
     }
 
     private fun onError(msg: String?) {
         showMessage(msg)
+        onLoading(false)
+        showLayout(false)
     }
 
     private fun onSuccess(it: Resource<Response<BaseResponse<OrderTracking>>>) {
         it.data?.let {
             if (it.isSuccessful && it.body()?.data != null) {
+                onLoading(false)
+                showLayout(true)
                 setRecyclerView(it.body()?.data)
                 setViews(it.body()?.data)
             } else {
-                showMessage(getError(it.errorBody()?.string()))
+                onError(getError(it.errorBody()?.string()))
             }
         }
     }
@@ -88,6 +96,20 @@ class OrderTrackingFragment : BaseFragment() {
             layoutManager =
                 LinearLayoutManager(context, LinearLayoutManager.VERTICAL, true)
             adapter = data?.let { OrderTrackAdapter(it) }
+        }
+    }
+
+    private fun onLoading(visible: Boolean) {
+        when {
+            visible -> binding.prgOrderTracking.visibility = View.VISIBLE
+            else -> binding.prgOrderTracking.visibility = View.GONE
+        }
+    }
+
+    private fun showLayout(visible: Boolean) {
+        when {
+            visible -> binding.layoutOrderTracking.visibility = View.VISIBLE
+            else -> binding.layoutOrderTracking.visibility = View.GONE
         }
     }
 }

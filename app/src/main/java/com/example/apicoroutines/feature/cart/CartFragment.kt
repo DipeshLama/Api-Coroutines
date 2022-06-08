@@ -13,7 +13,9 @@ import com.example.apicoroutines.feature.shared.base.BaseFragment
 import com.example.apicoroutines.feature.shared.base.BaseResponse
 import com.example.apicoroutines.feature.shared.listener.CartUpdateListener
 import com.example.apicoroutines.feature.shared.model.request.UpdateCart
+import com.example.apicoroutines.feature.shared.model.response.Cart
 import com.example.apicoroutines.feature.shared.model.response.CartProducts
+import com.example.apicoroutines.utils.helper.DecimalHelper
 import com.example.apicoroutines.utils.resource.Resource
 import com.example.apicoroutines.utils.resource.Status
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,7 +24,8 @@ import retrofit2.Response
 @AndroidEntryPoint
 class CartFragment : BaseFragment(), CartUpdateListener {
     private lateinit var binding: FragmentCartBinding
-    private var list = cartList
+    private var list = arrayListOf<CartProducts>()
+    private lateinit var cartAdapter: CartAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,12 +43,55 @@ class CartFragment : BaseFragment(), CartUpdateListener {
         cartViewModel
         initDialog()
         setRecyclerView()
-        getUserCart(getAccessToken())
+        getCart(getAccessToken())
     }
 
+    private fun getCart(token: String) {
+        cartViewModel.getUserCart(token)
+            .observe(viewLifecycleOwner) {
+                when (it.status) {
+                    Status.SUCCESS -> onCartGetSuccess(it)
+                    Status.ERROR -> onCartGetError(it.message)
+                    Status.LOADING -> {
+                        visibleProgressBar(true)
+                        showLayout(false)
+                    }
+                }
+            }
+    }
+
+    private fun onCartGetError(msg: String?) {
+        showMessage(msg)
+        visibleProgressBar(false)
+        showLayout(false)
+    }
+
+    private fun onCartGetSuccess(it: Resource<Response<BaseResponse<Cart>>>) {
+        it.data?.let {
+            if (it.isSuccessful && it.body()?.data != null) {
+                setView(it.body()?.data)
+                list.clear()
+                list.addAll(it.body()?.data?.cartProducts ?: emptyList())
+                cartAdapter.notifyItemRangeInserted(0, list.count())
+                visibleProgressBar(false)
+                showLayout(true)
+            }
+        }
+    }
+
+    private fun setView(data: Cart?) {
+        binding.txvItem.text =
+            String.format(getString(R.string.item), data?.cartProducts?.size)
+        binding.txvCartBtmNoOfItems.text =
+            String.format(getString(R.string.no_items), data?.cartProducts?.size)
+        binding.txvTotalCartPrice.text =
+            String.format(getString(R.string.nrs_),
+                DecimalHelper.getRoundedOffPriceRs(data?.orderAmount ?: 0))
+    }
+
+
     private fun setRecyclerView() {
-        val cartAdapter = CartAdapter(list, this)
-        this.cartAdapter = cartAdapter
+        cartAdapter = CartAdapter(list, this)
         binding.ryvCart.apply {
             adapter = cartAdapter
             itemAnimator = null
@@ -94,7 +140,7 @@ class CartFragment : BaseFragment(), CartUpdateListener {
     private fun onCartUpdateSuccess(it: Resource<Response<BaseResponse<CartProducts>>>) {
         it.data?.let {
             if (it.isSuccessful && it.body()?.data != null) {
-                getUserCart(getAccessToken())
+                getCart(getAccessToken())
                 dialog.dismiss()
             } else {
                 dialog.dismiss()
@@ -126,6 +172,7 @@ class CartFragment : BaseFragment(), CartUpdateListener {
                 list.removeAt(position)
                 showMessage("Delete successful")
                 notifyAdapter(position)
+                getCart(getAccessToken())
             } else {
                 dialog.dismiss()
                 showMessage(getError(it.errorBody()?.string()))
@@ -150,5 +197,21 @@ class CartFragment : BaseFragment(), CartUpdateListener {
     override fun onDestroy() {
         super.onDestroy()
         showBottomNavBar()
+    }
+
+
+    private fun visibleProgressBar(visible: Boolean) {
+        when {
+            visible -> binding.prgCart.visibility = View.VISIBLE
+
+            else -> binding.prgCart.visibility = View.GONE
+        }
+    }
+    
+    private fun showLayout(visible: Boolean) {
+        when {
+            visible -> binding.layoutCart.visibility = View.VISIBLE
+            else -> binding.layoutCart.visibility = View.GONE
+        }
     }
 }

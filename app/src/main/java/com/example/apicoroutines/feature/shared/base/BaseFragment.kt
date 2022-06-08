@@ -28,13 +28,13 @@ import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 import org.w3c.dom.Text
 import retrofit2.Response
+import java.math.BigDecimal
+import java.math.RoundingMode
 
 @AndroidEntryPoint
 abstract class BaseFragment : Fragment() {
     protected val cartViewModel: CartViewModel by viewModels()
     protected lateinit var dialog: Dialog
-    protected val cartList = arrayListOf<CartProducts>()
-    lateinit var cartAdapter: CartAdapter
 
     protected fun getError(error: String?): String? {
         val gson = Gson()
@@ -79,9 +79,6 @@ abstract class BaseFragment : Fragment() {
 
                 (activity as MainActivity).invalidateOptionsMenu()
 
-                cartList.clear()
-                cartList.addAll(it.body()?.data?.cartProducts ?: emptyList())
-                cartAdapter.notifyItemRangeInserted(0, cartList.count())
             } else {
                 showMessage(getError(it.errorBody()?.string()))
             }
@@ -101,4 +98,6 @@ abstract class BaseFragment : Fragment() {
     protected fun hideBottomNavBar (){
         activity?.findViewById<BottomNavigationView>(R.id.btmNav)?.visibility = View.GONE
     }
+
+
 }

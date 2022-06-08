@@ -60,4 +60,6 @@
     <string name="offer_discount">Offer Discount</string>
     <string name="delivery_discount">Delivery Discount</string>
     <string name="grand_total">Grand Total</string>
+    <string name="item">ITEMS (%1$s)</string>
+    <string name="no_items"> %1$s Items</string>
 </resources>
