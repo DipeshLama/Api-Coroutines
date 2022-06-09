@@ -78,6 +78,7 @@
                 app:layout_constraintStart_toStartOf="parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layoutContinue"
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
                     android:background="@drawable/button_style"

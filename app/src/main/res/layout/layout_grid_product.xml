@@ -48,29 +48,15 @@
             app:layout_constraintTop_toBottomOf="@+id/imgConstraintLayout" />
 
         <TextView
-            android:id="@+id/txvGridRs"
+            android:id="@+id/txvGridProductPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="6dp"
             android:fontFamily="@font/robotomedium"
-            android:text="@string/rs"
             android:textColor="@color/secondary_text"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txvGridProductName" />
-
-
-        <TextView
-            android:id="@+id/txvGridProductPrice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="6dp"
-            android:fontFamily="@font/robotomedium"
-            android:textColor="@color/secondary_text"
-            android:textSize="16sp"
-            app:layout_constraintStart_toEndOf="@id/txvGridRs"
             app:layout_constraintTop_toBottomOf="@+id/txvGridProductName" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

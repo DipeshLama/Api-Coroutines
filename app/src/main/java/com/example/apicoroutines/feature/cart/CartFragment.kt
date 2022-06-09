@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.findNavController
 import com.example.apicoroutines.R
 import com.example.apicoroutines.databinding.FragmentCartBinding
 import com.example.apicoroutines.feature.shared.adapter.CartAdapter
@@ -22,7 +23,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import retrofit2.Response
 
 @AndroidEntryPoint
-class CartFragment : BaseFragment(), CartUpdateListener {
+class CartFragment : BaseFragment(), CartUpdateListener, View.OnClickListener {
     private lateinit var binding: FragmentCartBinding
     private var list = arrayListOf<CartProducts>()
     private lateinit var cartAdapter: CartAdapter
@@ -41,6 +42,7 @@ class CartFragment : BaseFragment(), CartUpdateListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         cartViewModel
+        initListener()
         initDialog()
         setRecyclerView()
         getCart(getAccessToken())
@@ -207,11 +209,24 @@ class CartFragment : BaseFragment(), CartUpdateListener {
             else -> binding.prgCart.visibility = View.GONE
         }
     }
-    
+
     private fun showLayout(visible: Boolean) {
         when {
             visible -> binding.layoutCart.visibility = View.VISIBLE
             else -> binding.layoutCart.visibility = View.GONE
         }
+    }
+
+    private fun initListener(){
+        binding.layoutContinue.setOnClickListener(this)
+    }
+
+    override fun onClick(view: View?) {
+        when (view) {
+            binding.layoutContinue -> {
+                findNavController().navigate(R.id.action_cartFragment_to_checkoutFragment)
+            }
+        }
+
     }
 }

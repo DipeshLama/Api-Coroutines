@@ -62,4 +62,10 @@
     <string name="grand_total">Grand Total</string>
     <string name="item">ITEMS (%1$s)</string>
     <string name="no_items"> %1$s Items</string>
+    <string name="see_all">SEE ALL</string>
+    <string name="payment_details">Payment Details</string>
+    <string name="delivery_address">Delivery Address</string>
+    <string name="add_a_delivery_address">Add a Delivery Address</string>
+    <string name="add_a_promo_code">Add a Promo Code</string>
+    <string name="confirm_order">Confirm Order</string>
 </resources>

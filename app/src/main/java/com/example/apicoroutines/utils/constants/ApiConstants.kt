@@ -35,4 +35,5 @@ object ApiConstants {
     const val updateCart = "$noAuth/cart-product/{cartProductId}"
     const val order = "$noAuth/order"
     const val orderById = "$order/{orderId}"
+    const val paymentMethod = "$noAuth/payment-method"
 }

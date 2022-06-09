@@ -5,27 +5,86 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import com.example.apicoroutines.R
-import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.example.apicoroutines.databinding.FragmentPaymentOptionsBinding
+import com.example.apicoroutines.feature.shared.adapter.PaymentAdapter
+import com.example.apicoroutines.feature.shared.base.BaseArrayResponse
+import com.example.apicoroutines.feature.shared.base.BaseBottomSheetFragment
+import com.example.apicoroutines.feature.shared.model.response.PaymentOptions
+import com.example.apicoroutines.utils.resource.Resource
+import com.example.apicoroutines.utils.resource.Status
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import dagger.hilt.android.AndroidEntryPoint
+import retrofit2.Response
 
-class PaymentOptionsFragment : BottomSheetDialogFragment() {
-    private lateinit var  bottomSheetBehavior: BottomSheetBehavior<View>
+@AndroidEntryPoint
+class PaymentOptionsFragment : BaseBottomSheetFragment() {
+    private lateinit var binding: FragmentPaymentOptionsBinding
+    private val paymentViewModel: PaymentOptionsViewModel by viewModels()
+    private val paymentList = ArrayList<PaymentOptions>()
+    private lateinit var paymentAdapter: PaymentAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
-        return inflater.inflate(R.layout.fragment_payment_options, container, false)
+    ): View {
+        binding = DataBindingUtil.inflate(inflater,
+            R.layout.fragment_payment_options,
+            container,
+            false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        paymentViewModel
+        setSheetHeight()
+        setRecyclerView()
+        getPaymentMethods()
+    }
+
+    private fun setSheetHeight() {
         dialog?.setOnShowListener { dialog ->
             val d = dialog as BottomSheetDialog
             val bottomSheetInternal = d.findViewById<View>(R.id.bottomSheet)
-            bottomSheetInternal?.minimumHeight= Resources.getSystem().displayMetrics.heightPixels
+            bottomSheetInternal?.minimumHeight = Resources.getSystem().displayMetrics.heightPixels
+        }
+    }
+
+    private fun getPaymentMethods() {
+        paymentViewModel.getPaymentMethod()
+            .observe(viewLifecycleOwner) {
+                when (it.status) {
+                    Status.SUCCESS -> onGetPaymentMethodSuccess(it)
+                    Status.ERROR -> onGetPaymentMethodError(it.message)
+                }
+            }
+    }
+
+    private fun onGetPaymentMethodSuccess(it: Resource<Response<BaseArrayResponse<PaymentOptions>>>) {
+        it.data?.let {
+            if (it.isSuccessful && it.body()?.data?.isNotEmpty() == true) {
+                paymentList.clear()
+                paymentList.addAll(it.body()?.data ?: emptyList())
+                paymentAdapter.notifyItemRangeInserted(0, paymentList.count())
+            }else{
+                onGetPaymentMethodError(it.errorBody()?.string())
+            }
+        }
+    }
+
+    private fun onGetPaymentMethodError(msg: String?) {
+        showMessage(msg)
+    }
+
+    private fun setRecyclerView() {
+        paymentAdapter = PaymentAdapter(paymentList)
+        binding.ryvPaymentOptions.apply {
+            adapter = paymentAdapter
+            itemAnimator = null
         }
     }
 }

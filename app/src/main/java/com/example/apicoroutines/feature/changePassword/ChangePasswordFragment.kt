@@ -38,7 +38,6 @@ class ChangePasswordFragment : BaseFragment(), View.OnClickListener {
         changePasswordViewModel
         initDialog()
         initListener()
-
     }
 
     override fun onClick(view: View?) {
@@ -55,7 +54,6 @@ class ChangePasswordFragment : BaseFragment(), View.OnClickListener {
                 confirmPassword = binding.edtConfirmPassword.text.toString()
             ))
         }
-
     }
 
     private fun changePasswordCall(request: ChangePasswordRequest) {

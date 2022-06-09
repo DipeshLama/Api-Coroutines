@@ -46,7 +46,11 @@
         android:id="@+id/cartFragment"
         android:name="com.example.apicoroutines.feature.cart.CartFragment"
         android:label="CartFragment"
-        tools:layout="@layout/fragment_cart"/>
+        tools:layout="@layout/fragment_cart">
+        <action
+            android:id="@+id/action_cartFragment_to_checkoutFragment"
+            app:destination="@id/checkoutFragment" />
+    </fragment>
     <fragment
         android:id="@+id/orderHistoryFragment"
         android:name="com.example.apicoroutines.feature.order.OrderHistoryFragment"
@@ -66,4 +70,14 @@
         android:name="com.example.apicoroutines.feature.changePassword.ChangePasswordFragment"
         android:label="ChangePasswordFragment"
         tools:layout="@layout/fragment_change_password"/>
+    <fragment
+        android:id="@+id/notificationFragment"
+        android:name="com.example.apicoroutines.feature.notification.NotificationFragment"
+        android:label="NotificationFragment"
+        tools:layout="@layout/fragment_notification"/>
+    <fragment
+        android:id="@+id/checkoutFragment"
+        android:name="com.example.apicoroutines.feature.checkout.CheckoutFragment"
+        android:label="CheckoutFragment"
+        tools:layout="@layout/fragment_checkout"/>
 </navigation>

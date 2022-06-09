@@ -9,10 +9,12 @@
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/drawable/circle_view_small.xml" value="0.1155" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/drawable/gradient_rounded_item.xml" value="0.1155" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/drawable/ic_add.xml" value="0.1295" />
+        <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/drawable/ic_add_location.xml" value="0.1135" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/drawable/ic_badge.xml" value="0.1155" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/drawable/ic_baseline_keyboard_backspace_24.xml" value="0.121" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/drawable/ic_cart_light.xml" value="0.1295" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/drawable/ic_cash_on_delivery.xml" value="0.116" />
+        <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/drawable/ic_cashonhand.xml" value="0.1135" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/drawable/ic_category_iconly.xml" value="0.121" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/drawable/ic_delete.xml" value="0.124" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/drawable/ic_heart.xml" value="0.1155" />
@@ -29,6 +31,7 @@
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/drawable/ic_playcircle.xml" value="0.1245" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/drawable/ic_pointer.xml" value="0.1155" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/drawable/ic_pointer_light.xml" value="0.125" />
+        <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/drawable/ic_promo.xml" value="0.1135" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/drawable/ic_remove.xml" value="0.1295" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/drawable/ic_seeall.xml" value="0.1" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/drawable/ic_signupflow.xml" value="0.121" />
@@ -56,11 +59,13 @@
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/layout/fragment_cart.xml" value="0.22" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/layout/fragment_categories.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/layout/fragment_change_password.xml" value="0.1921875" />
+        <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/layout/fragment_checkout.xml" value="0.33" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/layout/fragment_faq.xml" value="0.178125" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/layout/fragment_favourite.xml" value="0.1921875" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/layout/fragment_home.xml" value="0.19010416666666666" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/layout/fragment_login.xml" value="0.1921875" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/layout/fragment_more.xml" value="0.2669432918395574" />
+        <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/layout/fragment_notification.xml" value="0.1921875" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/layout/fragment_order_history.xml" value="0.1921875" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/layout/fragment_order_tracking.xml" value="0.22" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/layout/fragment_payment_options.xml" value="0.22991347342398022" />
@@ -78,6 +83,7 @@
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/layout/layout_more_fragment_list.xml" value="0.25" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/layout/layout_order_history.xml" value="0.22" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/layout/layout_order_tracking.xml" value="0.33" />
+        <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/layout/layout_payment_options.xml" value="0.25" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/layout/layout_product_horizontal.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/layout/loading_dialog.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/menu/menu_bottom_navigation.xml" value="0.203125" />

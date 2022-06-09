@@ -4,9 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.apicoroutines.R
 import com.example.apicoroutines.databinding.LayoutProductHorizontalBinding
 import com.example.apicoroutines.feature.shared.listener.ProductClickListener
 import com.example.apicoroutines.feature.shared.model.response.Product
+import com.example.apicoroutines.utils.helper.DecimalHelper
 
 class ProductAdapter(private val list: List<Product>, val listener: ProductClickListener) :
     RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
@@ -20,6 +22,10 @@ class ProductAdapter(private val list: List<Product>, val listener: ProductClick
             binding.product = product
             Glide.with(itemView).load(product.images?.get(0)?.imageName)
                 .into(binding.imvHomeHorizontalProductImage)
+
+            binding.txvHrPrice.text = String.format(binding.root.context.getString(R.string.rs_),
+                DecimalHelper.getRoundedOffPriceRs(product.unitPrice?.get(0)?.markedPrice ?: 0))
+
             binding.executePendingBindings()
             itemView.setOnClickListener {
                 listener.onHomeProductClick(product.id ?: 0)

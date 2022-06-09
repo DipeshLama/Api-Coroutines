@@ -22,7 +22,6 @@
             android:name=".feature.main.AuthActivity"
             android:exported="true" >
 
-
         </activity>
 
         <activity

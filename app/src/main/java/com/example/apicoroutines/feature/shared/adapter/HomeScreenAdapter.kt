@@ -59,7 +59,7 @@ class HomeScreenAdapter(
                 AdapterGridProductBinding.inflate(LayoutInflater.from(
                     parent.context),
                     parent,
-                    false))
+                    false),listener)
         }
     }
 

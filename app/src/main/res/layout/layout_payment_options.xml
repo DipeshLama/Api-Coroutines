@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/style_border_payment"
+        android:paddingVertical="8dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="14dp">
+
+        <ImageView
+            android:id="@+id/imvCashOnHand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_cash_on_delivery"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txvPaymentTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:fontFamily="@font/robotoregular"
+            android:text="@string/cash_on_delivery"
+            android:textColor="@color/primary_text"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imvCashOnHand"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:alpha="0.5"
+            android:fontFamily="@font/robotoregular"
+            android:text="@string/_10_discount"
+            android:textColor="@color/primary_text"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/txvPaymentTitle"
+            app:layout_constraintStart_toEndOf="@id/txvPaymentTitle"
+            app:layout_constraintTop_toTopOf="@id/txvPaymentTitle" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvPaymentSelected"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            app:cardBackgroundColor="@color/colorPrimary"
+            app:cardCornerRadius="1000dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_check" />
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

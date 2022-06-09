@@ -29,9 +29,9 @@ interface ApiService {
 
     @POST(ApiConstants.changePassword)
     suspend fun changePassword(
-        @Body request : RequestBody,
-        @Header (ApiConstants.authorization) token : String
-    ) : Response<BaseResponse<ProfileShow>>
+        @Body request: RequestBody,
+        @Header(ApiConstants.authorization) token: String,
+    ): Response<BaseResponse<ProfileShow>>
 
     @GET(ApiConstants.newHomePage)
     suspend fun getHomeScreenData(
@@ -103,6 +103,9 @@ interface ApiService {
     @GET(ApiConstants.orderById)
     suspend fun getOrderById(
         @Header(ApiConstants.authorization) token: String,
-        @Path(ApiConstants.orderId) orderId : Int
+        @Path(ApiConstants.orderId) orderId: Int,
     ): Response<BaseResponse<OrderTracking>>
+
+    @GET(ApiConstants.paymentMethod)
+    suspend fun getPaymentMethod(): Response<BaseArrayResponse<PaymentOptions>>
 }
