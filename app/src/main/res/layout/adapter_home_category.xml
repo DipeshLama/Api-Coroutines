@@ -4,7 +4,11 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingHorizontal="12dp"
+        android:paddingTop="24.72dp"
+        android:paddingBottom="28.28dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/ryvCategory"

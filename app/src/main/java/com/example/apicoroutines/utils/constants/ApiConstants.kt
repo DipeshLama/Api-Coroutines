@@ -14,14 +14,16 @@ object ApiConstants {
 
     //End points
     private const val noAuth = "api/v4"
-    const val login_url = "api/v4/auth/login"
-    const val signUp_url = "api/v4/auth/signup"
-    const val forgotPassword = "api/v4/auth/forgot-password"
+    private const val  auth = "api/v4/auth"
+    const val login_url = "$auth/login"
+    const val signUp_url = "$auth/signup"
+    const val forgotPassword = "$auth/forgot-password"
+    const val changePassword = "$noAuth/profile/change-password"
 
     // HomeScreen
-    const val newHomePage = "api/v4/newhome"
+    const val newHomePage = "$noAuth/newhome"
 
-    const val category = "api/v4/category"
+    const val category = "$noAuth/category"
 
     const val profileShow  = "$noAuth/profile/show"
 
@@ -30,7 +32,7 @@ object ApiConstants {
     const val productId = "productId"
     const val favourite = "$noAuth/favourite"
     const val addToCart = "$noAuth/cart-product"
-    const val updateCart = "api/v4/cart-product/{cartProductId}"
+    const val updateCart = "$noAuth/cart-product/{cartProductId}"
     const val order = "$noAuth/order"
     const val orderById = "$order/{orderId}"
 }

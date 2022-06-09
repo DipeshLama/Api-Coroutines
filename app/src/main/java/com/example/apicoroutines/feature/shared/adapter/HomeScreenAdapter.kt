@@ -6,10 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.apicoroutines.databinding.*
 import com.example.apicoroutines.feature.shared.base.BaseViewHolder
 import com.example.apicoroutines.feature.shared.listener.ProductClickListener
-import com.example.apicoroutines.feature.shared.model.response.Category
-import com.example.apicoroutines.feature.shared.model.response.Details
 import com.example.apicoroutines.feature.shared.model.response.Home
-import com.example.apicoroutines.feature.shared.model.response.Product
 import com.example.apicoroutines.feature.shared.viewHolder.*
 
 class HomeScreenAdapter(
@@ -89,11 +86,13 @@ class HomeScreenAdapter(
 
     private fun populateHorizontal(baseVH: BaseViewHolder, position: Int) {
         val holder = baseVH as? ProductViewHolder
-        holder?.bind(homeList[position].sectionDetails?.products ?: emptyList())
+        holder?.bind(homeList[position].sectionDetails?.products ?: emptyList(),
+            homeList[position].sectionDetails?.title ?: "")
     }
 
     private fun populateGrid(baseVH: BaseViewHolder, position: Int) {
         val holder = baseVH as? GridProductViewHolder
-        holder?.bind(homeList[position].sectionDetails?.products ?: emptyList())
+        holder?.bind(homeList[position].sectionDetails?.products ?: emptyList(),
+            homeList[position].sectionDetails?.title ?: "")
     }
 }

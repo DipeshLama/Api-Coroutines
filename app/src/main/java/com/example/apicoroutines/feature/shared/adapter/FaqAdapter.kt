@@ -13,7 +13,7 @@ class FaqAdapter(val list: ArrayList<Faq>, val listener: OnExpandListener) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FaqViewHolder {
         return FaqViewHolder(LayoutFaqListBinding.inflate(LayoutInflater.from(parent.context),
             parent,
-            false), listener)
+            false), listener, list.size)
     }
 
     override fun onBindViewHolder(holder: FaqViewHolder, position: Int) {

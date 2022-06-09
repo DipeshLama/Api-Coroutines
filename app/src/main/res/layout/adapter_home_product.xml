@@ -4,17 +4,53 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@color/white"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="22dp">
+
+        <TextView
+            android:id="@+id/txvHorizontalTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/rubikmedium"
+            android:textColor="@color/primary_text"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imvSeeAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_seeall"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txvSeeAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/robotomedium"
+            android:text="SEE ALL"
+            android:textColor="@color/primary_text"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toStartOf="@id/imvSeeAll"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/ryvProducts"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:layout_marginTop="16dp"
             android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/txvHorizontalTitle" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

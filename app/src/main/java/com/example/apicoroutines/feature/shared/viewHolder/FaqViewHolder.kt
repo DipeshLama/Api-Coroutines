@@ -8,7 +8,11 @@ import com.example.apicoroutines.databinding.LayoutFaqListBinding
 import com.example.apicoroutines.feature.shared.listener.OnExpandListener
 import com.example.apicoroutines.feature.shared.model.response.Faq
 
-class FaqViewHolder(val binding: LayoutFaqListBinding, val listener: OnExpandListener) :
+class FaqViewHolder(
+    val binding: LayoutFaqListBinding,
+    val listener: OnExpandListener,
+    val size: Int
+) :
     RecyclerView.ViewHolder(binding.root) {
 
     init {
@@ -20,6 +24,7 @@ class FaqViewHolder(val binding: LayoutFaqListBinding, val listener: OnExpandLis
     fun bind(faq: Faq) {
         binding.faq = faq
         binding.executePendingBindings()
+
         when {
             faq.isExpanded -> checkIsExpanded(true)
 

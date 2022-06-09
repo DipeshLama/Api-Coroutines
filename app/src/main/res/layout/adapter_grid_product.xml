@@ -5,17 +5,52 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white">
+        android:layout_marginTop="16dp"
+        android:background="@color/white"
+        android:paddingTop="22dp">
+
+        <TextView
+            android:id="@+id/txvGridTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/rubikmedium"
+            android:textColor="@color/primary_text"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imvSeeAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_seeall"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txvSeeAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/robotomedium"
+            android:text="SEE ALL"
+            android:textColor="@color/primary_text"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toStartOf="@id/imvSeeAll"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/ryvGridProduct"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txvGridTitle"
             app:spanCount="2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

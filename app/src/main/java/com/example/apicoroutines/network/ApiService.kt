@@ -27,6 +27,12 @@ interface ApiService {
         @Body request: RequestBody,
     ): Response<BaseResponse<SignUp>>
 
+    @POST(ApiConstants.changePassword)
+    suspend fun changePassword(
+        @Body request : RequestBody,
+        @Header (ApiConstants.authorization) token : String
+    ) : Response<BaseResponse<ProfileShow>>
+
     @GET(ApiConstants.newHomePage)
     suspend fun getHomeScreenData(
         @Header(ApiConstants.wareHouseIdString) wareHouseId: Int,

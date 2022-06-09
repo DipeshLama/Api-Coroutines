@@ -62,9 +62,14 @@ class FaqFragment : Fragment(), OnExpandListener {
     }
 
     override fun onExpand(position: Int) {
-        val faq = faqList[position]
-        faq.isExpanded = faq.isExpanded == false
-        faqAdapter.notifyItemChanged(position)
+        faqList.filter {
+            faqList[position] != it
+
+        }.forEach{
+            it.isExpanded = false
+        }
+        faqList[position].isExpanded = !faqList[position].isExpanded
+        faqAdapter.notifyItemRangeChanged(0,faqList.size)
     }
 }
 

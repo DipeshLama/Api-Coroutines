@@ -12,10 +12,8 @@ class ProductViewHolder(
 ) :
     BaseViewHolder(binding.root) {
 
-    fun bind(list: List<Product>) {
-        val productAdapter = ProductAdapter(list, listener)
-        binding.ryvProducts.apply {
-            adapter = productAdapter
-        }
+    fun bind(list: List<Product>, title: String) {
+        binding.txvHorizontalTitle.text = title
+        binding.ryvProducts.adapter = ProductAdapter(list, listener)
     }
 }
