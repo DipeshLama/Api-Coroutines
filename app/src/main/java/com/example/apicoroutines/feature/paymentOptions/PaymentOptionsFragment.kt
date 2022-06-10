@@ -14,6 +14,7 @@ import com.example.apicoroutines.feature.shared.base.BaseArrayResponse
 import com.example.apicoroutines.feature.shared.base.BaseBottomSheetFragment
 import com.example.apicoroutines.feature.shared.listener.OnPaymentMethodSelectListener
 import com.example.apicoroutines.feature.shared.listener.PassPaymentMethod
+import com.example.apicoroutines.feature.shared.listener.PassSelectedPaymentMethod
 import com.example.apicoroutines.feature.shared.model.response.PaymentOptions
 import com.example.apicoroutines.utils.resource.Resource
 import com.example.apicoroutines.utils.resource.Status
@@ -23,7 +24,13 @@ import dagger.hilt.android.AndroidEntryPoint
 import retrofit2.Response
 
 @AndroidEntryPoint
-class PaymentOptionsFragment(val passData : PassPaymentMethod) : BaseBottomSheetFragment(), OnPaymentMethodSelectListener {
+class PaymentOptionsFragment(
+    private val passData: PassPaymentMethod,
+    private val selectedPosition: Int
+) :
+    BaseBottomSheetFragment(),
+    OnPaymentMethodSelectListener {
+
     private lateinit var binding: FragmentPaymentOptionsBinding
     private val paymentViewModel: PaymentOptionsViewModel by viewModels()
     private val paymentList = ArrayList<PaymentOptions>()
@@ -72,6 +79,9 @@ class PaymentOptionsFragment(val passData : PassPaymentMethod) : BaseBottomSheet
                 paymentList.clear()
                 paymentList.addAll(it.body()?.data ?: emptyList())
                 paymentAdapter.notifyItemRangeInserted(0, paymentList.count())
+
+                paymentList[selectedPosition].isSelected = true
+                paymentAdapter.notifyItemChanged(selectedPosition)
             } else {
                 onGetPaymentMethodError(it.errorBody()?.string())
             }
@@ -97,6 +107,6 @@ class PaymentOptionsFragment(val passData : PassPaymentMethod) : BaseBottomSheet
         paymentList[position].isSelected = !paymentList[position].isSelected
         paymentAdapter.notifyItemRangeChanged(0, paymentList.count())
 
-        passData.passPaymentMethod(paymentList[position])
+        passData.passPaymentMethod(paymentList[position], position)
     }
 }

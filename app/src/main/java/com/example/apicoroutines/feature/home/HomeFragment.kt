@@ -170,7 +170,7 @@ class HomeFragment : BaseFragment(), ProductClickListener {
     }
 
     private fun navigateToDetail(id: Int) {
-        findNavController().navigate(R.id.action_homeFragment_to_productDetailFragment,
-            bundleOf(ApiConstants.productId to id))
+        findNavController()
+            .navigate(HomeFragmentDirections.actionHomeFragmentToProductDetailFragment(id))
     }
 }

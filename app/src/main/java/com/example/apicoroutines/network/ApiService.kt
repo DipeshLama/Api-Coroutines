@@ -108,4 +108,28 @@ interface ApiService {
 
     @GET(ApiConstants.paymentMethod)
     suspend fun getPaymentMethod(): Response<BaseArrayResponse<PaymentOptions>>
+
+    @POST(ApiConstants.deliveryAddress)
+    suspend fun addDeliveryAddress(
+        @Header(ApiConstants.authorization) token: String,
+        @Body request: RequestBody,
+    ): Response<BaseResponse<Address>>
+
+    @GET(ApiConstants.deliveryAddress)
+    suspend fun getDeliveryAddress(
+        @Header(ApiConstants.authorization) token: String,
+    ): Response<BaseArrayResponse<Address>>
+
+    @GET(ApiConstants.deliveryAddressUpdate)
+    suspend fun getDeliveryAddressById(
+        @Header(ApiConstants.authorization) token: String,
+        @Path(ApiConstants.addressId) addressId: Int,
+    ): Response<BaseResponse<Address>>
+
+    @PATCH(ApiConstants.deliveryAddressUpdate)
+    suspend fun updateDeliveryAddress(
+        @Header(ApiConstants.authorization) token: String,
+        @Path(ApiConstants.addressId) addressId: Int,
+        @Body request: RequestBody
+    ): Response<BaseResponse<Address>>
 }

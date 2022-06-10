@@ -25,27 +25,31 @@
     <fragment
         android:id="@+id/moreFragment"
         android:name="com.example.apicoroutines.feature.more.MoreFragment"
-        android:label="MoreFragment"
+        android:label="More"
         tools:layout="@layout/fragment_more"/>
     <fragment
         android:id="@+id/productDetailFragment"
         android:name="com.example.apicoroutines.feature.productDetail.ProductDetailFragment"
-        android:label="ProductDetailFragment"
-        tools:layout="@layout/fragment_product_detail"/>
+        android:label="I am the Gardener"
+        tools:layout="@layout/fragment_product_detail">
+        <argument
+            android:name="productId"
+            app:argType="integer" />
+    </fragment>
     <fragment
         android:id="@+id/favouriteFragment"
         android:name="com.example.apicoroutines.feature.favourite.FavouriteFragment"
-        android:label="FavouriteFragment"
+        android:label="Favourites "
         tools:layout="@layout/fragment_favourite"/>
     <fragment
         android:id="@+id/faqFragment"
         android:name="com.example.apicoroutines.feature.faq.FaqFragment"
-        android:label="fragment_faq"
+        android:label="FAQs"
         tools:layout="@layout/fragment_faq" />
     <fragment
         android:id="@+id/cartFragment"
         android:name="com.example.apicoroutines.feature.cart.CartFragment"
-        android:label="CartFragment"
+        android:label="My Cart"
         tools:layout="@layout/fragment_cart">
         <action
             android:id="@+id/action_cartFragment_to_checkoutFragment"
@@ -54,7 +58,7 @@
     <fragment
         android:id="@+id/orderHistoryFragment"
         android:name="com.example.apicoroutines.feature.order.OrderHistoryFragment"
-        android:label="OrderHistoryFragment"
+        android:label="Order History"
         tools:layout="@layout/fragment_order_history">
         <action
             android:id="@+id/action_orderHistoryFragment_to_orderTrackingFragment"
@@ -63,21 +67,37 @@
     <fragment
         android:id="@+id/orderTrackingFragment"
         android:name="com.example.apicoroutines.feature.order.OrderTrackingFragment"
-        android:label="fragment_order_tracking"
+        android:label="My Order"
         tools:layout="@layout/fragment_order_tracking" />
     <fragment
         android:id="@+id/changePasswordFragment"
         android:name="com.example.apicoroutines.feature.changePassword.ChangePasswordFragment"
-        android:label="ChangePasswordFragment"
+        android:label="Change Password"
         tools:layout="@layout/fragment_change_password"/>
     <fragment
         android:id="@+id/notificationFragment"
         android:name="com.example.apicoroutines.feature.notification.NotificationFragment"
-        android:label="NotificationFragment"
+        android:label="Notification"
         tools:layout="@layout/fragment_notification"/>
     <fragment
         android:id="@+id/checkoutFragment"
         android:name="com.example.apicoroutines.feature.checkout.CheckoutFragment"
-        android:label="CheckoutFragment"
-        tools:layout="@layout/fragment_checkout"/>
+        android:label="Checkout"
+        tools:layout="@layout/fragment_checkout">
+        <action
+            android:id="@+id/action_checkoutFragment_to_addDeliveryAddressFragment"
+            app:destination="@id/addDeliveryAddressFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addDeliveryAddressFragment"
+        android:name="com.example.apicoroutines.feature.checkout.AddDeliveryAddressFragment"
+        android:label="Checkout"
+        tools:layout="@layout/fragment_add_delivery_address" >
+        <argument
+            android:name="addressId"
+            app:argType="integer" />
+        <argument
+            android:name="isEdit"
+            app:argType="boolean" />
+    </fragment>
 </navigation>

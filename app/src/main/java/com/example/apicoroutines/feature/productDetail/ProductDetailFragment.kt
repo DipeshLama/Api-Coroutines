@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.HtmlCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.apicoroutines.R
 import com.example.apicoroutines.databinding.FragmentProductDetailBinding
@@ -39,6 +40,7 @@ class ProductDetailFragment : BaseFragment(), View.OnClickListener {
     private var productId: Int? = null
     private var product: Product? = null
     private var quantity = 1
+    private val args: ProductDetailFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,8 +60,7 @@ class ProductDetailFragment : BaseFragment(), View.OnClickListener {
         cartViewModel
         initListener()
         initDialog()
-        productId = arguments?.getInt(ApiConstants.productId)
-        productId?.let { getProductDetail(it) }
+        getProductDetail(args.productId)
     }
 
     private fun getProductDetail(productId: Int) {
@@ -97,7 +98,8 @@ class ProductDetailFragment : BaseFragment(), View.OnClickListener {
         this.product = product
         binding.txvDetailProductTitle.text = product?.title
         binding.txvDescription.text = product?.description?.let { HtmlCompat.fromHtml(it, 0) }
-        binding.txvDetailPrice.text = String.format(getString(R.string.rs_),product?.unitPrice?.get(0)?.markedPrice.toString())
+        binding.txvDetailPrice.text = String.format(getString(R.string.rs_),
+            product?.unitPrice?.get(0)?.markedPrice.toString())
         Glide.with(requireContext()).load(product?.images?.get(0)?.imageName)
             .into(binding.imvDetailMain)
         Glide.with(requireContext()).load(product?.images?.get(0)?.imageName)

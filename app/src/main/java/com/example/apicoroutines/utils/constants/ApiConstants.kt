@@ -11,10 +11,11 @@ object ApiConstants {
     const val cartProductId = "cartProductId"
     const val authorization = "Authorization"
     const val orderId = "orderId"
+    const val addressId = "address-id"
 
     //End points
     private const val noAuth = "api/v4"
-    private const val  auth = "api/v4/auth"
+    private const val auth = "api/v4/auth"
     const val login_url = "$auth/login"
     const val signUp_url = "$auth/signup"
     const val forgotPassword = "$auth/forgot-password"
@@ -25,7 +26,7 @@ object ApiConstants {
 
     const val category = "$noAuth/category"
 
-    const val profileShow  = "$noAuth/profile/show"
+    const val profileShow = "$noAuth/profile/show"
 
     const val getCart = "$noAuth/cart"
     const val productDetail = "$noAuth/product/{productId}"
@@ -36,4 +37,6 @@ object ApiConstants {
     const val order = "$noAuth/order"
     const val orderById = "$order/{orderId}"
     const val paymentMethod = "$noAuth/payment-method"
+    const val deliveryAddress = "$noAuth/delivery-address"
+    const val deliveryAddressUpdate = "$deliveryAddress/{address-id}"
 }

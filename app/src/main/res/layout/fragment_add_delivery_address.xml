@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F6F7F9"
+        tools:context=".feature.checkout.AddDeliveryAddressFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layoutDeliveryAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:paddingStart="16dp"
+                android:paddingTop="31dp"
+                android:paddingEnd="32dp"
+                android:paddingBottom="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txfCheckOutFullName"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtCheckOutFullName"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/editText_height"
+                        android:fontFamily="@font/robotoregular"
+                        android:hint="@string/full_name"
+                        android:textColor="@color/primary_text"
+                        android:textSize="@dimen/editText_text_size" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txfCheckoutPhoneNum"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="23dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txfCheckOutFullName">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtCheckoutPhoneNum"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/editText_height"
+                        android:fontFamily="@font/robotoregular"
+                        android:hint="@string/phoneNumber_hint"
+                        android:textColor="@color/primary_text"
+                        android:textSize="@dimen/editText_text_size" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txfCheckoutRegion"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="23dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txfCheckoutPhoneNum">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtCheckoutRegion"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/editText_height"
+                        android:fontFamily="@font/robotoregular"
+                        android:hint="@string/region"
+                        android:textColor="@color/primary_text"
+                        android:textSize="@dimen/editText_text_size" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txfCheckoutCity"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="23dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txfCheckoutRegion">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtCheckoutCity"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/editText_height"
+                        android:fontFamily="@font/robotoregular"
+                        android:hint="@string/city"
+                        android:textColor="@color/primary_text"
+                        android:textSize="@dimen/editText_text_size" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txfCheckoutArea"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="23dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txfCheckoutCity">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtCheckoutArea"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/editText_height"
+                        android:fontFamily="@font/robotoregular"
+                        android:hint="@string/area"
+                        android:textColor="@color/primary_text"
+                        android:textSize="@dimen/editText_text_size" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txfCheckoutAddress"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="23dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txfCheckoutArea">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtCheckoutAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/editText_height"
+                        android:fontFamily="@font/robotoregular"
+                        android:hint="@string/address"
+                        android:textColor="@color/primary_text"
+                        android:textSize="@dimen/editText_text_size" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/txvAddDeliveryAddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="19dp"
+                    android:fontFamily="@font/robotoregular"
+                    android:text="@string/add_a_delivery_address"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="10sp"
+                    app:layout_constraintBottom_toBottomOf="@id/txfCheckoutAddress"
+                    app:layout_constraintEnd_toEndOf="@id/txfCheckoutAddress"
+                    app:layout_constraintTop_toTopOf="@id/txfCheckoutAddress" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="252dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/white"
+                android:paddingHorizontal="16dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="10.33dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layoutDeliveryAddress">
+
+                <TextView
+                    android:id="@+id/txvSelectLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/robotoregular"
+                    android:text="@string/select_a_label_for_effective_delivery"
+                    android:textColor="@color/primary_text"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txvSelectLabel">
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/radio_selector"
+                        android:button="@null"
+                        android:drawableStart="@drawable/ic_home_iconly"
+                        android:drawablePadding="8dp"
+                        android:fontFamily="@font/robotomedium"
+                        android:paddingHorizontal="21dp"
+                        android:paddingVertical="10dp"
+                        android:text="@string/office"
+                        android:textAlignment="center"
+                        android:layout_marginEnd="8dp"
+                        android:textColor="@color/primary_text"
+                        android:textSize="12sp" />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/radio_selector"
+                        android:button="@null"
+                        android:drawableStart="@drawable/ic_home_iconly"
+                        android:drawablePadding="8dp"
+                        android:fontFamily="@font/robotomedium"
+                        android:paddingHorizontal="21dp"
+                        android:paddingVertical="10dp"
+                        android:text="@string/home"
+                        android:textAlignment="center"
+                        android:textColor="@color/primary_text"
+                        android:textSize="12sp" />
+                </RadioGroup>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnConfirmAddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:background="@drawable/button_style"
+                    android:paddingHorizontal="89dp"
+                    android:paddingVertical="10dp"
+                    android:text="@string/confirm"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/robotomedium"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+</layout>

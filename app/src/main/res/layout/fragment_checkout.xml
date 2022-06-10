@@ -5,7 +5,7 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="#F6F7F9"
         tools:context=".feature.checkout.CheckoutFragment">
 
@@ -174,27 +174,49 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/txvGrandTotalTitle" />
 
-                    <ImageView
-                        android:id="@+id/imvDeliveryAddIcon"
-                        android:layout_width="wrap_content"
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/ryvDeliveryAddress"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="30dp"
-                        android:src="@drawable/ic_add_location"
+                        android:layout_marginTop="15dp"
+                        android:orientation="vertical"
+                        android:nestedScrollingEnabled="false"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/txvDeliveryAddress" />
 
-                    <TextView
-                        android:id="@+id/addDeliveryAddress"
-                        android:layout_width="wrap_content"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layoutAddAddress"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:fontFamily="@font/robotomedium"
-                        android:text="@string/add_a_delivery_address"
-                        android:textColor="@color/secondary_text_black"
-                        android:textSize="16sp"
-                        app:layout_constraintBottom_toBottomOf="@id/imvDeliveryAddIcon"
-                        app:layout_constraintStart_toEndOf="@id/imvDeliveryAddIcon"
-                        app:layout_constraintTop_toTopOf="@id/imvDeliveryAddIcon" />
+                        android:visibility="gone"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/ryvDeliveryAddress">
+
+                        <ImageView
+                            android:id="@+id/imvDeliveryAddIcon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:src="@drawable/ic_add_location"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/txvAddDeliveryAddress"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:fontFamily="@font/robotomedium"
+                            android:text="@string/add_a_delivery_address"
+                            android:textColor="@color/secondary_text_black"
+                            android:textSize="16sp"
+                            app:layout_constraintBottom_toBottomOf="@id/imvDeliveryAddIcon"
+                            app:layout_constraintStart_toEndOf="@id/imvDeliveryAddIcon"
+                            app:layout_constraintTop_toTopOf="@id/imvDeliveryAddIcon" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
