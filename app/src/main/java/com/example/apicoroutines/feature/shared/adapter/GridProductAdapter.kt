@@ -1,8 +1,8 @@
 package com.example.apicoroutines.feature.shared.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.apicoroutines.R
@@ -48,6 +48,8 @@ class GridProductAdapter(val list: List<Product>, val listener: ProductClickList
 
     override fun onBindViewHolder(holder: GridVH, position: Int) {
         holder.bind(list[position])
+        holder.itemView.animation =
+            AnimationUtils.loadAnimation(holder.itemView.context, R.anim.alpha)
     }
 
     override fun getItemCount() = list.size

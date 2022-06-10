@@ -37,7 +37,6 @@ class ProductDetailFragment : BaseFragment(), View.OnClickListener {
     private lateinit var binding: FragmentProductDetailBinding
     private val detailViewModel: ProductDetailViewModel by viewModels()
     private val favViewModel: FavouriteViewModel by viewModels()
-    private var productId: Int? = null
     private var product: Product? = null
     private var quantity = 1
     private val args: ProductDetailFragmentArgs by navArgs()
@@ -126,7 +125,7 @@ class ProductDetailFragment : BaseFragment(), View.OnClickListener {
 
     private fun addToCart() {
         callAddToCartApi(CartRequest(
-            productId = productId,
+            productId = args.productId,
             priceId = this.product?.unitPrice?.get(0)?.id,
             quantity = quantity,
             note = "testing"
@@ -161,8 +160,7 @@ class ProductDetailFragment : BaseFragment(), View.OnClickListener {
     }
 
     private fun addToFavourite() {
-        Log.d("productid", productId.toString())
-        favViewModel.addToFavourite(getAccessToken(), FavouriteRequest(productId ?: 0))
+        favViewModel.addToFavourite(getAccessToken(), FavouriteRequest(args.productId))
             .observe(viewLifecycleOwner) {
                 when (it.status) {
                     Status.SUCCESS -> onAddToFavouriteSuccess(it)

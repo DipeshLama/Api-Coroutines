@@ -2,6 +2,7 @@ package com.example.apicoroutines.feature.shared.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.apicoroutines.R
@@ -41,6 +42,8 @@ class ProductAdapter(private val list: List<Product>, val listener: ProductClick
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(list[position])
+        holder.itemView.animation =
+            AnimationUtils.loadAnimation(holder.itemView.context, R.anim.alpha)
     }
 
     override fun getItemCount() = list.size

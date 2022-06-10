@@ -2,7 +2,9 @@ package com.example.apicoroutines.feature.shared.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView
+import com.example.apicoroutines.R
 import com.example.apicoroutines.databinding.*
 import com.example.apicoroutines.feature.shared.base.BaseViewHolder
 import com.example.apicoroutines.feature.shared.listener.ProductClickListener
@@ -70,6 +72,8 @@ class HomeScreenAdapter(
             horizontalType -> populateHorizontal(holder, position)
             gridType -> populateGrid(holder, position)
         }
+        holder.itemView.animation =
+            AnimationUtils.loadAnimation(holder.itemView.context, R.anim.alpha)
     }
 
     override fun getItemCount() = homeList.size

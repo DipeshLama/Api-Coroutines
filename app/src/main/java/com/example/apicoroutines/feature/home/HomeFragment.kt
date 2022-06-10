@@ -132,17 +132,19 @@ class HomeFragment : BaseFragment(), ProductClickListener {
     }
 
     private fun setViewType(list: List<Home>) {
+        
         list.forEach { response ->
-            if (response.title == "Banner") {
-                response.viewType = "bannerType"
-            } else if (response.title == "Category") {
-                response.viewType = "categoryType"
-            } else if (response.sectionDetails?.designType == "horizontal") {
-                response.viewType = "horizontal"
-            } else if (response.sectionDetails?.designType == "grid") {
-                response.viewType = "grid"
-            } else {
-                response.viewType = "oval"
+            response.viewType = when (response.title) {
+                "Banner" -> "bannerType"
+                "Category" -> "categoryType"
+                "Products Collection" -> {
+                    when (response.sectionDetails?.designType) {
+                        "horizontal" -> "horizontal"
+                        "grid" -> "grid"
+                        else -> "oval"
+                    }
+                }
+                else -> "adsBanner"
             }
         }
     }
