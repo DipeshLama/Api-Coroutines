@@ -1,19 +1,18 @@
 package com.example.apicoroutines.feature.checkout
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.viewModels
 import com.example.apicoroutines.R
 import com.example.apicoroutines.databinding.FragmentCheckoutBinding
-import com.example.apicoroutines.feature.cart.CartViewModel
 import com.example.apicoroutines.feature.paymentOptions.PaymentOptionsFragment
 import com.example.apicoroutines.feature.shared.base.BaseFragment
 import com.example.apicoroutines.feature.shared.base.BaseResponse
+import com.example.apicoroutines.feature.shared.listener.PassPaymentMethod
 import com.example.apicoroutines.feature.shared.model.response.Cart
+import com.example.apicoroutines.feature.shared.model.response.PaymentOptions
 import com.example.apicoroutines.utils.helper.DecimalHelper
 import com.example.apicoroutines.utils.resource.Resource
 import com.example.apicoroutines.utils.resource.Status
@@ -21,7 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import retrofit2.Response
 
 @AndroidEntryPoint
-class CheckoutFragment : BaseFragment(), View.OnClickListener {
+class CheckoutFragment : BaseFragment(), View.OnClickListener, PassPaymentMethod {
     private lateinit var binding: FragmentCheckoutBinding
 
     override fun onCreateView(
@@ -95,8 +94,12 @@ class CheckoutFragment : BaseFragment(), View.OnClickListener {
     override fun onClick(view: View?) {
         when (view) {
             binding.layoutPaymentMethod -> {
-                activity?.supportFragmentManager?.let { PaymentOptionsFragment().show(it, "") }
+                activity?.supportFragmentManager?.let { PaymentOptionsFragment(this).show(it, "") }
             }
         }
+    }
+
+    override fun passPaymentMethod(paymentMethod: PaymentOptions) {
+        binding.txvCheckOutPaymentOptions.text = paymentMethod.title
     }
 }

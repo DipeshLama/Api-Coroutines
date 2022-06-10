@@ -232,7 +232,7 @@
                         app:layout_constraintTop_toBottomOf="@id/txvPaymentMethod" />
 
                     <TextView
-                        android:id="@+id/txvCheckoutCashOnHand"
+                        android:id="@+id/txvCheckOutPaymentOptions"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="12dp"
@@ -248,9 +248,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_pointer"
-                        app:layout_constraintBottom_toBottomOf="@id/txvCheckoutCashOnHand"
+                        app:layout_constraintBottom_toBottomOf="@id/txvCheckOutPaymentOptions"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@id/txvCheckoutCashOnHand" />
+                        app:layout_constraintTop_toTopOf="@id/txvCheckOutPaymentOptions" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
