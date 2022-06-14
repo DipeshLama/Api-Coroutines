@@ -20,6 +20,7 @@ import com.example.apicoroutines.feature.shared.base.BaseFragment
 import com.example.apicoroutines.feature.shared.listener.ProductClickListener
 import com.example.apicoroutines.feature.shared.model.response.Home
 import com.example.apicoroutines.utils.constants.ApiConstants
+import com.example.apicoroutines.utils.constants.StringConstants
 import com.example.apicoroutines.utils.resource.Resource
 import com.example.apicoroutines.utils.resource.Status
 import dagger.hilt.android.AndroidEntryPoint
@@ -135,17 +136,17 @@ class HomeFragment : BaseFragment(), ProductClickListener {
 
         list.forEach { response ->
             response.viewType = when (response.title) {
-                "Banner" -> "bannerType"
-                "Category" -> "categoryType"
-                "Products Collection" -> {
+                StringConstants.Banner -> StringConstants.bannerType
+                StringConstants.Category -> StringConstants.categoryType
+                StringConstants.productCollection -> {
                     when (response.sectionDetails?.designType) {
-                        "horizontal" -> "horizontal"
-                        "grid" -> "grid"
-                        else -> "oval"
+                        StringConstants.horizontal -> StringConstants.horizontal
+                        StringConstants.grid -> StringConstants.grid
+                        else -> StringConstants.oval
                     }
                 }
-                "Brand/Tags" -> "brandType"
-                else -> "adsBannerType"
+                StringConstants.brandTag -> StringConstants.brandType
+                else -> StringConstants.adsBannerType
             }
         }
     }

@@ -10,6 +10,7 @@ import com.example.apicoroutines.feature.shared.base.BaseViewHolder
 import com.example.apicoroutines.feature.shared.listener.ProductClickListener
 import com.example.apicoroutines.feature.shared.model.response.Home
 import com.example.apicoroutines.feature.shared.viewHolder.*
+import com.example.apicoroutines.utils.constants.StringConstants
 
 class HomeScreenAdapter(
     private val homeList: ArrayList<Home>,
@@ -26,15 +27,15 @@ class HomeScreenAdapter(
     override fun getItemViewType(position: Int) =
         if (position < (homeList.count())) {
             when (homeList[position].viewType) {
-                "bannerType" -> bannerType
+                StringConstants.bannerType -> bannerType
 
-                "categoryType" -> categoryType
+                StringConstants.categoryType -> categoryType
 
-                "horizontal" -> horizontalType
+                StringConstants.horizontal -> horizontalType
 
-                "grid" -> gridType
+                StringConstants.grid -> gridType
 
-                "adsBannerType" -> adsBannerType
+                StringConstants.adsBannerType -> adsBannerType
 
                 else -> brandType
             }
