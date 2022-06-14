@@ -11,7 +11,6 @@ object GlideUtil {
     fun ImageView.setGif(url: String?) {
         if (url != null) {
             Glide.with(this).load(url)
-                .placeholder(R.drawable.ic_logo)
                 .error(R.drawable.ic_logo)
                 .into(this)
         }
