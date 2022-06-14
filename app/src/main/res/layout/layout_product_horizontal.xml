@@ -3,21 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <import type="com.example.apicoroutines.utils.helper.GlideUtil"/>
+        <import type="com.example.apicoroutines.utils.helper.DecimalHelper"/>
+        <import type="com.example.apicoroutines.feature.shared.model.response.Product"/>
+
         <variable
             name="product"
-            type="com.example.apicoroutines.feature.shared.model.response.Product" />
+            type="Product" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/imvHomeHorizontalProductImage"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:scaleType="fitCenter"
+            app:glideImage="@{product.images[0].imageName}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -43,21 +47,9 @@
             android:fontFamily="@font/robotomedium"
             android:textColor="@color/secondary_text"
             android:textSize="16sp"
+            android:text="@{`NRs.` + DecimalHelper.getRoundedOffPriceRs(product.unitPrice[0].markedPrice)}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txvHorizontalProductName" />
-
-        <!--    <TextView-->
-        <!--        android:id="@+id/txvHorizontalDiscountedPrice"-->
-        <!--        android:layout_width="wrap_content"-->
-        <!--        android:layout_height="wrap_content"-->
-        <!--        android:layout_marginTop="9dp"-->
-        <!--        android:text="@string/rs_1800"-->
-        <!--        android:textSize="12sp"-->
-        <!--        android:textColor="@color/primary_text"-->
-        <!--        android:background="@drawable/strike_line"-->
-        <!--        android:layout_marginStart="8dp"-->
-        <!--        app:layout_constraintStart_toEndOf="@id/txvHrPrice"-->
-        <!--        app:layout_constraintTop_toBottomOf="@id/txvHorizontalProductName"/>-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

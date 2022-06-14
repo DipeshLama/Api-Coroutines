@@ -30,9 +30,7 @@ class HomeScreenAdapter(
 
                 "horizontal" -> horizontalType
 
-                "grid" -> gridType
-
-                else -> super.getItemViewType(position)
+                else -> gridType
             }
         } else {
             0

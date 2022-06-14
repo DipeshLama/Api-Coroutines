@@ -2,6 +2,17 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+
+        <import type="com.example.apicoroutines.feature.shared.model.response.PaymentOptions" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="paymentOptions"
+            type="PaymentOptions" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:fontFamily="@font/robotoregular"
-            android:text="@string/cash_on_delivery"
+            android:text="@{paymentOptions.title}"
             android:textColor="@color/primary_text"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -50,6 +61,7 @@
             android:id="@+id/cvPaymentSelected"
             android:layout_width="20dp"
             android:layout_height="20dp"
+            android:visibility="@{paymentOptions.isSelected ? View.VISIBLE : View.GONE}"
             app:cardBackgroundColor="@color/colorPrimary"
             app:cardCornerRadius="1000dp"
             app:layout_constraintBottom_toBottomOf="parent"

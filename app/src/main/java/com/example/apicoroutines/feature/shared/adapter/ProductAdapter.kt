@@ -21,12 +21,6 @@ class ProductAdapter(private val list: List<Product>, val listener: ProductClick
         RecyclerView.ViewHolder(binding.root) {
         fun bind(product: Product) {
             binding.product = product
-            Glide.with(itemView).load(product.images?.get(0)?.imageName)
-                .into(binding.imvHomeHorizontalProductImage)
-
-            binding.txvHrPrice.text = String.format(binding.root.context.getString(R.string.rs_),
-                DecimalHelper.getRoundedOffPriceRs(product.unitPrice?.get(0)?.markedPrice ?: 0))
-
             binding.executePendingBindings()
             itemView.setOnClickListener {
                 listener.onHomeProductClick(product.id ?: 0)

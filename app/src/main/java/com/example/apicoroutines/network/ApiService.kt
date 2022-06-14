@@ -1,7 +1,5 @@
 package com.example.apicoroutines.network
 
-import androidx.lifecycle.LiveData
-import androidx.room.Delete
 import com.example.apicoroutines.feature.shared.base.BaseArrayResponse
 import com.example.apicoroutines.feature.shared.base.BaseResponse
 import com.example.apicoroutines.feature.shared.model.response.*
@@ -130,6 +128,11 @@ interface ApiService {
     suspend fun updateDeliveryAddress(
         @Header(ApiConstants.authorization) token: String,
         @Path(ApiConstants.addressId) addressId: Int,
-        @Body request: RequestBody
+        @Body request: RequestBody,
     ): Response<BaseResponse<Address>>
+
+    @GET(ApiConstants.pushNotification)
+    suspend fun getPushNotification(
+        @Header(ApiConstants.authorization) token: String,
+    ): Response<BaseArrayResponse<PushNotification>>
 }

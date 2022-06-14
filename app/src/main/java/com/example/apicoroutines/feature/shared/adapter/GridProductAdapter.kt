@@ -22,15 +22,6 @@ class GridProductAdapter(val list: List<Product>, val listener: ProductClickList
 
         fun bind(product: Product) {
             binding.product = product
-
-            Glide.with(itemView).load(product.images?.get(0)?.imageName)
-                .into(binding.imvGridProductImage)
-
-            binding.txvGridProductPrice.text =
-                String.format(binding.root.context.getString(R.string.nrs_),
-                    DecimalHelper.getRoundedOffPriceRs(
-                        product.unitPrice?.get(0)?.markedPrice ?: 0))
-
             itemView.setOnClickListener{
                 listener.onHomeGridClick(product.id ?:0)
             }

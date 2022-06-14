@@ -28,7 +28,11 @@ import retrofit2.Response
 
 @AndroidEntryPoint
 class CheckoutFragment : BaseFragment(),
-    View.OnClickListener, PassPaymentMethod, OnAddressSelectedListener, OnDeliveryAddressEdit {
+    View.OnClickListener,
+    PassPaymentMethod,
+    OnAddressSelectedListener,
+    OnDeliveryAddressEdit {
+
     private lateinit var binding: FragmentCheckoutBinding
     private var selectedPosition: Int = 0
     private val checkOutViewModel: CheckOutViewModel by viewModels()
@@ -77,6 +81,9 @@ class CheckoutFragment : BaseFragment(),
     }
 
     private fun setView(data: Cart?) {
+//        binding.cart = data
+//        binding.executePendingBindings()
+
         binding.txvCheckoutItemsTotal.text =
             String.format(getString(R.string.nrs_),
                 DecimalHelper.getRoundedOffPriceRs(data?.orderAmount ?: 0))

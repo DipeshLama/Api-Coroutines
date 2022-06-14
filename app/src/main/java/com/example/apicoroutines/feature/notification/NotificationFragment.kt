@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.example.apicoroutines.R
 import com.example.apicoroutines.databinding.FragmentNotificationBinding
-import com.example.apicoroutines.feature.faq.FaqFragment
 import com.example.apicoroutines.feature.shared.adapter.NotificationAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -49,9 +48,9 @@ class NotificationFragment : Fragment() {
 
     private fun addFragmentList(): ArrayList<Fragment> {
         val lstFragment = ArrayList<Fragment>()
-        lstFragment.add(FaqFragment())
-        lstFragment.add(FaqFragment())
-        lstFragment.add((FaqFragment()))
+        lstFragment.add(ListNotificationFragment())
+        lstFragment.add(ListNotificationFragment())
+        lstFragment.add((ListNotificationFragment()))
         return lstFragment
     }
 
@@ -63,7 +62,7 @@ class NotificationFragment : Fragment() {
         return lstTitle
     }
 
-    private fun addIconToList () : ArrayList<Int>{
+    private fun addIconToList(): ArrayList<Int> {
         val lstTitle = ArrayList<Int>()
         lstTitle.add(R.drawable.ic_notification_iconly)
         lstTitle.add(R.drawable.ic_notification_iconly)

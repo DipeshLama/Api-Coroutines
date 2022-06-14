@@ -1,21 +1,17 @@
 package com.example.apicoroutines.feature.productDetail
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.text.HtmlCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.apicoroutines.R
 import com.example.apicoroutines.databinding.FragmentProductDetailBinding
-import com.example.apicoroutines.feature.cart.CartViewModel
 import com.example.apicoroutines.feature.favourite.FavouriteViewModel
-import com.example.apicoroutines.feature.paymentOptions.PaymentOptionsFragment
 import com.example.apicoroutines.feature.shared.base.BaseFragment
 import com.example.apicoroutines.feature.shared.base.BaseResponse
 import com.example.apicoroutines.feature.shared.model.request.CartRequest
@@ -23,10 +19,8 @@ import com.example.apicoroutines.feature.shared.model.request.FavouriteRequest
 import com.example.apicoroutines.feature.shared.model.response.AddToCart
 import com.example.apicoroutines.feature.shared.model.response.Favourite
 import com.example.apicoroutines.feature.shared.model.response.Product
-import com.example.apicoroutines.utils.constants.ApiConstants
 import com.example.apicoroutines.utils.resource.Resource
 import com.example.apicoroutines.utils.resource.Status
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import retrofit2.Response
 import java.math.BigDecimal
@@ -34,6 +28,7 @@ import java.math.RoundingMode
 
 @AndroidEntryPoint
 class ProductDetailFragment : BaseFragment(), View.OnClickListener {
+
     private lateinit var binding: FragmentProductDetailBinding
     private val detailViewModel: ProductDetailViewModel by viewModels()
     private val favViewModel: FavouriteViewModel by viewModels()
@@ -57,6 +52,7 @@ class ProductDetailFragment : BaseFragment(), View.OnClickListener {
         detailViewModel
         favViewModel
         cartViewModel
+        binding.onButtonClick = this
         initListener()
         initDialog()
         getProductDetail(args.productId)
@@ -95,14 +91,9 @@ class ProductDetailFragment : BaseFragment(), View.OnClickListener {
 
     private fun setViews(product: Product?) {
         this.product = product
-        binding.txvDetailProductTitle.text = product?.title
-        binding.txvDescription.text = product?.description?.let { HtmlCompat.fromHtml(it, 0) }
-        binding.txvDetailPrice.text = String.format(getString(R.string.rs_),
-            product?.unitPrice?.get(0)?.markedPrice.toString())
-        Glide.with(requireContext()).load(product?.images?.get(0)?.imageName)
-            .into(binding.imvDetailMain)
-        Glide.with(requireContext()).load(product?.images?.get(0)?.imageName)
-            .into(binding.imvDetailMid)
+        binding.product = product
+        binding.executePendingBindings()
+
         setQuantityIntoView()
         setTotalPrice()
     }
@@ -123,7 +114,7 @@ class ProductDetailFragment : BaseFragment(), View.OnClickListener {
         binding.prgDetail.visibility = View.GONE
     }
 
-    private fun addToCart() {
+    fun addToCart() {
         callAddToCartApi(CartRequest(
             productId = args.productId,
             priceId = this.product?.unitPrice?.get(0)?.id,
@@ -165,6 +156,7 @@ class ProductDetailFragment : BaseFragment(), View.OnClickListener {
                 when (it.status) {
                     Status.SUCCESS -> onAddToFavouriteSuccess(it)
                     Status.ERROR -> onAddTOFavouriteError(it.message)
+                    Status.LOADING -> dialog.show()
                 }
             }
     }
@@ -172,6 +164,7 @@ class ProductDetailFragment : BaseFragment(), View.OnClickListener {
     private fun onAddToFavouriteSuccess(it: Resource<Response<BaseResponse<Favourite>>>) {
         it.data?.let {
             if (it.isSuccessful && it.body()?.data != null) {
+                dialog.dismiss()
                 showMessage("Added to favourite")
             } else {
                 showMessage(getError(it.errorBody()?.string()))
@@ -180,6 +173,7 @@ class ProductDetailFragment : BaseFragment(), View.OnClickListener {
     }
 
     private fun onAddTOFavouriteError(msg: String?) {
+        dialog.dismiss()
         showMessage(msg)
     }
 
@@ -197,7 +191,6 @@ class ProductDetailFragment : BaseFragment(), View.OnClickListener {
 
     private fun initListener() {
         binding.cvDetailCardView.setOnClickListener(this)
-        binding.btnAddToCart.setOnClickListener(this)
         binding.imvIncreaseQuantity.setOnClickListener(this)
         binding.imvDecreaseQuantity.setOnClickListener(this)
     }
@@ -205,7 +198,6 @@ class ProductDetailFragment : BaseFragment(), View.OnClickListener {
     override fun onClick(view: View?) {
         when (view) {
             binding.cvDetailCardView -> addToFavourite()
-            binding.btnAddToCart -> addToCart()
             binding.imvIncreaseQuantity -> increaseQuantity()
             binding.imvDecreaseQuantity -> decreaseQuantity()
         }

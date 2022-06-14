@@ -82,13 +82,8 @@ class CartFragment : BaseFragment(), CartUpdateListener, View.OnClickListener {
     }
 
     private fun setView(data: Cart?) {
-        binding.txvItem.text =
-            String.format(getString(R.string.item), data?.cartProducts?.size)
-        binding.txvCartBtmNoOfItems.text =
-            String.format(getString(R.string.no_items), data?.cartProducts?.size)
-        binding.txvTotalCartPrice.text =
-            String.format(getString(R.string.nrs_),
-                DecimalHelper.getRoundedOffPriceRs(data?.orderAmount ?: 0))
+        binding.cart = data
+        binding.executePendingBindings()
     }
 
 

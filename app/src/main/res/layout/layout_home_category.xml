@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <import type="com.example.apicoroutines.utils.helper.GlideUtil"/>
         <variable
             name="category"
             type="com.example.apicoroutines.feature.shared.model.response.Category" />
@@ -27,6 +28,7 @@
                 android:layout_height="60dp"
                 android:layout_marginTop="7dp"
                 android:scaleType="fitCenter"
+                app:glideImage="@{category.backgroundImage}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

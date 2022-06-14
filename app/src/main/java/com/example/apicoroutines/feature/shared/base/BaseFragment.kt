@@ -24,6 +24,7 @@ import com.example.apicoroutines.utils.helper.NetworkHelper
 import com.example.apicoroutines.utils.resource.Resource
 import com.example.apicoroutines.utils.resource.Status
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.textfield.TextInputEditText
 import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 import org.w3c.dom.Text
@@ -99,4 +100,8 @@ abstract class BaseFragment : Fragment() {
         activity?.findViewById<BottomNavigationView>(R.id.btmNav)?.visibility = View.GONE
     }
 
+    protected fun setError(inputField: TextInputEditText, msg: String) {
+        inputField.error = msg
+        inputField.requestFocus()
+    }
 }

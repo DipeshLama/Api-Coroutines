@@ -1,6 +1,5 @@
 package com.example.apicoroutines.feature.login
 
-import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,28 +10,29 @@ import androidx.navigation.fragment.findNavController
 import com.example.apicoroutines.R
 import com.example.apicoroutines.databinding.FragmentLoginBinding
 import com.example.apicoroutines.feature.main.MainActivity
-import com.example.apicoroutines.feature.resetPassword.forgotPassword.ForgotPasswordFragment
 import com.example.apicoroutines.feature.shared.base.BaseFragment
 import com.example.apicoroutines.feature.shared.model.request.LoginRequest
 import com.example.apicoroutines.feature.shared.model.response.Login
-import com.example.apicoroutines.utils.constants.ApiConstants
 import com.example.apicoroutines.utils.globalUtils.PreferenceUtils
 import com.example.apicoroutines.utils.resource.Resource
 import com.example.apicoroutines.utils.resource.Status
 import com.example.apicoroutines.utils.router.Router
+import com.google.android.material.textfield.TextInputEditText
 import dagger.hilt.android.AndroidEntryPoint
 import retrofit2.Response
+import kotlin.math.log
 
 @AndroidEntryPoint
 class LoginFragment : BaseFragment(), View.OnClickListener {
     private lateinit var binding: FragmentLoginBinding
     private val loginViewModel: LoginViewModel by viewModels()
+    private val loginRequest = LoginRequest()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
         binding = DataBindingUtil.inflate(inflater,
             R.layout.fragment_login,
             container,
@@ -43,31 +43,28 @@ class LoginFragment : BaseFragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         loginViewModel
+        binding.login = loginRequest
         initListener()
         initDialog()
     }
 
     private fun login() {
         if (checkIsOnline()) {
-            loginApiCall(LoginRequest(
-                client_id = ApiConstants.client_id,
-                client_secret = ApiConstants.client_secret,
-                grant_type = ApiConstants.grant_type,
-                username = binding.edtLoginName.text.toString(),
-                password = binding.edtLoginPassword.text.toString()
-            ))
+            loginApiCall()
         } else {
             showMessage("Check internet connection")
         }
     }
 
-    private fun loginApiCall(request: LoginRequest) {
-        loginViewModel.login(request).observe(
-            this) {
-            when (it.status) {
-                Status.SUCCESS -> onLoginSuccess(it)
-                Status.ERROR -> onLoginError(it.message)
-                Status.LOADING -> dialog.show()
+    private fun loginApiCall() {
+        if (isValid()) {
+            loginViewModel.login(loginRequest).observe(
+                this) {
+                when (it.status) {
+                    Status.SUCCESS -> onLoginSuccess(it)
+                    Status.ERROR -> onLoginError(it.message)
+                    Status.LOADING -> dialog.show()
+                }
             }
         }
     }
@@ -118,5 +115,20 @@ class LoginFragment : BaseFragment(), View.OnClickListener {
         binding.btnLogin.setOnClickListener(this)
         binding.txvSignUp.setOnClickListener(this)
         binding.txvForgetPassword.setOnClickListener(this)
+    }
+
+    private fun isValid(): Boolean {
+        when {
+            binding.edtLoginName.text?.isEmpty() == true -> {
+                setError(binding.edtLoginName, "User name is required")
+                return false
+            }
+
+            binding.edtLoginPassword.text?.isEmpty() == true -> {
+                setError(binding.edtLoginPassword, "Password is required")
+                return false
+            }
+        }
+        return true
     }
 }

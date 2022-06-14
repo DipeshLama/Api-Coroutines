@@ -13,18 +13,8 @@ class CartViewHolder(val binding: LayoutCartListBinding, val listener: CartUpdat
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(cart: CartProducts) {
-        binding.txvCartTitle.text = cart.product?.title
-
-        binding.txvCartSinglePrice.text =
-            String.format(binding.root.context.getString(R.string.nrs_),
-                DecimalHelper.getRoundedOffPriceRs(cart.product?.unitPrice?.get(0)?.markedPrice
-                    ?: 0))
-
-        binding.txvCartTotalPrice.text =
-            String.format(binding.root.context.getString(R.string.nrs_),
-                DecimalHelper.getRoundedOffPriceRs(cart.price ?: 0))
-
-        binding.txvCartQuantity.text = cart.quantity.toString()
+        binding.cartProducts = cart
+        binding.executePendingBindings()
 
         if (cart.quantity!! > 1) {
             binding.imvCartDecrease.visibility = View.VISIBLE

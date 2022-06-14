@@ -3,6 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="login"
+            type="com.example.apicoroutines.feature.shared.model.request.LoginRequest" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -13,23 +20,23 @@
             android:layout_width="@dimen/login_logo_width"
             android:layout_height="@dimen/login_logo_height"
             android:layout_marginTop="@dimen/logo_marginTop"
+            android:contentDescription="@string/app_logo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_logo"
-            android:contentDescription="@string/app_logo" />
+            app:srcCompat="@drawable/ic_logo" />
 
         <TextView
             android:id="@+id/txvSignInTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/login_title_marginStart"
+            android:layout_marginTop="@dimen/login_title_marginTop"
             android:fontFamily="@font/robotomedium"
             android:text="@string/signin_title"
             android:textColor="@color/primary_text"
             android:textSize="@dimen/activity_title_size"
             android:textStyle="bold"
-            android:layout_marginTop="@dimen/login_title_marginTop"
-            android:layout_marginStart="@dimen/login_title_marginStart"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imvLogo" />
 
@@ -38,8 +45,8 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/login_margin_top"
             android:layout_marginStart="@dimen/editText_margin_start"
+            android:layout_marginTop="@dimen/login_margin_top"
             android:layout_marginEnd="@dimen/editText_margin_end"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -51,6 +58,7 @@
                 android:layout_height="@dimen/editText_height"
                 android:fontFamily="@font/robotoregular"
                 android:hint="@string/email_hint"
+                android:text="@={login.username}"
                 android:textColor="@color/primary_text"
                 android:textSize="@dimen/editText_text_size" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -60,36 +68,37 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/login_margin_top"
             android:layout_marginStart="@dimen/editText_margin_start"
+            android:layout_marginTop="@dimen/login_margin_top"
             android:layout_marginEnd="@dimen/editText_margin_end"
-            app:passwordToggleEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txfLoginName">
+            app:layout_constraintTop_toBottomOf="@+id/txfLoginName"
+            app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtLoginPassword"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/editText_height"
+                android:fontFamily="@font/robotoregular"
                 android:hint="@string/password_hint"
-                android:textSize="@dimen/editText_text_size"
-                android:textColor="@color/primary_text"
+                android:text="@={login.password}"
                 android:inputType="textPassword"
-                android:fontFamily="@font/robotoregular" />
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/editText_text_size" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:id="@+id/txvForgetPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/forget_password"
-            android:textSize="@dimen/secondary_text_size"
-            android:fontFamily="@font/robotomedium"
-            android:textStyle="bold"
-            android:textColor="@color/secondary_text"
-            android:layout_marginEnd="@dimen/secondary_text_margin"
             android:layout_marginTop="10dp"
+            android:layout_marginEnd="@dimen/secondary_text_margin"
+            android:fontFamily="@font/robotomedium"
+            android:text="@string/forget_password"
+            android:textColor="@color/secondary_text"
+            android:textSize="@dimen/secondary_text_size"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txfLoginPassword" />
 
@@ -97,14 +106,14 @@
             android:id="@+id/btnLogin"
             android:layout_width="match_parent"
             android:layout_height="@dimen/button_height"
+            android:layout_marginStart="@dimen/button_margin_start_end"
+            android:layout_marginTop="@dimen/login_margin_top"
+            android:layout_marginEnd="@dimen/button_margin_start_end"
+            android:background="@drawable/button_style"
+            android:fontFamily="@font/robotomedium"
             android:text="@string/continue_button_text"
             android:textColor="@color/white"
             android:textSize="@dimen/continue_button_text_size"
-            android:fontFamily="@font/robotomedium"
-            android:background="@drawable/button_style"
-            android:layout_marginTop="@dimen/login_margin_top"
-            android:layout_marginStart="@dimen/button_margin_start_end"
-            android:layout_marginEnd="@dimen/button_margin_start_end"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txvForgetPassword" />
@@ -127,8 +136,8 @@
             android:id="@+id/txvSignUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/textBelowButton_marginTop"
             android:layout_marginStart="@dimen/textBelowButton_signup_signIn_marginStart"
+            android:layout_marginTop="@dimen/textBelowButton_marginTop"
             android:fontFamily="@font/robotomedium"
             android:text="@string/askToSignUp"
             android:textColor="@color/secondary_text"
@@ -141,11 +150,11 @@
             android:id="@+id/progressBarLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="invisible"
             android:indeterminateTint="@color/colorPrimaryVariant"
-            app:layout_constraintTop_toBottomOf="@id/txvDontHaveAccount"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/txvDontHaveAccount" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -14,8 +14,6 @@ class HomeCategoryAdapter(val list: List<Category>) : RecyclerView.Adapter<HomeC
     class CategoryVH (private val binding : LayoutHomeCategoryBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(category : Category){
             binding.category = category
-            Glide.with(itemView).load(category.backgroundImage)
-                .into(binding.imvHomeCategoryIcon)
             binding.executePendingBindings()
         }
     }

@@ -3,6 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <import type="com.example.apicoroutines.feature.shared.model.response.Product" />
+
+        <import type="com.example.apicoroutines.utils.helper.HtmlFormatHelper" />
+
+        <import type="androidx.core.text.HtmlCompat" />
+
+        <import type="com.example.apicoroutines.utils.helper.GlideUtil"/>
+
+        <import type="com.example.apicoroutines.utils.helper.DecimalHelper" />
+
+        <variable
+            name="product"
+            type="Product" />
+
+        <variable
+            name="onButtonClick"
+            type="com.example.apicoroutines.feature.productDetail.ProductDetailFragment" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -46,7 +67,8 @@
                             android:id="@+id/imvDetailMain"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:scaleType="centerCrop"/>
+                            app:glideImage="@{product.images[0].imageName}"
+                            android:scaleType="centerCrop" />
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -65,6 +87,7 @@
                             <ImageView
                                 android:id="@+id/imvDetailMid"
                                 android:layout_width="match_parent"
+                                app:glideImage="@{product.images[0].imageName}"
                                 android:layout_height="match_parent"
                                 android:scaleType="centerInside" />
 
@@ -110,6 +133,7 @@
                     android:layout_marginTop="28dp"
                     android:layout_marginEnd="24dp"
                     android:fontFamily="@font/robotomedium"
+                    android:text="@{`Rs.` + DecimalHelper.getRoundedOffPriceRs(product.unitPrice[0].markedPrice)}"
                     android:textColor="#3BA636"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -123,6 +147,7 @@
                     android:layout_marginTop="28dp"
                     android:layout_marginEnd="35dp"
                     android:fontFamily="@font/robotomedium"
+                    android:text="@{product.title}"
                     android:textColor="@color/secondary_text_black"
                     android:textSize="20sp"
                     app:layout_constraintEnd_toStartOf="@id/txvDetailPrice"
@@ -207,8 +232,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="12dp"
-                    android:layout_marginEnd="16dp"
                     android:fontFamily="@font/robotomedium"
+                    android:text="@{HtmlFormatHelper.convertHtmlFormat(product.description)}"
                     android:textColor="@color/primary_text"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -237,6 +262,7 @@
                 android:fontFamily="@font/robotomedium"
                 android:textColor="@color/white"
                 android:textSize="14sp"
+                android:onClick="@{() -> onButtonClick.addToCart()}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

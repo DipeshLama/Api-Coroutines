@@ -39,4 +39,5 @@ object ApiConstants {
     const val paymentMethod = "$noAuth/payment-method"
     const val deliveryAddress = "$noAuth/delivery-address"
     const val deliveryAddressUpdate = "$deliveryAddress/{address-id}"
+    const val pushNotification = "$noAuth/pushnotifications"
 }

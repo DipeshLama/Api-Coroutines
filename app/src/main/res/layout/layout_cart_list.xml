@@ -2,6 +2,17 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+
+        <import type="com.example.apicoroutines.feature.shared.model.response.CartProducts" />
+
+        <import type="com.example.apicoroutines.utils.helper.DecimalHelper" />
+
+        <variable
+            name="cartProducts"
+            type="CartProducts" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -13,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/robotomedium"
-            android:text="Calathea Makoyana"
+            android:text="@{cartProducts.product.title}"
             android:textColor="@color/secondary_text_black"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -25,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:fontFamily="@font/robotoregular"
-            android:text="Nrs. 3000"
+            android:text="@{`NRs.`+ DecimalHelper.getRoundedOffPriceRs(cartProducts.price)}"
             android:textColor="@color/primary_text"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -36,7 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/robotomedium"
-            android:text="Nrs. 3000"
+            android:text="@{`NRs.`+DecimalHelper.getRoundedOffPriceRs(cartProducts.price)}"
             android:textColor="@color/secondary_text_black"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -65,8 +76,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="7dp"
-                android:visibility="gone"
-                android:src="@drawable/ic_delete" />
+                android:src="@drawable/ic_delete"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/txvCartQuantity"
@@ -80,6 +91,7 @@
                 android:paddingTop="6dp"
                 android:paddingEnd="10dp"
                 android:paddingBottom="5dp"
+                android:text="@{`` + cartProducts.quantity}"
                 android:textColor="@color/primary_text"
                 android:textSize="14sp" />
 

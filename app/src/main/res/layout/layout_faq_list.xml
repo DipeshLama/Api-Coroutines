@@ -3,9 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
+        <import type="com.example.apicoroutines.feature.shared.model.response.Faq" />
+
+        <import type="android.view.View" />
+
         <variable
             name="faq"
-            type="com.example.apicoroutines.feature.shared.model.response.Faq" />
+            type="Faq" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -16,6 +21,7 @@
             android:id="@+id/rootFaqLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@{faq.isExpanded ? @color/color_f0 : @color/white}"
             android:orientation="vertical"
             android:paddingStart="24.24dp"
             android:paddingEnd="13dp">
@@ -40,7 +46,7 @@
                     android:id="@+id/imvExpand"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_pointer_down"
+                    android:src="@{faq.isExpanded ? @drawable/ic_pointer_up : @drawable/ic_pointer_down}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -49,6 +55,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
+                    android:visibility="@{faq.isExpanded ? View.VISIBLE : View.GONE }"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/txvFaqTitle">
@@ -72,8 +79,8 @@
             <com.google.android.material.divider.MaterialDivider
                 android:id="@+id/divFaq"
                 android:layout_width="match_parent"
-                android:layout_height="2dp" />
-
+                android:layout_height="2dp"
+                android:visibility="@{faq.isExpanded ? View.GONE : View.VISIBLE}" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </layout>

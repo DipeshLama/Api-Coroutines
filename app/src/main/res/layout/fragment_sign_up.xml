@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="signUp"
+            type="com.example.apicoroutines.feature.shared.model.request.SignUpRequest" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -11,10 +17,10 @@
         <ScrollView
             android:layout_width="0dp"
             android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/layoutPrivacy"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/layoutPrivacy">
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -72,6 +78,7 @@
                         android:layout_height="@dimen/editText_height"
                         android:fontFamily="@font/robotoregular"
                         android:hint="@string/firstname_hint"
+                        android:text="@={signUp.firstName}"
                         android:textColor="@color/primary_text"
                         android:textSize="@dimen/editText_text_size" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -94,6 +101,7 @@
                         android:layout_height="@dimen/editText_height"
                         android:fontFamily="@font/robotoregular"
                         android:hint="@string/lastname_hint"
+                        android:text="@={signUp.lastName}"
                         android:textColor="@color/primary_text"
                         android:textSize="@dimen/editText_text_size" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -116,6 +124,7 @@
                         android:layout_height="@dimen/editText_height"
                         android:fontFamily="@font/robotoregular"
                         android:hint="@string/email_hint"
+                        android:text="@={signUp.email}"
                         android:textColor="@color/primary_text"
                         android:textSize="@dimen/editText_text_size" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -139,6 +148,7 @@
                         android:fontFamily="@font/robotoregular"
                         android:hint="@string/phoneNumber_hint"
                         android:inputType="number"
+                        android:text="@={signUp.mobileNumber}"
                         android:textColor="@color/primary_text"
                         android:textSize="@dimen/editText_text_size" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -163,6 +173,7 @@
                         android:fontFamily="@font/robotoregular"
                         android:hint="@string/password_hint"
                         android:inputType="textPassword"
+                        android:text="@={signUp.password}"
                         android:textColor="@color/primary_text"
                         android:textSize="@dimen/editText_text_size" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -211,15 +222,6 @@
                     app:layout_constraintStart_toEndOf="@id/txvHaveAnAccount"
                     app:layout_constraintTop_toBottomOf="@+id/btnSignUp" />
 
-                <ProgressBar
-                    android:id="@+id/progressBarSignUp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="invisible"
-                    android:indeterminateTint="@color/colorPrimaryVariant"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txvHaveAnAccount" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </ScrollView>
@@ -228,9 +230,9 @@
             android:id="@+id/layoutPrivacy"
             android:layout_width="match_parent"
             android:layout_height="87dp"
-            android:orientation="vertical"
-            android:gravity="center_horizontal"
             android:background="@drawable/ic_signupflow"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
@@ -238,18 +240,18 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="11sp"
-                android:textColor="@color/white"
+                android:layout_marginTop="41dp"
                 android:text="@string/agreeTitle"
-                android:layout_marginTop="41dp" />
+                android:textColor="@color/white"
+                android:textSize="11sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="13sp"
-                android:textColor="@color/white"
+                android:layout_marginTop="4dp"
                 android:text="@string/policyLink"
-                android:layout_marginTop="4dp" />
+                android:textColor="@color/white"
+                android:textSize="13sp" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
