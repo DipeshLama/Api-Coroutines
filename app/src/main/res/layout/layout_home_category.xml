@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <import type="com.example.apicoroutines.utils.helper.GlideUtil"/>
+        <import type="com.example.apicoroutines.utils.bindingAdapter.GlideUtil"/>
         <variable
             name="category"
             type="com.example.apicoroutines.feature.shared.model.response.Category" />

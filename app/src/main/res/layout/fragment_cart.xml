@@ -6,11 +6,12 @@
     <data>
 
         <import type="com.example.apicoroutines.feature.shared.model.response.Cart" />
-        <import type="com.example.apicoroutines.utils.helper.DecimalHelper"/>
+
+        <import type="com.example.apicoroutines.utils.helper.DecimalHelper" />
+
         <variable
             name="cart"
             type="Cart" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -44,7 +45,7 @@
                 android:layout_marginStart="16dp"
                 android:fontFamily="@font/robotomedium"
                 android:paddingVertical="11dp"
-                android:text="@{`ITEMS (`+cart.cartProducts.size()+`)` }"
+                android:text="@{@string/item(cart.cartProducts.size())}"
                 android:textColor="#2D2D2D"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -104,9 +105,9 @@
                         android:layout_marginTop="14dp"
                         android:alpha="0.74"
                         android:fontFamily="@font/robotoregular"
+                        android:text="@{@string/no_items(cart.cartProducts.size())}"
                         android:textColor="@color/white"
                         android:textSize="11sp"
-                        android:text="@{cart.cartProducts.size()+ `Items`}"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -115,9 +116,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/robotomedium"
+                        android:text="@{@string/nrs_(DecimalHelper.getRoundedOffPriceRs(cart.orderAmount))}"
                         android:textColor="@color/white"
                         android:textSize="14sp"
-                        android:text="@{`NRs.` +DecimalHelper.getRoundedOffPriceRs(cart.orderAmount)}"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/txvCartBtmNoOfItems" />
 
@@ -128,7 +129,7 @@
                         android:layout_marginStart="5dp"
                         android:alpha="0.74"
                         android:fontFamily="@font/robotomedium"
-                        android:text="Plus Taxes"
+                        android:text="@string/plus_taxes"
                         android:textColor="@color/white"
                         android:textSize="10sp"
                         app:layout_constraintBottom_toBottomOf="@id/txvTotalCartPrice"

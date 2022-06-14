@@ -39,4 +39,8 @@ class SectionDetails {
     @SerializedName("products")
     @Expose
     val products: List<Product>? = null
+
+    @SerializedName("tags")
+    @Expose
+    val tags: List<Tags>? = null
 }

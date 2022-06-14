@@ -7,7 +7,7 @@
 
         <import type="com.example.apicoroutines.utils.helper.DecimalHelper" />
 
-        <import type="com.example.apicoroutines.utils.helper.GlideUtil" />
+        <import type="com.example.apicoroutines.utils.bindingAdapter.GlideUtil" />
 
         <import type="com.example.apicoroutines.feature.shared.model.response.Product" />
 
@@ -62,7 +62,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="6dp"
             android:fontFamily="@font/robotomedium"
-            android:text="@{`NRs.`+ DecimalHelper.getRoundedOffPriceRs(product.unitPrice[0].markedPrice)}"
+            android:text="@{@string/nrs_(DecimalHelper.getRoundedOffPriceRs(product.unitPrice[0].markedPrice))}"
             android:textColor="@color/secondary_text"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"

@@ -11,7 +11,7 @@
 
         <import type="androidx.core.text.HtmlCompat" />
 
-        <import type="com.example.apicoroutines.utils.helper.GlideUtil"/>
+        <import type="com.example.apicoroutines.utils.bindingAdapter.GlideUtil"/>
 
         <import type="com.example.apicoroutines.utils.helper.DecimalHelper" />
 

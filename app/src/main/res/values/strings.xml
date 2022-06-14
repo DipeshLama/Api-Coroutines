@@ -77,4 +77,5 @@
     <string name="office">Office</string>
     <string name="confirm">Confirm</string>
     <string name="edit_address">Edit Address</string>
+    <string name="plus_taxes">Plus Taxes</string>
 </resources>

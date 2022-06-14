@@ -1,4 +1,4 @@
-package com.example.apicoroutines.utils.helper
+package com.example.apicoroutines.utils.bindingAdapter
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter

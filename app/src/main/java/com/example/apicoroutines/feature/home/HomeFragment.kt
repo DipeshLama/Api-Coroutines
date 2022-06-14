@@ -132,7 +132,7 @@ class HomeFragment : BaseFragment(), ProductClickListener {
     }
 
     private fun setViewType(list: List<Home>) {
-        
+
         list.forEach { response ->
             response.viewType = when (response.title) {
                 "Banner" -> "bannerType"
@@ -144,7 +144,8 @@ class HomeFragment : BaseFragment(), ProductClickListener {
                         else -> "oval"
                     }
                 }
-                else -> "adsBanner"
+                "Brand/Tags" -> "brandType"
+                else -> "adsBannerType"
             }
         }
     }

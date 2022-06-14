@@ -20,6 +20,8 @@ class HomeScreenAdapter(
     private val categoryType = 2
     private val horizontalType = 3
     private val gridType = 4
+    private val adsBannerType = 5
+    private val brandType = 6
 
     override fun getItemViewType(position: Int) =
         if (position < (homeList.count())) {
@@ -30,7 +32,11 @@ class HomeScreenAdapter(
 
                 "horizontal" -> horizontalType
 
-                else -> gridType
+                "grid" -> gridType
+
+                "adsBannerType" -> adsBannerType
+
+                else -> brandType
             }
         } else {
             0
@@ -55,11 +61,23 @@ class HomeScreenAdapter(
                     parent,
                     false), listener)
 
-            else -> GridProductViewHolder(
+            gridType -> GridProductViewHolder(
                 AdapterGridProductBinding.inflate(LayoutInflater.from(
                     parent.context),
                     parent,
-                    false),listener)
+                    false), listener)
+
+            adsBannerType -> AdsBannerVH(
+                AdapterAdsBannerBinding.inflate(LayoutInflater.from(
+                    parent.context),
+                    parent,
+                    false))
+
+            else -> RoundProductVH(
+                AdapterRoundProductsBinding.inflate(LayoutInflater.from(
+                    parent.context),
+                    parent,
+                    false))
         }
     }
 
@@ -69,9 +87,22 @@ class HomeScreenAdapter(
             categoryType -> populateCategory(holder, position)
             horizontalType -> populateHorizontal(holder, position)
             gridType -> populateGrid(holder, position)
+            adsBannerType -> populateAdsBanner(holder, position)
+            brandType -> populateBrand(holder, position)
         }
         holder.itemView.animation =
             AnimationUtils.loadAnimation(holder.itemView.context, R.anim.alpha)
+    }
+
+    private fun populateAdsBanner(baseVH: BaseViewHolder, position: Int) {
+        val holder = baseVH as? AdsBannerVH
+        holder?.bind(homeList[position].details ?: emptyList())
+    }
+
+    private fun populateBrand(baseVH: BaseViewHolder, position: Int) {
+        val holder = baseVH as? RoundProductVH
+        holder?.bind(homeList[position].sectionDetails?.tags ?: emptyList(),
+            homeList[position].sectionDetails?.title ?: "")
     }
 
     override fun getItemCount() = homeList.size

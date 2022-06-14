@@ -69,7 +69,7 @@ class CategoriesFragment : BaseFragment() {
                 progressBarGone()
                 categoryList.clear()
                 categoryList.addAll(it.body()?.data ?: emptyList())
-                adapter.notifyItemRangeInserted(0,categoryList.count())
+                adapter.notifyItemRangeInserted(0, categoryList.count())
             } else {
                 progressBarGone()
                 showMessage(getError(it.errorBody()?.string()))
