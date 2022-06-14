@@ -44,39 +44,35 @@ class HomeScreenAdapter(
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
+        val layoutInflater = LayoutInflater.from(parent.context)
         return when (viewType) {
             bannerType -> BannerViewHolder(
-                AdapterBannerBinding.inflate(LayoutInflater.from(parent.context),
+                AdapterBannerBinding.inflate(layoutInflater,
                     parent,
                     false))
 
             categoryType -> HomeCategoryViewHolder(
-                AdapterHomeCategoryBinding.inflate(LayoutInflater.from(
-                    parent.context),
+                AdapterHomeCategoryBinding.inflate(layoutInflater,
                     parent,
                     false))
 
             horizontalType -> ProductViewHolder(
-                AdapterHomeProductBinding.inflate(LayoutInflater.from(
-                    parent.context),
+                AdapterHomeProductBinding.inflate(layoutInflater,
                     parent,
                     false), listener)
 
             gridType -> GridProductViewHolder(
-                AdapterGridProductBinding.inflate(LayoutInflater.from(
-                    parent.context),
+                AdapterGridProductBinding.inflate(layoutInflater,
                     parent,
                     false), listener)
 
             adsBannerType -> AdsBannerVH(
-                AdapterAdsBannerBinding.inflate(LayoutInflater.from(
-                    parent.context),
+                AdapterAdsBannerBinding.inflate(layoutInflater,
                     parent,
                     false))
 
             else -> RoundProductVH(
-                AdapterRoundProductsBinding.inflate(LayoutInflater.from(
-                    parent.context),
+                AdapterRoundProductsBinding.inflate(layoutInflater,
                     parent,
                     false))
         }

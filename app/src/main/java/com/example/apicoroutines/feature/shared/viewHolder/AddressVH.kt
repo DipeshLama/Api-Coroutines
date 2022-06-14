@@ -9,18 +9,16 @@ import com.example.apicoroutines.feature.shared.model.response.Address
 class AddressVH(
     val binding: LayoutCheckoutAddressBinding,
     val listener: OnAddressSelectedListener,
-    private val editListener : OnDeliveryAddressEdit
+    private val editListener: OnDeliveryAddressEdit,
 
     ) : RecyclerView.ViewHolder(binding.root) {
     fun bind(address: Address) {
         binding.address = address
+        binding.listener = editListener
         binding.executePendingBindings()
 
         itemView.setOnClickListener {
             listener.onAddressSelected(adapterPosition)
-        }
-        binding.txvEditAddress.setOnClickListener{
-            editListener.onDeliveryAddressEdit(address.id)
         }
     }
 }

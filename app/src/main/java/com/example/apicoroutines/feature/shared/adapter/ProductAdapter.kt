@@ -21,10 +21,8 @@ class ProductAdapter(private val list: List<Product>, val listener: ProductClick
         RecyclerView.ViewHolder(binding.root) {
         fun bind(product: Product) {
             binding.product = product
+            binding.listener = listener
             binding.executePendingBindings()
-            itemView.setOnClickListener {
-                listener.onHomeProductClick(product.id ?: 0)
-            }
         }
     }
 

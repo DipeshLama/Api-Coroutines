@@ -9,15 +9,20 @@
         <import type="com.example.apicoroutines.utils.helper.DecimalHelper" />
 
         <import type="com.example.apicoroutines.feature.shared.model.response.Product" />
+        <import type="com.example.apicoroutines.feature.shared.listener.ProductClickListener"/>
 
         <variable
             name="product"
             type="Product" />
+        <variable
+            name="listener"
+            type="ProductClickListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="150dp"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:onClick="@{()-> listener.onHomeProductClick(product.id)}">
 
         <ImageView
             android:id="@+id/imvHomeHorizontalProductImage"

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.databinding.ObservableInt
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
@@ -34,6 +35,13 @@ class ProductDetailFragment : BaseFragment(), View.OnClickListener {
     private val favViewModel: FavouriteViewModel by viewModels()
     private var product: Product? = null
     private var quantity = 1
+
+    var observableQuantity: ObservableInt = object : ObservableInt(quantity) {
+        override fun get(): Int {
+            return quantity
+        }
+    }
+
     private val args: ProductDetailFragmentArgs by navArgs()
 
     override fun onCreateView(
@@ -44,6 +52,7 @@ class ProductDetailFragment : BaseFragment(), View.OnClickListener {
             R.layout.fragment_product_detail,
             container,
             false)
+        binding.handler = this
         return binding.root
     }
 
@@ -95,7 +104,7 @@ class ProductDetailFragment : BaseFragment(), View.OnClickListener {
         binding.executePendingBindings()
 
         setQuantityIntoView()
-        setTotalPrice()
+//        setTotalPrice()
     }
 
     private fun onLoading() {
@@ -205,24 +214,26 @@ class ProductDetailFragment : BaseFragment(), View.OnClickListener {
 
     private fun increaseQuantity() {
         quantity++
-        setQuantityIntoView()
+        observableQuantity.notifyChange()
+//        setQuantityIntoView()
     }
 
     private fun decreaseQuantity() {
         if (quantity > 1) {
             quantity--
+            observableQuantity.notifyChange()
         }
-        setQuantityIntoView()
+//        setQuantityIntoView()
     }
 
     private fun setQuantityIntoView() {
-        binding.txvDetailQuantity.text = quantity.toString()
-        setTotalPrice()
+//        binding.txvDetailQuantity.text = quantity.toString()
+//        setTotalPrice()
     }
 
-    private fun setTotalPrice() {
-        val productPrice = product?.unitPrice?.get(0)?.markedPrice
-        binding.btnAddToCart.text =
-            String.format(getString(R.string.add_rs), "${(productPrice?.times(quantity))}")
-    }
+//    private fun setTotalPrice() {
+//        val productPrice = product?.unitPrice?.get(0)?.markedPrice
+//        binding.btnAddToCart.text =
+//            String.format(getString(R.string.add_rs), "${(productPrice?.times(quantity))}")
+//    }
 }

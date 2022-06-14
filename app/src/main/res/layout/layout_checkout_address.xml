@@ -7,6 +7,10 @@
         <variable
             name="address"
             type="com.example.apicoroutines.feature.shared.model.response.Address" />
+
+        <variable
+            name="listener"
+            type="com.example.apicoroutines.feature.shared.listener.OnDeliveryAddressEdit" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -60,6 +64,7 @@
             android:layout_height="wrap_content"
             android:text="@string/edit_address"
             android:padding="5dp"
+            android:onClick="@{()-> listener.onDeliveryAddressEdit(address.id)}"
             android:fontFamily="@font/robotomedium"
             android:textColor="@color/colorPrimary"
             app:layout_constraintEnd_toEndOf="parent"

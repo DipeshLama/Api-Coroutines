@@ -16,16 +16,13 @@ class GridProductAdapter(val list: List<Product>, val listener: ProductClickList
 
     class GridVH(
         val binding: LayoutGridProductBinding,
-        val listener: ProductClickListener
+        val listener: ProductClickListener,
     ) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(product: Product) {
             binding.product = product
-            itemView.setOnClickListener{
-                listener.onHomeGridClick(product.id ?:0)
-            }
-
+            binding.listener = listener
             binding.executePendingBindings()
         }
     }

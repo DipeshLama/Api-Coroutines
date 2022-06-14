@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="com.example.apicoroutines.feature.productDetail.ProductDetailFragment" />
+
         <import type="com.example.apicoroutines.feature.shared.model.response.Product" />
 
         <import type="com.example.apicoroutines.utils.helper.HtmlFormatHelper" />
@@ -14,6 +16,10 @@
         <import type="com.example.apicoroutines.utils.bindingAdapter.GlideUtil"/>
 
         <import type="com.example.apicoroutines.utils.helper.DecimalHelper" />
+
+        <variable
+            name="handler"
+            type="ProductDetailFragment" />
 
         <variable
             name="product"
@@ -262,6 +268,7 @@
                 android:fontFamily="@font/robotomedium"
                 android:textColor="@color/white"
                 android:textSize="14sp"
+                android:text="@{`ADD RS.` + handler.observableQuantity * product.unitPrice[0].markedPrice}"
                 android:onClick="@{() -> onButtonClick.addToCart()}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -292,6 +299,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
+                    android:text="@{``+handler.observableQuantity}"
                     android:paddingHorizontal="10dp"
                     android:paddingVertical="5dp" />
 
