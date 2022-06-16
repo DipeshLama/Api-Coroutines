@@ -223,6 +223,5 @@ class CartFragment : BaseFragment(),
                 findNavController().navigate(R.id.action_cartFragment_to_checkoutFragment)
             }
         }
-
     }
 }
