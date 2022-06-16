@@ -13,7 +13,7 @@
 
         <import type="androidx.core.text.HtmlCompat" />
 
-        <import type="com.example.apicoroutines.utils.bindingAdapter.GlideUtil"/>
+        <import type="com.example.apicoroutines.utils.bindingAdapter.GlideUtil" />
 
         <import type="com.example.apicoroutines.utils.helper.DecimalHelper" />
 
@@ -73,8 +73,8 @@
                             android:id="@+id/imvDetailMain"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            app:glideImage="@{product.images[0].imageName}"
-                            android:scaleType="centerCrop" />
+                            android:scaleType="centerCrop"
+                            app:glideImage="@{product.images[0].imageName}" />
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -93,9 +93,9 @@
                             <ImageView
                                 android:id="@+id/imvDetailMid"
                                 android:layout_width="match_parent"
-                                app:glideImage="@{product.images[0].imageName}"
                                 android:layout_height="match_parent"
-                                android:scaleType="centerInside" />
+                                android:scaleType="centerInside"
+                                app:glideImage="@{product.images[0].imageName}" />
 
                         </androidx.cardview.widget.CardView>
 
@@ -260,19 +260,75 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
-            <androidx.appcompat.widget.AppCompatButton
+            <!--            <com.google.android.material.button.MaterialButton-->
+            <!--                android:id="@+id/btnAddToCart"-->
+            <!--                android:layout_width="224dp"-->
+            <!--                android:layout_height="36dp"-->
+            <!--                app:cornerRadius="5dp"-->
+            <!--                android:background="@drawable/shine"-->
+            <!--                android:fontFamily="@font/robotomedium"-->
+            <!--                android:textColor="@color/white"-->
+            <!--                android:textSize="14sp"-->
+            <!--                android:text="@{`ADD RS.` + handler.observableQuantity * product.unitPrice[0].markedPrice}"-->
+            <!--                android:onClick="@{() -> onButtonClick.addToCart()}"-->
+            <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/btnAddToCart"
                 android:layout_width="224dp"
                 android:layout_height="36dp"
                 android:background="@drawable/button_style"
                 android:fontFamily="@font/robotomedium"
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                android:text="@{`ADD RS.` + handler.observableQuantity * product.unitPrice[0].markedPrice}"
                 android:onClick="@{() -> onButtonClick.addToCart()}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/txvItemsTotalInButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{@string/add_rs(handler.observableQuantity * product.unitPrice[0].markedPrice)}"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ProgressBar
+                        android:id="@+id/prgAddToCart"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginStart="10dp"
+                        android:visibility="gone"
+                        android:indeterminateTint="@color/white"
+                        app:layout_constraintBottom_toBottomOf="@id/txvItemsTotalInButton"
+                        app:layout_constraintStart_toEndOf="@id/txvItemsTotalInButton"
+                        app:layout_constraintTop_toTopOf="@id/txvItemsTotalInButton" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:id="@+id/shine"
+                    android:layout_width="70dp"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="-50dp"
+                    android:background="@drawable/shine"
+                    android:rotation="10"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -299,9 +355,9 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="@{``+handler.observableQuantity}"
                     android:paddingHorizontal="10dp"
-                    android:paddingVertical="5dp" />
+                    android:paddingVertical="5dp"
+                    android:text="@{``+handler.observableQuantity}" />
 
                 <ImageView
                     android:id="@+id/imvIncreaseQuantity"

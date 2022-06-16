@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ObservableInt
@@ -65,6 +67,7 @@ class ProductDetailFragment : BaseFragment(), View.OnClickListener {
         initListener()
         initDialog()
         getProductDetail(args.productId)
+        shineAnimation()
     }
 
     private fun getProductDetail(productId: Int) {
@@ -103,7 +106,7 @@ class ProductDetailFragment : BaseFragment(), View.OnClickListener {
         binding.product = product
         binding.executePendingBindings()
 
-        setQuantityIntoView()
+//        setQuantityIntoView()
 //        setTotalPrice()
     }
 
@@ -138,23 +141,23 @@ class ProductDetailFragment : BaseFragment(), View.OnClickListener {
                 when (it.status) {
                     Status.SUCCESS -> onAddToCartSuccess(it)
                     Status.ERROR -> onAddToCartError(it.message)
-                    Status.LOADING -> dialog.show()
+                    Status.LOADING -> showHideBtnProgressBar(true)
                 }
             }
     }
 
     private fun onAddToCartError(msg: String?) {
+        showHideBtnProgressBar(false)
         showMessage(msg)
     }
 
     private fun onAddToCartSuccess(it: Resource<Response<BaseResponse<AddToCart>>>) {
         it.data?.let {
             if (it.isSuccessful && it.body()?.data != null) {
-                dialog.dismiss()
+                showHideBtnProgressBar(false)
                 showMessage("Added to cart")
             } else {
-                showMessage(getError(it.errorBody()?.string()))
-                dialog.dismiss()
+                onAddToCartError(getError(it.errorBody()?.string()))
             }
         }
     }
@@ -226,14 +229,35 @@ class ProductDetailFragment : BaseFragment(), View.OnClickListener {
 //        setQuantityIntoView()
     }
 
-    private fun setQuantityIntoView() {
+//    private fun setQuantityIntoView() {
 //        binding.txvDetailQuantity.text = quantity.toString()
 //        setTotalPrice()
-    }
+//    }
 
 //    private fun setTotalPrice() {
 //        val productPrice = product?.unitPrice?.get(0)?.markedPrice
 //        binding.btnAddToCart.text =
 //            String.format(getString(R.string.add_rs), "${(productPrice?.times(quantity))}")
 //    }
+
+    private fun shineAnimation() {
+        val anim = AnimationUtils.loadAnimation(requireContext(), R.anim.left_right)
+        binding.shine.startAnimation(anim)
+        anim.setAnimationListener(object : Animation.AnimationListener {
+            override fun onAnimationStart(p0: Animation?) {}
+
+            override fun onAnimationEnd(p0: Animation?) {
+                binding.shine.startAnimation(anim)
+            }
+
+            override fun onAnimationRepeat(p0: Animation?) {}
+        })
+    }
+
+    private fun showHideBtnProgressBar(show: Boolean) {
+        when {
+            show -> binding.prgAddToCart.visibility = View.VISIBLE
+            else -> binding.prgAddToCart.visibility = View.GONE
+        }
+    }
 }

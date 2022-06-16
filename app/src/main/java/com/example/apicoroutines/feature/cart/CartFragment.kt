@@ -23,7 +23,10 @@ import dagger.hilt.android.AndroidEntryPoint
 import retrofit2.Response
 
 @AndroidEntryPoint
-class CartFragment : BaseFragment(), CartUpdateListener, View.OnClickListener {
+class CartFragment : BaseFragment(),
+    CartUpdateListener,
+    View.OnClickListener {
+
     private lateinit var binding: FragmentCartBinding
     private var list = arrayListOf<CartProducts>()
     private lateinit var cartAdapter: CartAdapter
@@ -86,7 +89,6 @@ class CartFragment : BaseFragment(), CartUpdateListener, View.OnClickListener {
         binding.executePendingBindings()
     }
 
-
     private fun setRecyclerView() {
         cartAdapter = CartAdapter(list, this)
         binding.ryvCart.apply {
@@ -108,20 +110,19 @@ class CartFragment : BaseFragment(), CartUpdateListener, View.OnClickListener {
     }
 
     private fun cartIncrease(position: Int, cartProductId: Int?) {
-        updateCart(position,
-            cartProductId,
+        updateCart(cartProductId,
             list[position].quantity?.plus(1))
         notifyAdapter(position)
     }
 
     private fun cartDecrease(position: Int, cartProductId: Int?) {
-        updateCart(position,
+        updateCart(
             cartProductId,
             list[position].quantity?.minus(1))
         notifyAdapter(position)
     }
 
-    private fun updateCart(position: Int, cartProductId: Int?, quantity: Int?) {
+    private fun updateCart(cartProductId: Int?, quantity: Int?) {
         cartViewModel.updateCart(getAccessToken(),
             cartProductId ?: 0,
             UpdateCart(quantity, "testing"))
@@ -155,7 +156,7 @@ class CartFragment : BaseFragment(), CartUpdateListener, View.OnClickListener {
         cartViewModel.deleteCart(getAccessToken(), cartProductId)
             .observe(viewLifecycleOwner) {
                 when (it.status) {
-                    Status.LOADING -> dialog.show()
+//                    Status.LOADING -> dialog.show()
                     Status.ERROR -> onDeleteError(it.message)
                     Status.SUCCESS -> onDeleteSuccess(it, position)
                 }
@@ -165,20 +166,20 @@ class CartFragment : BaseFragment(), CartUpdateListener, View.OnClickListener {
     private fun onDeleteSuccess(it: Resource<Response<String>>, position: Int) {
         it.data?.let {
             if (it.isSuccessful && it.code() == 204) {
-                dialog.dismiss()
+//                dialog.dismiss()
                 list.removeAt(position)
                 showMessage("Delete successful")
                 notifyAdapter(position)
                 getCart(getAccessToken())
             } else {
-                dialog.dismiss()
+//                dialog.dismiss()
                 showMessage(getError(it.errorBody()?.string()))
             }
         }
     }
 
     private fun onDeleteError(msg: String?) {
-        dialog.dismiss()
+//        dialog.dismiss()
         showMessage(msg)
     }
 
@@ -212,7 +213,7 @@ class CartFragment : BaseFragment(), CartUpdateListener, View.OnClickListener {
         }
     }
 
-    private fun initListener(){
+    private fun initListener() {
         binding.layoutContinue.setOnClickListener(this)
     }
 

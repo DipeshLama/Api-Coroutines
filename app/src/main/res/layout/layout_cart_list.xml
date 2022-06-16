@@ -8,6 +8,8 @@
 
         <import type="com.example.apicoroutines.utils.helper.DecimalHelper" />
 
+        <import type="android.view.View" />
+
         <variable
             name="cartProducts"
             type="CartProducts" />
@@ -58,6 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
             android:background="@drawable/style_detail_quantity"
+            android:gravity="center"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txvCartTotalPrice">
@@ -68,13 +71,24 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="7dp"
-                android:src="@drawable/ic_remove" />
+                android:src="@drawable/ic_remove"
+                android:visibility="@{cartProducts.quantity > 1 ? View.VISIBLE : View.GONE}" />
 
             <ImageView
                 android:id="@+id/imvCartDelete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:padding="7dp"
+                android:src="@drawable/ic_delete"
+                android:visibility="@{cartProducts.quantity > 1 ? View.GONE : View.VISIBLE}" />
+
+            <ProgressBar
+                android:id="@+id/prgDeleteProgress"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:indeterminateTint="@color/colorPrimary"
                 android:padding="7dp"
                 android:src="@drawable/ic_delete"
                 android:visibility="gone" />

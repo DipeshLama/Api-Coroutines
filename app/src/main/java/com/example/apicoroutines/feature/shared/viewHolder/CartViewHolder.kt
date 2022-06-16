@@ -16,14 +16,6 @@ class CartViewHolder(val binding: LayoutCartListBinding, val listener: CartUpdat
         binding.cartProducts = cart
         binding.executePendingBindings()
 
-        if (cart.quantity!! > 1) {
-            binding.imvCartDecrease.visibility = View.VISIBLE
-            binding.imvCartDelete.visibility = View.GONE
-        } else {
-            binding.imvCartDecrease.visibility = View.GONE
-            binding.imvCartDelete.visibility = View.VISIBLE
-        }
-
         binding.imvCartIncrease.setOnClickListener {
             listener.onCartIncrease(adapterPosition, cart.id)
         }
@@ -33,6 +25,8 @@ class CartViewHolder(val binding: LayoutCartListBinding, val listener: CartUpdat
         }
 
         binding.imvCartDelete.setOnClickListener {
+            binding.imvCartDelete.visibility = View.GONE
+            binding.prgDeleteProgress.visibility = View.VISIBLE
             listener.onDelete(adapterPosition, cart.id)
         }
     }

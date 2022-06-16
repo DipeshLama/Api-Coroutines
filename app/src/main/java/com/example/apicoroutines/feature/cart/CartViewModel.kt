@@ -24,7 +24,6 @@ class CartViewModel @Inject constructor(private val repository :  CartRepository
 
     fun getUserCart(token : String) = liveData(Dispatchers.IO) {
         emit(Resource.loading(data = null))
-
         try{
             emit(Resource.success(data = repository.getUserCart(token)))
         }catch (ex : Exception){
