@@ -19,19 +19,13 @@ class MainTest {
     @get:Rule(order = 0)
     var hiltRule = HiltAndroidRule(this)
 
-    @Inject
-    lateinit var database: AppDatabase
-    private lateinit var homeDao: HomeDao
-
     @Before
     fun setUp() {
         hiltRule.inject()
-        homeDao = database.getHomeDao()
     }
 
     @After
     fun tearDown() {
-        database.close()
     }
 
     @Test

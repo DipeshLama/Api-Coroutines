@@ -39,34 +39,3 @@ inline fun <reified T : Fragment> launchFragmentInHiltContainer(
         fragment.action()
     }
 }
-
-@ExperimentalCoroutinesApi
-inline fun <reified T : Fragment> launchFragmentInHiltContainer(
-    fragmentArgs: Bundle? = null,
-    @StyleRes themeResId: Int = style.FragmentScenarioEmptyFragmentActivityTheme,
-    factory: FragmentFactory,
-    crossinline action: Fragment.() -> Unit = {}
-) {
-    val startActivityIntent = Intent.makeMainActivity(
-        ComponentName(
-            ApplicationProvider.getApplicationContext(),
-            HiltTestActivity::class.java
-        )
-    )
-
-    ActivityScenario.launch<HiltTestActivity>(startActivityIntent).onActivity { activity ->
-        activity.supportFragmentManager.fragmentFactory = factory
-        val fragment: Fragment = activity.supportFragmentManager.fragmentFactory.instantiate(
-            Preconditions.checkNotNull(T::class.java.classLoader),
-            T::class.java.name
-        )
-        fragment.arguments = fragmentArgs
-
-        activity.supportFragmentManager
-            .beginTransaction()
-            .add(android.R.id.content, fragment, "")
-            .commit()
-
-        fragment.action()
-    }
-}
