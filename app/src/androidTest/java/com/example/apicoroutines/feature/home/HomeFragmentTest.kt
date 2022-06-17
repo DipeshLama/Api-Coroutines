@@ -48,8 +48,5 @@ class HomeFragmentTest {
         onView(withId(R.id.txvForgetPassword)).perform(click())
 
         verify(navController).navigate(R.id.action_loginFragment_to_forgotPasswordFragment)
-        
-        onView(withId(R.id.txvEnterEmailTitle)).check(matches(isDisplayed()))
     }
-    
 }
