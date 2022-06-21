@@ -66,8 +66,12 @@ class CheckoutFragment : BaseFragment(),
                 when (it.status) {
                     Status.SUCCESS -> onGetUserCartSuccess(it)
                     Status.ERROR -> onGetUserCartError(it.message)
+                    Status.LOADING -> onLoading()
                 }
             }
+    }
+
+    private fun onLoading() {
     }
 
     private fun onGetUserCartSuccess(it: Resource<Response<BaseResponse<Cart>>>) {
@@ -115,8 +119,12 @@ class CheckoutFragment : BaseFragment(),
                 when (it.status) {
                     Status.SUCCESS -> onGetAddressSuccess(it)
                     Status.ERROR -> onGetAddressError(it.message)
+                    Status.LOADING -> onGetAddressLoading()
                 }
             }
+    }
+
+    private fun onGetAddressLoading() {
     }
 
     private fun onGetAddressSuccess(it: Resource<Response<BaseArrayResponse<Address>>>) {

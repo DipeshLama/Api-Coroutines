@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">I am the Gardener</string>
+    <string name="map_api">AIzaSyD9zeuH_4NtwO3B4UoFVbkiFf4kt4nrhoE</string>
     <string name="rs">Rs.</string>
 
     <!--Login Activity-->

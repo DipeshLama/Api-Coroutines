@@ -156,7 +156,7 @@ class CartFragment : BaseFragment(),
         cartViewModel.deleteCart(getAccessToken(), cartProductId)
             .observe(viewLifecycleOwner) {
                 when (it.status) {
-//                    Status.LOADING -> dialog.show()
+                    Status.LOADING -> dialog.show()
                     Status.ERROR -> onDeleteError(it.message)
                     Status.SUCCESS -> onDeleteSuccess(it, position)
                 }

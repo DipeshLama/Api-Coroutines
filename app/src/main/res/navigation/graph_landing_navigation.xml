@@ -101,5 +101,19 @@
         <argument
             android:name="isEdit"
             app:argType="boolean" />
+        <action
+            android:id="@+id/action_addDeliveryAddressFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.example.apicoroutines.feature.googleMaps.MapFragment"
+        android:label="fragment_map"
+        tools:layout="@layout/fragment_map" >
+        <argument
+            android:name="latitude"
+            app:argType="string" />
+        <argument android:name="longitude"
+            app:argType="string" />
     </fragment>
 </navigation>

@@ -1,11 +1,13 @@
 package com.example.apicoroutines.feature.main
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -25,6 +27,8 @@ import com.example.apicoroutines.feature.shared.base.BaseArrayResponse
 import com.example.apicoroutines.feature.shared.model.response.Home
 import com.example.apicoroutines.utils.resource.Resource
 import com.example.apicoroutines.utils.resource.Status
+import com.google.android.gms.common.ConnectionResult
+import com.google.android.gms.common.GoogleApiAvailability
 import com.qamar.curvedbottomnaviagtion.CurvedBottomNavigation
 import dagger.hilt.android.AndroidEntryPoint
 import org.w3c.dom.Text
@@ -120,4 +124,6 @@ class MainActivity : AppCompatActivity() {
         const val FAVOURITE_ITEM = R.id.favouriteFragment
         const val MORE_ITEM = R.id.moreFragment
     }
+
+
 }

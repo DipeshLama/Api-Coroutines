@@ -69,6 +69,7 @@ class PaymentOptionsFragment(
                 when (it.status) {
                     Status.SUCCESS -> onGetPaymentMethodSuccess(it)
                     Status.ERROR -> onGetPaymentMethodError(it.message)
+                    Status.LOADING ->{}
                 }
             }
     }

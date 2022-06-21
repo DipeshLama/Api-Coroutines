@@ -5,6 +5,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
     <application
         android:name=".feature.shared.base.BaseApplication"
@@ -18,9 +20,15 @@
         android:theme="@style/Theme.ApiCoroutines"
         tools:targetApi="31">
 
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyD9zeuH_4NtwO3B4UoFVbkiFf4kt4nrhoE" />
+
         <activity
             android:name=".feature.main.AuthActivity"
             android:exported="true" >
+
+
         </activity>
 
         <activity
@@ -31,6 +39,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
     </application>
 

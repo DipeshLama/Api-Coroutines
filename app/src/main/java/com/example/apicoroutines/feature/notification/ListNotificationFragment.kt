@@ -48,6 +48,9 @@ class ListNotificationFragment : BaseFragment() {
                 when (it.status) {
                     Status.SUCCESS -> onGetNotificationSuccess(it)
                     Status.ERROR -> onGetNotificationError(it.message)
+                    Status.LOADING->{
+
+                    }
                 }
             }
     }

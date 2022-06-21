@@ -65,6 +65,9 @@ abstract class BaseFragment : Fragment() {
                 when (it.status) {
                     Status.SUCCESS -> onCartRetrieveSuccess(it)
                     Status.ERROR -> showMessage(it.message)
+                    Status.LOADING -> {
+
+                    }
                 }
             }
     }
