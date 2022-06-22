@@ -7,11 +7,8 @@ import android.content.IntentSender
 import android.location.Address
 import android.location.Geocoder
 import android.os.Bundle
-import android.view.KeyEvent
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -116,6 +113,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                 keyEvent?.action == KeyEvent.KEYCODE_ENTER
             ) {
                 geoLocate()
+                hideSoftKeyboard()
             }
             return@setOnEditorActionListener false
         }
@@ -200,4 +198,8 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 //            }
 //        }
 //    }
+
+    private fun hideSoftKeyboard(){
+        activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
+    }
 }
