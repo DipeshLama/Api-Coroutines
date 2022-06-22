@@ -15,7 +15,8 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="true">
 
         <LinearLayout
             android:id="@+id/rootFaqLayout"
@@ -46,7 +47,7 @@
                     android:id="@+id/imvExpand"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@{faq.isExpanded ? @drawable/ic_pointer_up : @drawable/ic_pointer_down}"
+                    android:src="@drawable/ic_pointer_up"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 

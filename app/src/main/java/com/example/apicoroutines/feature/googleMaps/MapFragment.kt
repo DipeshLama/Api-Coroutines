@@ -1,8 +1,6 @@
 package com.example.apicoroutines.feature.googleMaps
 
 import android.Manifest
-import android.app.Activity
-import android.content.Intent
 import android.content.IntentSender
 import android.location.Address
 import android.location.Geocoder
@@ -10,7 +8,6 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.view.inputmethod.EditorInfo
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.navArgs

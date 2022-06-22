@@ -8,7 +8,7 @@ import com.example.apicoroutines.feature.shared.model.response.Faq
 class FaqViewHolder(
     val binding: LayoutFaqListBinding,
     val listener: OnExpandListener,
-    val size: Int
+    val size: Int,
 ) :
     RecyclerView.ViewHolder(binding.root) {
 
@@ -21,5 +21,13 @@ class FaqViewHolder(
     fun bind(faq: Faq) {
         binding.faq = faq
         binding.executePendingBindings()
+
+        if (faq.isExpanded) {
+            binding.txvFaqAns.animate().setDuration(500).alpha(1.0f)
+            binding.imvExpand.animate().rotation(180f)
+        } else {
+            binding.txvFaqAns.animate().setDuration(500).alpha(0.0f)
+            binding.imvExpand.animate().rotation(0f)
+        }
     }
 }
