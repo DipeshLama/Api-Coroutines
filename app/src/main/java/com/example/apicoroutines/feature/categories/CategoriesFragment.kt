@@ -45,7 +45,12 @@ class CategoriesFragment : BaseFragment() {
         setHasOptionsMenu(true)
         categoryViewModel
         initRecyclerView()
-        getCategories()
+
+        if (savedInstanceState == null) {
+            getCategories()
+        } else {
+            initList(savedInstanceState.getParcelableArrayList<Category>("state_list") as List<Category>)
+        }
     }
 
     private fun getCategories() {
@@ -67,9 +72,7 @@ class CategoriesFragment : BaseFragment() {
         it.data?.let {
             if (it.isSuccessful && it.body()?.data?.isNotEmpty() == true) {
                 progressBarGone()
-                categoryList.clear()
-                categoryList.addAll(it.body()?.data ?: emptyList())
-                adapter.notifyItemRangeInserted(0, categoryList.count())
+                initList(it.body()?.data ?: emptyList())
             } else {
                 progressBarGone()
                 showMessage(getError(it.errorBody()?.string()))
@@ -92,5 +95,16 @@ class CategoriesFragment : BaseFragment() {
 
     private fun progressBarGone() {
         binding.prgCategories.visibility = View.GONE
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putParcelableArrayList("state_list", categoryList)
+    }
+
+    private fun initList(list: List<Category>) {
+        categoryList.clear()
+        categoryList.addAll(list)
+        adapter.notifyItemRangeInserted(0, categoryList.count())
     }
 }
