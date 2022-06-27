@@ -80,4 +80,7 @@
     <string name="edit_address">Edit Address</string>
     <string name="plus_taxes">Plus Taxes</string>
     <string name="search">search</string>
+    <string name="ekbana_solutions">EKbana Solutions</string>
+    <string name="powered_by_koklass">Powered By <b>Koklass</b></string>
+    <string name="made_in_nepal">#Made in Nepal</string>
 </resources>

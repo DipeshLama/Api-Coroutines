@@ -12,6 +12,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -33,6 +34,7 @@ import com.qamar.curvedbottomnaviagtion.CurvedBottomNavigation
 import dagger.hilt.android.AndroidEntryPoint
 import org.w3c.dom.Text
 import retrofit2.Response
+import shortbread.Shortcut
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -125,5 +127,12 @@ class MainActivity : AppCompatActivity() {
         const val MORE_ITEM = R.id.moreFragment
     }
 
-
+    @Shortcut(
+        id = "cart",
+        icon = R.drawable.ic_cart_light,
+        shortLabel = "My Cart"
+    )
+    fun navigateToCart(){
+        navController.navigate(R.id.cartFragment)
+    }
 }

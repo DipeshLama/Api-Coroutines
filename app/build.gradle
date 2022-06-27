@@ -6,6 +6,7 @@ plugins {
     id 'androidx.navigation.safeargs.kotlin'
     id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
+apply plugin: 'com.github.matthiasrobbers.shortbread'
 
 android {
     compileSdk 32
@@ -108,6 +109,11 @@ dependencies {
     implementation 'com.google.android.gms:play-services-maps:18.0.2'
 
     implementation 'com.google.android.gms:play-services-location:20.0.0'
+
+
+    //shortcut
+    implementation 'com.github.matthiasrobbers:shortbread:1.4.0'
+    kapt 'com.github.matthiasrobbers:shortbread-compiler:1.4.0'
 
 }
 
