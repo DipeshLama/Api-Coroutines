@@ -34,12 +34,12 @@ class FaqFragment : Fragment(), OnExpandListener {
     }
 
     private fun setRecyclerView() {
-        faqList = faqList()
-        faqAdapter = FaqAdapter(faqList, this)
+        faqAdapter = FaqAdapter(this)
         binding.rvyFaq.apply {
             adapter = faqAdapter
             itemAnimator = null
         }
+        faqAdapter.differ.submitList(faqList())
     }
 
     private fun faqList(): ArrayList<Faq> {
@@ -65,11 +65,11 @@ class FaqFragment : Fragment(), OnExpandListener {
         faqList.filter {
             faqList[position] != it
 
-        }.forEach{
+        }.forEach {
             it.isExpanded = false
         }
         faqList[position].isExpanded = !faqList[position].isExpanded
-        faqAdapter.notifyItemRangeChanged(0,faqList.size)
+//        faqAdapter.notifyItemRangeChanged(0,faqList.size)
     }
 }
 
