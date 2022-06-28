@@ -50,7 +50,13 @@ class HomeFragment : BaseFragment(), ProductClickListener {
         super.onViewCreated(view, savedInstanceState)
         homeViewModel
         setUpRecyclerView()
-        getData()
+
+        if (savedInstanceState == null) {
+            getData()
+        } else {
+            showMessage("jghgj")
+            initList(savedInstanceState.getParcelableArrayList<Home>("state_list") as List<Home>)
+        }
     }
 
     private fun getData() {
@@ -133,7 +139,6 @@ class HomeFragment : BaseFragment(), ProductClickListener {
     }
 
     private fun setViewType(list: List<Home>) {
-
         list.forEach { response ->
             response.viewType = when (response.title) {
                 StringConstants.Banner -> StringConstants.bannerType
@@ -176,5 +181,10 @@ class HomeFragment : BaseFragment(), ProductClickListener {
     private fun navigateToDetail(id: Int) {
         findNavController()
             .navigate(HomeFragmentDirections.actionHomeFragmentToProductDetailFragment(id))
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putParcelableArrayList("state_list", homeList)
     }
 }

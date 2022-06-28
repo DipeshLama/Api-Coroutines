@@ -1,42 +1,71 @@
 package com.example.apicoroutines.feature.shared.model.response
 
+import android.os.Parcel
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.apicoroutines.utils.constants.DatabaseConstants
-import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = DatabaseConstants.home)
-data class Home (
-
+class Home() : Parcelable {
     @PrimaryKey
     @SerializedName("id")
-    @Expose
-    val id: Int? = null,
+    var id: Int? = null
 
     @SerializedName("title")
-    @Expose
-    val title: String? = null,
+    var title: String? = null
 
     @SerializedName("status")
-    @Expose
-    val status: Boolean? = null,
+    var status: Boolean? = null
 
     @SerializedName("position")
-    @Expose
-    val position: Int? = null,
+    var position: Int? = null
 
     @SerializedName("details")
-    @Expose
-    val details: List<Details>? = null,
+    var details: List<Details>? = null
 
     @SerializedName("sectionDetails")
-    @Expose
-    val sectionDetails: SectionDetails? = null,
+    var sectionDetails: SectionDetails? = null
 
     @SerializedName("categories")
-    @Expose
-    val categories: List<Category>? = null,
+    var categories: List<Category>? = null
 
-    var viewType : String? = null
-)
+    var viewType: String? = null
+
+    constructor(parcel: Parcel) : this() {
+        id = parcel.readValue(Int::class.java.classLoader) as? Int
+        title = parcel.readString()
+        status = parcel.readValue(Boolean::class.java.classLoader) as? Boolean
+        position = parcel.readValue(Int::class.java.classLoader) as? Int
+        details = parcel.createTypedArrayList(Details)
+        sectionDetails = parcel.readParcelable(SectionDetails::class.java.classLoader)
+        categories = parcel.createTypedArrayList(Category)
+        viewType = parcel.readString()
+    }
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeValue(id)
+        parcel.writeString(title)
+        parcel.writeValue(status)
+        parcel.writeValue(position)
+        parcel.writeTypedList(details)
+        parcel.writeParcelable(sectionDetails, flags)
+        parcel.writeTypedList(categories)
+        parcel.writeString(viewType)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<Home> {
+        override fun createFromParcel(parcel: Parcel): Home {
+            return Home(parcel)
+        }
+
+        override fun newArray(size: Int): Array<Home?> {
+            return arrayOfNulls(size)
+        }
+    }
+}

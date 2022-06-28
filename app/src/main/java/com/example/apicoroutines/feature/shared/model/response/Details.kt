@@ -1,66 +1,102 @@
 package com.example.apicoroutines.feature.shared.model.response
 
-import com.google.gson.annotations.Expose
+import android.os.Parcel
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 
-class Details {
+class Details() : Parcelable {
     @SerializedName("title")
-    @Expose
-    val title: String? = null
+    var title: String? = null
 
     @SerializedName("category_search")
-    @Expose
-    val categorySearch: String? = null
+    var categorySearch: String? = null
 
     @SerializedName("web_link")
-    @Expose
-    val webLink: String? = null
+    var webLink: String? = null
 
     @SerializedName("link_to")
-    @Expose
-    val linkTo: String? = null
+    var linkTo: String? = null
 
     @SerializedName("status")
-    @Expose
-    val status: Boolean? = null
+    var status: Boolean? = null
 
     @SerializedName("description")
-    @Expose
-    val description: String? = null
+    var description: String? = null
 
     @SerializedName("start_date")
-    @Expose
-    val startDate: String? = null
+    var startDate: String? = null
 
     @SerializedName("end_date")
-    @Expose
-    val endDate: String? = null
+    var endDate: String? = null
 
     @SerializedName("method_type")
-    @Expose
-    val methodType: String? = null
+    var methodType: String? = null
 
     @SerializedName("subsection_exist")
-    @Expose
-    val subsectionExist: String? = null
+    var subsectionExist: String? = null
 
     @SerializedName("images")
-    @Expose
-    val images: String? = null
+    var images: String? = null
 
     @SerializedName("category")
-    @Expose
-    val category: Category? = null
+    var category: Category? = null
 
     @SerializedName("product")
-    @Expose
-    val product: Int? = null
+    var product: Int? = null
 
     @SerializedName("id")
-    @Expose
-    val id: Int? = null
+    var id: Int? = null
 
     @SerializedName("position")
-    @Expose
-    val position: Int? = null
+    var position: Int? = null
+
+    constructor(parcel: Parcel) : this() {
+        title = parcel.readString()
+        categorySearch = parcel.readString()
+        webLink = parcel.readString()
+        linkTo = parcel.readString()
+        status = parcel.readValue(Boolean::class.java.classLoader) as? Boolean
+        description = parcel.readString()
+        startDate = parcel.readString()
+        endDate = parcel.readString()
+        methodType = parcel.readString()
+        subsectionExist = parcel.readString()
+        images = parcel.readString()
+        category = parcel.readParcelable(Category::class.java.classLoader)
+        product = parcel.readValue(Int::class.java.classLoader) as? Int
+        id = parcel.readValue(Int::class.java.classLoader) as? Int
+        position = parcel.readValue(Int::class.java.classLoader) as? Int
+    }
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(title)
+        parcel.writeString(categorySearch)
+        parcel.writeString(webLink)
+        parcel.writeString(linkTo)
+        parcel.writeValue(status)
+        parcel.writeString(description)
+        parcel.writeString(startDate)
+        parcel.writeString(endDate)
+        parcel.writeString(methodType)
+        parcel.writeString(subsectionExist)
+        parcel.writeString(images)
+        parcel.writeParcelable(category, flags)
+        parcel.writeValue(product)
+        parcel.writeValue(id)
+        parcel.writeValue(position)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<Details> {
+        override fun createFromParcel(parcel: Parcel): Details {
+            return Details(parcel)
+        }
+
+        override fun newArray(size: Int): Array<Details?> {
+            return arrayOfNulls(size)
+        }
+    }
 }

@@ -48,7 +48,7 @@
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/drawable/style_detail_quantity.xml" value="0.1295" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/drawable/style_dialog_rounded_corner.xml" value="0.1275" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/drawable/style_track_button.xml" value="0.134" />
-        <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/layout/activity_auth.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/layout/activity_auth.xml" value="0.33" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/layout/activity_base.xml" value="0.1" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/layout/activity_forgot_password.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/layout/activity_login.xml" value="0.20416666666666666" />
@@ -79,7 +79,7 @@
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/layout/fragment_order_history.xml" value="0.1921875" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/layout/fragment_order_tracking.xml" value="0.22" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/layout/fragment_payment_options.xml" value="0.22991347342398022" />
-        <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/layout/fragment_product_detail.xml" value="0.3" />
+        <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/layout/fragment_product_detail.xml" value="0.22" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/layout/fragment_sign_up.xml" value="0.18" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/layout/ic_location_iconly.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/ApiCoroutines/app/src/main/res/layout/ic_paper_iconly.xml" value="0.22" />

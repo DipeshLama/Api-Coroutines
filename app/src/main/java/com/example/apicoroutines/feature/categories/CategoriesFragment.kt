@@ -2,12 +2,12 @@ package com.example.apicoroutines.feature.categories
 
 import android.os.Bundle
 import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.core.view.MenuProvider
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import com.example.apicoroutines.R
 import com.example.apicoroutines.databinding.FragmentCategoriesBinding
@@ -17,6 +17,7 @@ import com.example.apicoroutines.feature.shared.base.BaseFragment
 import com.example.apicoroutines.feature.shared.model.response.Category
 import com.example.apicoroutines.utils.resource.Resource
 import com.example.apicoroutines.utils.resource.Status
+import com.google.android.gms.common.api.internal.LifecycleFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import retrofit2.Response
@@ -43,7 +44,6 @@ class CategoriesFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
-        categoryViewModel
         initRecyclerView()
 
         if (savedInstanceState == null) {

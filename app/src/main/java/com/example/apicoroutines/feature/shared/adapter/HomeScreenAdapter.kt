@@ -91,6 +91,8 @@ class HomeScreenAdapter(
             AnimationUtils.loadAnimation(holder.itemView.context, R.anim.alpha)
     }
 
+    override fun getItemCount() = homeList.size
+
     private fun populateAdsBanner(baseVH: BaseViewHolder, position: Int) {
         val holder = baseVH as? AdsBannerVH
         holder?.bind(homeList[position].details ?: emptyList())
@@ -102,7 +104,6 @@ class HomeScreenAdapter(
             homeList[position].sectionDetails?.title ?: "")
     }
 
-    override fun getItemCount() = homeList.size
 
     private fun populateBanner(baseVH: BaseViewHolder, position: Int) {
         val holder = baseVH as? BannerViewHolder

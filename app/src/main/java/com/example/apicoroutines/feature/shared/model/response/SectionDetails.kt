@@ -1,46 +1,74 @@
 package com.example.apicoroutines.feature.shared.model.response
 
+import android.os.Parcel
+import android.os.Parcelable
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-class SectionDetails {
+class SectionDetails() : Parcelable {
     @SerializedName("id")
-    @Expose
-    val id: String? = null
+    var id: String? = null
 
     @SerializedName("title")
-    @Expose
-    val title: String? = null
+    var title: String? = null
 
     @SerializedName("category_search")
-    @Expose
-    val categorySearch: String? = null
+    var categorySearch: String? = null
 
     @SerializedName("design_type")
-    @Expose
-    val designType: String? = null
+    var designType: String? = null
 
     @SerializedName("collection_type")
-    @Expose
-    val collectionType: String? = null
+    var collectionType: String? = null
 
     @SerializedName("description")
-    @Expose
-    val description: String? = null
+    var description: String? = null
 
     @SerializedName("start_date")
-    @Expose
-    val startDate: String? = null
+    var startDate: String? = null
 
     @SerializedName("end_date")
-    @Expose
-    val endDate: String? = null
+    var endDate: String? = null
 
     @SerializedName("products")
-    @Expose
-    val products: List<Product>? = null
+    var products: List<Product>? = null
 
     @SerializedName("tags")
-    @Expose
-    val tags: List<Tags>? = null
+    var tags: List<Tags>? = null
+
+    constructor(parcel: Parcel) : this() {
+        id = parcel.readString()
+        title = parcel.readString()
+        categorySearch = parcel.readString()
+        designType = parcel.readString()
+        collectionType = parcel.readString()
+        description = parcel.readString()
+        startDate = parcel.readString()
+        endDate = parcel.readString()
+    }
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(id)
+        parcel.writeString(title)
+        parcel.writeString(categorySearch)
+        parcel.writeString(designType)
+        parcel.writeString(collectionType)
+        parcel.writeString(description)
+        parcel.writeString(startDate)
+        parcel.writeString(endDate)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<SectionDetails> {
+        override fun createFromParcel(parcel: Parcel): SectionDetails {
+            return SectionDetails(parcel)
+        }
+
+        override fun newArray(size: Int): Array<SectionDetails?> {
+            return arrayOfNulls(size)
+        }
+    }
 }

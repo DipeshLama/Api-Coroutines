@@ -37,14 +37,13 @@ class ProductDetailFragment : BaseFragment(), View.OnClickListener {
     private val favViewModel: FavouriteViewModel by viewModels()
     private var product: Product? = null
     private var quantity = 1
+    private val args: ProductDetailFragmentArgs by navArgs()
 
     var observableQuantity: ObservableInt = object : ObservableInt(quantity) {
         override fun get(): Int {
             return quantity
         }
     }
-
-    private val args: ProductDetailFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
