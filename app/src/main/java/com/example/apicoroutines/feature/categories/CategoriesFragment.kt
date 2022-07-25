@@ -49,7 +49,7 @@ class CategoriesFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
         initRecyclerView()
-
+        categoryViewModel.getCategories()
         if (savedInstanceState == null) {
             getCategories()
         } else {

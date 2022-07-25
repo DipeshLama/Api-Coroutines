@@ -22,6 +22,10 @@ class CategoryViewModel @Inject constructor(private val repository: CategoryRepo
 
     val categories: MutableLiveData<ResourceTest<BaseArrayResponse<Category>>> = MutableLiveData()
 
+//    init {
+//        getCategories()
+//    }
+
     //    fun getCategories() = liveData(Dispatchers.IO) {
 //        emit(Resource.loading(null))
 //
@@ -44,6 +48,7 @@ class CategoryViewModel @Inject constructor(private val repository: CategoryRepo
                 return ResourceTest.Success(it)
             }
         }
-        return ResourceTest.Error(data = null, message = response.errorBody()?.string().getError())
+        return ResourceTest.Error(data = null,
+            message = response.errorBody()?.string().getError())
     }
 }

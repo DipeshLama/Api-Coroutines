@@ -54,7 +54,6 @@ class HomeFragment : BaseFragment(), ProductClickListener {
         if (savedInstanceState == null) {
             getData()
         } else {
-            showMessage("jghgj")
             initList(savedInstanceState.getParcelableArrayList<Home>("state_list") as List<Home>)
         }
     }

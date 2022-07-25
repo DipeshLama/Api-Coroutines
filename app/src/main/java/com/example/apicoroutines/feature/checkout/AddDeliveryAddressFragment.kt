@@ -1,9 +1,6 @@
 package com.example.apicoroutines.feature.checkout
 
-import android.app.Activity
-import android.content.Intent
-import android.content.IntentSender.SendIntentException
-import android.location.Location
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -30,7 +27,6 @@ import com.google.android.gms.location.*
 import com.google.android.gms.tasks.Task
 import dagger.hilt.android.AndroidEntryPoint
 import retrofit2.Response
-
 
 @AndroidEntryPoint
 class AddDeliveryAddressFragment : BaseFragment(), View.OnClickListener {

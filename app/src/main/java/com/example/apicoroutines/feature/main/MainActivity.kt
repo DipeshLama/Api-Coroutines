@@ -1,14 +1,10 @@
 package com.example.apicoroutines.feature.main
 
-import android.app.Dialog
 import android.os.Bundle
 import android.view.Menu
-import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
-import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
@@ -32,7 +28,6 @@ import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GoogleApiAvailability
 import com.qamar.curvedbottomnaviagtion.CurvedBottomNavigation
 import dagger.hilt.android.AndroidEntryPoint
-import org.w3c.dom.Text
 import retrofit2.Response
 import shortbread.Shortcut
 
