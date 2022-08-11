@@ -10,11 +10,26 @@
         <item name="colorSecondaryVariant">@color/colorPrimary</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" >?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
 
     <style name="ShapeAppearanceOverlay.App.CornerSize50Percent" parent="">
         <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="Theme.ApiCoroutines.AppWidgetContainerParent" parent="@android:style/Theme.DeviceDefault">
+        <!-- Radius of the outer bound of widgets to make the rounded corners -->
+        <item name="appWidgetRadius">16dp</item>
+        <!--
+        Radius of the inner view's bound of widgets to make the rounded corners.
+        It needs to be 8dp or less than the value of appWidgetRadius
+        -->
+        <item name="appWidgetInnerRadius">8dp</item>
+    </style>
+
+    <style name="Theme.ApiCoroutines.AppWidgetContainer" parent="Theme.ApiCoroutines.AppWidgetContainerParent">
+        <!-- Apply padding to avoid the content of the widget colliding with the rounded corners -->
+        <item name="appWidgetPadding">16dp</item>
     </style>
 </resources>

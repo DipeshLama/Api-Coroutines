@@ -83,4 +83,7 @@
     <string name="ekbana_solutions">EKbana Solutions</string>
     <string name="powered_by_koklass">Powered By <b>Koklass</b></string>
     <string name="made_in_nepal">#Made in Nepal</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="app_widget_description">This is an app widget description</string>
 </resources>

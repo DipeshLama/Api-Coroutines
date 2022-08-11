@@ -16,6 +16,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun getHomeDao(): HomeDao
 
     companion object {
+
         private var instance: AppDatabase? = null
 
         fun getAppDatabase(context: Context): AppDatabase {

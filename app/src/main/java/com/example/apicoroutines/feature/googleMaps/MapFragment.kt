@@ -182,20 +182,6 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         }
     }
 
-//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//        super.onActivityResult(requestCode, resultCode, data)
-//        if (requestCode === REQUEST_CHECK_SETTINGS) {
-//            when (resultCode) {
-//                Activity.RESULT_OK -> {
-//                    Toast.makeText(requireContext(), "GPS is turned on", Toast.LENGTH_SHORT).show()
-//                }
-//                Activity.RESULT_CANCELED -> Toast.makeText(requireContext(),
-//                    "GPS required to be turned on",
-//                    Toast.LENGTH_SHORT).show()
-//            }
-//        }
-//    }
-
     private fun hideSoftKeyboard(){
         activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
     }

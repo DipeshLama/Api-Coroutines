@@ -2,6 +2,7 @@ package com.example.apicoroutines.utils.constants
 
 object ApiConstants {
     const val baseUrl = "https://uat.ordering-iamthegardener-v4.ekbana.net/"
+    const val profileU = "https://uat.ordering-iamthegardener-v4.ekbana.net/api/v4profile/show"
     const val apiKey = "c0e054eac239d5b973d754909d5b676551bbbe4f44285f20524b23a1908afb15"
     const val apiKeyString = "Api-key"
     const val wareHouseIdString = "Warehouse-Id"

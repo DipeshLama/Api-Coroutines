@@ -23,6 +23,7 @@ android {
 
     buildFeatures {
         dataBinding true
+        viewBinding true
     }
 
     buildTypes {
@@ -109,6 +110,11 @@ dependencies {
     implementation 'com.google.android.gms:play-services-maps:18.0.2'
 
     implementation 'com.google.android.gms:play-services-location:20.0.0'
+
+    //Rx
+    implementation 'io.reactivex.rxjava2:rxkotlin:2.3.0'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
+    implementation 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
 
 
     //shortcut
