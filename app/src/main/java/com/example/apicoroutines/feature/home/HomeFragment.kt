@@ -133,7 +133,6 @@ class HomeFragment : BaseFragment(), ProductClickListener {
     }
 
     private fun setViewType(list: List<Home>) {
-
         list.forEach { response ->
             response.viewType = when (response.title) {
                 StringConstants.Banner -> StringConstants.bannerType
@@ -160,8 +159,9 @@ class HomeFragment : BaseFragment(), ProductClickListener {
     }
 
     private fun initList(list: List<Home>) {
-        this.homeList.clear()
-        this.homeList.addAll(list)
+        homeList.clear()
+        homeList.addAll(list)
+        homeList.sortBy { it.position }
         homeScreenAdapter.notifyItemRangeInserted(0, homeList.count())
     }
 
